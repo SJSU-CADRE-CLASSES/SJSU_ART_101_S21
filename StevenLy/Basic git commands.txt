@@ -1,8 +1,0 @@
-git status - tell me what's going on
-
-git pull
-git add -A
-git commit -m 'write a comment'
-git push
-
-git clone http://some.url.that.i.know
