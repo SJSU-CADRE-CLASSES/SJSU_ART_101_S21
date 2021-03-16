@@ -1,16 +1,16 @@
 // pandas gang (arrays)
 let pandas = [{
   name: "justin",
-  color: "roundest"
+  color: "red"
 }, {
   name: "david",
   color: "blue"
 }, {
   name: "steven",
-  color: "lightblue"
+  color: "light blue"
 }, {
   name: "abdal",
-  color: "red"
+  color: "pink"
 }, {
   name: "colonge",
   color: "color"
@@ -20,10 +20,15 @@ let pandas = [{
 }];
 
 let randomIndex;
+let animating = false;
+
 
 function setup() {
   createCanvas(600, 600);
   background(200);
+  textSize(32);
+
+  text("click to randomize", 50, 50);
 
   // *notes for myself*
   // console.log(pandas[2].color);
@@ -44,14 +49,43 @@ function setup() {
 
 function draw() {
 
+  if (animating == true){
+    ellipse(random(width), random(height), random(50, 200));
+  }
 }
 
-function mousePressed() {
-    background(random(200, 255));
-  // random index = pulling a random integer to the length of the array
-    randomIndex = int(random(pandas.length));
-  // using text to sub integer for the name of panda
-    text(pandas[randomIndex].name, 50, 50);
-  // not letting it to repeat
-    pandas.splice(randomIndex, 1);
+function randomizer(){
+  animating = false;
+
+  if (pandas[0]){
+     background(random(200, 255));
+    // random index = pulling a random integer to the length of the array
+     randomIndex = int(random(pandas.length));
+    // using text to sub integer for the name of panda
+     text(`${pandas[randomIndex].name}'s favorite color is ${pandas[randomIndex].color}`, 50, 50);
+    // text(pandas[randomIndex].name + "'s favorite color is " + pandas[randomIndex].color, 50, 50);
+    // not letting it to repeat
+     pandas.splice(randomIndex, 1);
+  } else {
+   background(random(200, 255));
+   text("nothing left!", 50, 50);
+  }
 }
+function mousePressed() {
+  animating = true;
+  setTimeout(randomizer, 2000);
+
+
+//  if (pandas[0]){
+//    background(random(200, 255));
+  // random index = pulling a random integer to the length of the array
+//    randomIndex = int(random(pandas.length));
+  // using text to sub integer for the name of panda
+//    text(pandas[randomIndex].name, 50, 50);
+  // not letting it to repeat
+//    pandas.splice(randomIndex, 1);
+//} else {
+//  background(random(200, 255));
+//  text("nothing left!", 50, 50);
+//}
+ }
