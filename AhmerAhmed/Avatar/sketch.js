@@ -8,8 +8,8 @@ var p;
 let x;
 let y;
 let move = false;
+let sketchStarted = false;
 let rain = [];
-let bool = false;
 
 //function creates the canvas
 function setup() {
@@ -19,8 +19,7 @@ function setup() {
   //angle
   angleMode(degrees)
 
-  //get mic input and assign it
-  createButton("Start").mousePressed(startSketch);
+  createButton("Start Audio Variables").mousePressed(startSketch);
 
   //set values for variables
   x = width;
@@ -42,16 +41,16 @@ function setup() {
 }
 
 function startSketch(){
+  //get mic input and assign it
   mic = new p5.AudioIn();
   mic.start();
 
-  bool = true;
+  sketchStarted = true;
 }
 
 //function draws the avatar
 function draw() {
-  if(bool == true){
-
+  if (sketchStarted == true){
     //keeps the background colors constant while eyes and colors are redrawn
     background(20)
 
