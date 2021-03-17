@@ -15,26 +15,26 @@ let a = 0, b =0
 
 
 function setup() {
-  
+
   // console.log(angleWag);
-  
+
   createCanvas(1000, 1000);
   angleMode(DEGREES);
 
   mic = new p5.AudioIn();
   mic.start();
-  
+
   mouthMove = map(mic.getLevel(), 0, 0.01, 0, 5);
   tailMove = map(mic.getLevel(), 0, 0.8, 0, 10);
   console.log("mouse x is: " + mouseX);
   console.log("mouse y is: " + mouseY);
-  
+
   console.log("mic level" + mic.getLevel());
-  
+
   micLevel = mic.getLevel();
-  
+
   console.log(mouthMove);
-  
+
   spirit = new Crystals();
   spirit1 = new Crystals();
   spirit2 = new Crystals();
@@ -48,7 +48,7 @@ function setup() {
   spirit10 = new Crystals();
   spirit11 = new Crystals();
   spirit12 = new Crystals();
-  
+
 //   for (let i = 0; i < 50; i++) {
 //    spirit.push(new Crystals());
 // }
@@ -56,23 +56,23 @@ function setup() {
 
 
 function draw() {
-  
-  
-  
+
+
+
 //     push();
 //   // let frameRate = 10;
 //   // let bgColors = [p, e, o]
-//   // let p = fill(255, 0, 255); 
-//   // let e = fill(0, 0, 210); 
+//   // let p = fill(255, 0, 255);
+//   // let e = fill(0, 0, 210);
   // let o = fill(255, 165, 0);
-  
-  
-  
+
+
+
   background(10);
 
   // spirit.move();
   // spirit.display();
-  
+
   // for (let i = 0; i < spirit.length; i++) {
   spirit.move();
   spirit.display();
@@ -98,11 +98,11 @@ function draw() {
   spirit11.display();
   spirit12.move();
   spirit12.display();
-  
+
   // }
- 
+
   push();
-  
+
   // rotate(radians(frameCount +5));
   translate(10,10)
   let i = PI / 4
@@ -112,19 +112,19 @@ function draw() {
 
 
   drawTail(-10 ,-10);
-  
-  
+
+
   pop();
-  
-  
+
+
   drawBody();
-  
-  
+
+
   push();
   translate(500,500);
   // let myHeadAngle = 0;
   // rotate(myHeadAngle);
-  
+
   if(mouseY <= 300 && mouseX >= 300){
     rotate(myHeadAngle + 4);
   } else if (mouseY >= 100 && mouseX <= 280 ){
@@ -132,42 +132,42 @@ function draw() {
   }
 
   drawHead(-500,-500);
-  
-  
+
+
   // pop();
 
-  
+
   // frameRate(color( _purple, _blue, _orange));
-    
-  
-  
+
+
+
   drawPupils();
- 
+
   // push();
-  
+
   drawHighlights();
-  
+
   drawBlinking();
-  
+
   // push();
-  
-  
+
+
   translate(0, mouthMove)
   drawInnerMouth();
-  
-  
 
-  
+
+
+
   pop();
 
-  
-  
-  
+
+
+
   drawLegs();
-     
-  
+
+
   // print(myAngle);
-  
+
 }
 
 
@@ -241,9 +241,9 @@ function drawBody() {
 
 function drawHead(x,y){
   //head
-  
+
   translate(x, y);
-  
+
   fill(240, 120, 100)
   strokeWeight(15);
   stroke(50);
@@ -273,7 +273,7 @@ function drawHead(x,y){
 // function drawEyelids(){
   //left eyelid
 
-  
+
   // translate()
   noStroke();
   fill(160, 80, 60);
@@ -289,7 +289,7 @@ function drawHead(x,y){
   vertex(width * 0.65, height * 0.29);
   vertex(width * 0.54, height * 0.4);
   endShape(CLOSE);
-  
+
 
 // }
 
@@ -356,7 +356,7 @@ function drawHead(x,y){
 
 
 
-  
+
 
 // function drawSnout(){
   //snout shadow
@@ -404,7 +404,7 @@ function drawHead(x,y){
   vertex(width * 0.55, height * 0.56);
   endShape(CLOSE);
 }
-  
+
 function drawInnerMouth(){
   fill(10);
   beginShape();
@@ -472,8 +472,8 @@ function drawTail(a, b){
   vertex(width * 0.8, height * 0.7)
   vertex(width * 0.75, height * 0.66)
   endShape(CLOSE);
-  
-  
+
+
 }
 
 
@@ -482,7 +482,7 @@ function drawBlinking(){
   //let fill equal full opacity and frameRate it to change
   // for(fill(160, 80, 60, 255))
   noStroke();
- 
+
   if(frameCount % 10 <= 1){
       fill(160, 80, 60, 255)
   }
@@ -509,13 +509,13 @@ function drawPupils(){
   noStroke();
  // if(frameCount % 180 < 15)
   // fill(10);
-  
-  
-  
+
+
+
   frameRate(5)
   var color_select = ["#666699", "#33cccc", "#ff5500", "#00ff55", "#ff0000"]
    fill(random(color_select))
-  
+
   beginShape();
   vertex(width * 0.37, height * 0.325);
   vertex(width * 0.37, height * 0.395);
@@ -539,7 +539,3 @@ function drawHighlights(){
   circle(width * 0.37, height * 0.37, 22);
   circle(width * 0.63, height * 0.37, 22);
  }
-
-
-
-
