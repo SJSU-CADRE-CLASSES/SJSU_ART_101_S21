@@ -16,6 +16,7 @@ let songs = [{
   song: "giants"
 }]
 let rando;
+var song;
 
 function setup() {
   /* colors
@@ -23,6 +24,8 @@ function setup() {
   pink - 255, 89, 225
   blue - 145, 255, 251
   */
+
+  song = loadSound("Xeuphoria.mp3", loaded);
 
   createCanvas(600, 600);
   background(0);
@@ -34,6 +37,10 @@ function setup() {
   fill(255)
   text("Welcome to the song generator!!", 75, 300);
   text("click to change the artists and the songs", 20, 530)
+}
+
+function loaded(){
+  song.play();
 }
 
 function mousePressed(){
