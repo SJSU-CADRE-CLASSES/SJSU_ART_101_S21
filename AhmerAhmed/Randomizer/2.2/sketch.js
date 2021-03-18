@@ -16,6 +16,9 @@ let songs = [{
   song: "giants"
 }]
 let rando;
+let animating = false;
+let move = false;
+let counter = 0;
 var song;
 
 function setup() {
@@ -43,7 +46,28 @@ function loaded(){
   song.play();
 }
 
-function mousePressed(){
+function draw(){
+  //noFill();
+  if(animating == true){
+    //ellipse(random(width), random(height), random(50, 200))
+    fill(255);
+    ellipse(width*.2, height*.5, 100);
+    if(move == false){
+      width = width + 10;
+    }
+    if(move == true){
+      width = width - 10;
+    }
+    if(width > 3000){
+      move = true;
+    }
+    if(width < .1){
+      move = false;
+    }
+  }
+}
+
+function randomizer(){
   background(0);
 
   if(songs[0]){
@@ -58,6 +82,7 @@ function mousePressed(){
     fill(145, 255, 251);
     text(songs[rando].song, 150, 250);
     songs.splice(rando, 1);
+    noFill();
   }
   else{
     push();
@@ -65,6 +90,17 @@ function mousePressed(){
     fill(255, 0, 0);
     text("nothing left!", 125, 300);
     pop();
+  }
+}
+
+function mousePressed(){
+  animating = true;
+  if(counter==0){
+    setTimeout(randomizer, 2800);
+    counter++;
+  }
+  else{
+    setTimeout(randomizer, 1000);
   }
 }
 
