@@ -48,7 +48,13 @@ function setup() {
 
   fill(255)
   text("Welcome to the song generator!!", 120, 300);
-  text("click to change the artists and the songs", 60, 530)
+  push();
+  fill(133, 255, 245);
+  text("Song in the background is a Shelter remix", 55, 450);
+  fill(255, 89, 225);
+  text("by Xeuphoria.", 270, 490);
+  pop();
+  text("click to change the artists and the songs.", 60, 560)
 
   console.log(songs.lenght);
 }
@@ -98,12 +104,12 @@ function randomizer() {
       if (counter <= 35) {
         rando = int(random(8));
         fill(255, 200, 156);
-        text("artist: ", 20, 50 + i * 30);
-        text("song: ", 330, 50 + i * 30);
+        text("artist: ", 20, 50 + i * 35);
+        text("song: ", 330, 50 + i * 35);
         fill(255, 89, 225);
-        text(songs[rando].name, 110, 50 + i * 30);
+        text(songs[rando].name, 110, 50 + i * 35);
         fill(145, 255, 251);
-        text(songs[rando].song, 420, 50 + i * 30);
+        text(songs[rando].song, 420, 50 + i * 35);
         counter++;
       } else {
         push();
