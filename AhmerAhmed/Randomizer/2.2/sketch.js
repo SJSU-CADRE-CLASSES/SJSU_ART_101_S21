@@ -93,12 +93,10 @@ function draw() {
 
 function randomizer() {
   background(0);
-
   if (songs[0]) {
-    for (let i = 0; i < 7; i++) {
+    for (let i = 0; i < 8; i++) {
       if (counter <= 35) {
-        rando = int(random(5));
-        console.log("artist is " + songs[rando].name, ", song name is " + songs[rando].song);
+        rando = int(random(8));
         fill(255, 200, 156);
         text("artist: ", 20, 50 + i * 30);
         text("song: ", 330, 50 + i * 30);
@@ -107,7 +105,6 @@ function randomizer() {
         fill(145, 255, 251);
         text(songs[rando].song, 420, 50 + i * 30);
         counter++;
-        console.log(counter);
       } else {
         push();
         textSize(72);
