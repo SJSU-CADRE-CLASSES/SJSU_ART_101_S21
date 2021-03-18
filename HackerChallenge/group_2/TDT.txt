@@ -1,0 +1,22 @@
+Hangman
+
+  +---+
+  |   |
+  O   |
+ /|\  |
+      |
+      |
+=========
+
+available letters:
+
+a b c d e f g h  j k l m 
+n o p q r s t   v w x y z
+
+game 1:
+_ _ _ _ E _ _ _ _
+
+Thong: u  i
+
+Derek: e
+
