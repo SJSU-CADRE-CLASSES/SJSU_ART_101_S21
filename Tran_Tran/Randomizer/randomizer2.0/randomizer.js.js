@@ -1,20 +1,19 @@
 //animals going extinct in 2021
 let animals = [{
   name: "Spix Macaw",
-  why: "The deforestation"
+  why: "The deforestation of habitat, only left 100 alive in captivity"
 }, {
   name: "Scimatar Oryx",
-  why: "Are in rapid decline due to poaching, for it's long antlers.
-        this species has gone extinct in the wild by 2000"
+  why: "Are in rapid decline due to poaching, for it's long antlers."
 }, {
   name: "Rockhopper Penguin",
-  why: "pollution"
+  why: "Pollution and commercial fishing are killing these species"
 }, {
   name: "Snow Leopard",
-  why: "hunting"
+  why: "Are being hunted and killed"
 }, {
   name: "Black Rhino",
-  why: "poaching"
+  why: "Are being poached for its horn"
 }]
 
 let randomIndex;
