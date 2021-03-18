@@ -14,6 +14,15 @@ let songs = [{
 }, {
   name: "true_damage",
   song: "giants"
+}, {
+  name: "Lisa",
+  song: "Unlasting"
+}, {
+  name: "Aimer",
+  song: "Brave_Shine"
+}, {
+  name: "OwlCity",
+  song: "FireFlies"
 }]
 let rando;
 let animating = false;
@@ -30,7 +39,7 @@ function setup() {
 
   song = loadSound("Xeuphoria.mp3", loaded);
 
-  createCanvas(600, 600);
+  createCanvas(700, 600);
   background(0);
 
   rando = int(random(songs.length));
@@ -38,82 +47,91 @@ function setup() {
   textSize(32);
 
   fill(255)
-  text("Welcome to the song generator!!", 75, 300);
-  text("click to change the artists and the songs", 20, 530)
+  text("Welcome to the song generator!!", 120, 300);
+  text("click to change the artists and the songs", 60, 530)
+
+  console.log(songs.lenght);
 }
 
-function loaded(){
+function loaded() {
   song.play();
 }
 
-function draw(){
+function draw() {
   //noFill();
-  if(animating == true){
+  if (animating == true) {
     //ellipse(random(width), random(height), random(50, 200))
-    fill(255);
-    ellipse(width*.2, height*.5, 100);
-    if(move == false){
+    fill(133, 255, 245)
+    beginShape();
+    vertex(width * .18, height * .62) //top
+    vertex(width * .2, height * .69)
+    vertex(width * .22, height * .71)
+    vertex(width * .27, height * .72) //right
+    vertex(width * .22, height * .73)
+    vertex(width * .2, height * .75)
+    vertex(width * .18, height * .82) //bottom
+    vertex(width * .16, height * .75)
+    vertex(width * .14, height * .73)
+    vertex(width * .09, height * .72) //left
+    vertex(width * .14, height * .71)
+    vertex(width * .16, height * .69)
+    endShape(CLOSE);
+    if (move == false) {
       width = width + 10;
     }
-    if(move == true){
+    if (move == true) {
       width = width - 10;
     }
-    if(width > 3000){
+    if (width > 3000) {
       move = true;
     }
-    if(width < .1){
+    if (width < .1) {
       move = false;
     }
   }
 }
 
-function randomizer(){
+function randomizer() {
   background(0);
 
-  if(songs[0]){
-    fill(255)
-    text("click to change the artists and the songs", 20, 530)
-    rando = int(random(songs.length));
-    fill(255, 200, 156);
-    text("artist: ", 60, 200);
-    text("song: ", 60, 250);
-    fill(255, 89, 225);
-    text(songs[rando].name, 150, 200);
-    fill(145, 255, 251);
-    text(songs[rando].song, 150, 250);
-    songs.splice(rando, 1);
+  if (songs[0]) {
+    for (let i = 0; i < 7; i++) {
+      if (counter <= 35) {
+        rando = int(random(5));
+        console.log("artist is " + songs[rando].name, ", song name is " + songs[rando].song);
+        fill(255, 200, 156);
+        text("artist: ", 20, 50 + i * 30);
+        text("song: ", 330, 50 + i * 30);
+        fill(255, 89, 225);
+        text(songs[rando].name, 110, 50 + i * 30);
+        fill(145, 255, 251);
+        text(songs[rando].song, 420, 50 + i * 30);
+        counter++;
+        console.log(counter);
+      } else {
+        push();
+        textSize(72);
+        fill(255, 0, 0);
+        text("nothing left!", 125, 290);
+        pop();
+      }
+    }
     noFill();
-  }
-  else{
+  } else {
     push();
     textSize(72);
     fill(255, 0, 0);
-    text("nothing left!", 125, 300);
+    text("nothing left!", 125, 290);
     pop();
   }
 }
 
-function mousePressed(){
+function mousePressed() {
   animating = true;
-  if(counter==0){
+  if (counter == 0) {
     setTimeout(randomizer, 2800);
     counter++;
-  }
-  else{
+  } else {
     setTimeout(randomizer, 1000);
   }
 }
-
-
-//outputting all at once then re-randomizing the list
-/*for(let i=0; i<7; i++){
-  rando = int(random(5));
-  console.log("artist is " + songs[rando].name, ", song name is " + songs[rando].song);
-  fill(255, 200, 156);
-  text("artist: ", 10, 50+i*15);
-  text("song: ", 160, 50+i*15);
-  fill(255, 89, 225);
-  text(songs[rando].name, 50, 50+i*15);
-  fill(145, 255, 251);
-  text(songs[rando].song, 200, 50+i*15);
-}*/
