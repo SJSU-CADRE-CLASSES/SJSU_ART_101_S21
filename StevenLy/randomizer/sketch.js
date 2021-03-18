@@ -21,14 +21,27 @@ let pandas = [{
 
 let randomIndex;
 let animating = false;
+let cars = [];
+let imageCounter = 0;
 
+
+function preload(){
+
+  for (let i = 0; i <= 15; i++){
+    cars[i] = loadImage(`assets/car_${i}.jpg`)
+  }
+}
 
 function setup() {
   createCanvas(600, 600);
   background(200);
   textSize(32);
+  imageMode(CENTER);
+  frameRate(12);
+
 
   text("click to randomize", 50, 50);
+  console.log(cars);
 
   // *notes for myself*
   // console.log(pandas[2].color);
@@ -44,13 +57,19 @@ function setup() {
   // pandas.unshift("ha");
   // console.log("array after unshift ");
   // console.log(pandas);
-
 }
 
 function draw() {
 
   if (animating == true){
-    ellipse(random(width), random(height), random(50, 200));
+    clear();
+    image(cars[imageCounter], width/2, height/2);
+
+  if (imageCounter < cars.length -1){
+    imageCounter++;
+    console.log(imageCounter);
+  } else {
+    imageCounter = 0;
   }
 }
 
@@ -69,8 +88,10 @@ function randomizer(){
   } else {
    background(random(200, 255));
    text("nothing left!", 50, 50);
+ }
   }
 }
+
 function mousePressed() {
   animating = true;
   setTimeout(randomizer, 2000);
@@ -88,4 +109,4 @@ function mousePressed() {
 //  background(random(200, 255));
 //  text("nothing left!", 50, 50);
 //}
- }
+}
