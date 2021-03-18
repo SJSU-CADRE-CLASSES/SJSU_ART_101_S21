@@ -24,9 +24,9 @@ function setup() {
 
 createCanvas(1500,1500);
 background(200);
-textSize(100);
 
-text("click to kill", width/4, height/2);
+textSize(100);
+text("Click to kill", 100, height/2);
 
 // console.log(animals.length)
 // console.log(animals[randomIndex].name);
@@ -55,11 +55,18 @@ if (animals[0]){
   //displays random name and splices it out of array
   background(random(200, 255));
   randomIndex = int(random(animals.length));
-  text(animals[randomIndex].name, width/4, height/2);
-  text(animals[randomIndex].why, width/4, 1000);
+
+  textSize(100);
+
+  text(animals[randomIndex].name, 100, height/2);
+
+  textSize(50);
+  text(animals[randomIndex].why, 100, 1000);
   animals.splice(randomIndex, 1);
 } else{
   background(random(200, 255));
+
+  textSize(100);
   text("All are going extinct in 2021", 100, height/2);
 }
 }
