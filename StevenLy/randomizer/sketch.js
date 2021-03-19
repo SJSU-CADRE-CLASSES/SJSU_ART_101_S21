@@ -10,10 +10,10 @@ let pandas = [{
   color: "light blue"
 }, {
   name: "abdal",
-  color: "pink"
+  color: "red"
 }, {
   name: "colonge",
-  color: "color"
+  color: "pink"
 }, {
   name: "jae",
   color: "black"
@@ -23,25 +23,33 @@ let randomIndex;
 let animating = false;
 let cars = [];
 let imageCounter = 0;
+let button;
 
+function preload() {
 
-function preload(){
-
-  for (let i = 0; i <= 15; i++){
+  for (let i = 0; i <= 15; i++) {
     cars[i] = loadImage(`assets/car_${i}.jpg`)
   }
+
 }
 
 function setup() {
-  createCanvas(600, 600);
-  background(200);
-  textSize(32);
+  createCanvas(1600, 900);
+  background(149,200,216);
+  textSize(40);
+  textFont('Courier new');
+  textAlign(CENTER);
+  textStyle(BOLD);
+  stroke(50);
+  fill(0,171,240)
   imageMode(CENTER);
-  frameRate(12);
+  frameRate(5);
 
+  text("click to the button to randomize!", 800, 450);
 
-  text("click to randomize", 50, 50);
-  console.log(cars);
+  button = createButton("Click To Randomize");
+  button.mousePressed(buttonPressed);
+
 
   // *notes for myself*
   // console.log(pandas[2].color);
@@ -57,56 +65,59 @@ function setup() {
   // pandas.unshift("ha");
   // console.log("array after unshift ");
   // console.log(pandas);
+
 }
 
 function draw() {
 
-  if (animating == true){
+  if (animating == true) {
     clear();
-    image(cars[imageCounter], width/2, height/2);
+    image(cars[imageCounter], width / 2, height / 2);
 
-  if (imageCounter < cars.length -1){
-    imageCounter++;
-    console.log(imageCounter);
-  } else {
-    imageCounter = 0;
+    if (imageCounter < cars.length - 1) {
+      imageCounter++;
+    } else {
+      imageCounter = 0;
+    }
   }
+
 }
 
-function randomizer(){
+function randomizer() {
   animating = false;
 
-  if (pandas[0]){
-     background(random(200, 255));
+  if (pandas[0]) {
+    // background(random(200, 255));
     // random index = pulling a random integer to the length of the array
-     randomIndex = int(random(pandas.length));
+    clear();
+    randomIndex = int(random(pandas.length));
     // using text to sub integer for the name of panda
-     text(`${pandas[randomIndex].name}'s favorite color is ${pandas[randomIndex].color}`, 50, 50);
+    image(random(cars), width / 2, height / 2);
+    text(`${pandas[randomIndex].name}'s favorite color is ${pandas[randomIndex].color}`, 550, 700);
     // text(pandas[randomIndex].name + "'s favorite color is " + pandas[randomIndex].color, 50, 50);
     // not letting it to repeat
-     pandas.splice(randomIndex, 1);
+    pandas.splice(randomIndex, 1);
   } else {
-   background(random(200, 255));
-   text("nothing left!", 50, 50);
- }
+    background(random(200, 255));
+    text("nothing left!", 550, 700);
   }
 }
 
-function mousePressed() {
+function buttonPressed() {
   animating = true;
   setTimeout(randomizer, 2000);
 
 
-//  if (pandas[0]){
-//    background(random(200, 255));
+  //  if (pandas[0]){
+  //    background(random(200, 255));
   // random index = pulling a random integer to the length of the array
-//    randomIndex = int(random(pandas.length));
+  //    randomIndex = int(random(pandas.length));
   // using text to sub integer for the name of panda
-//    text(pandas[randomIndex].name, 50, 50);
+  //    text(pandas[randomIndex].name, 50, 50);
   // not letting it to repeat
-//    pandas.splice(randomIndex, 1);
-//} else {
-//  background(random(200, 255));
-//  text("nothing left!", 50, 50);
-//}
+  //    pandas.splice(randomIndex, 1);
+  //} else {
+  //  background(random(200, 255));
+  //  text("nothing left!", 50, 50);
+  //}
 }

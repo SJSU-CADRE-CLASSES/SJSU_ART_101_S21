@@ -1,0 +1,68 @@
+
+//Group Ascii Response By: Ahmer Ahmed, Dante Livingston, Huy Tran
+
+//Choose from the prompts below after pulling the repository and submit your own Ascii interpretation of them in the submission space.
+//Random classmates will pull, draw and then push the file back into the repository and eventually we will have a list of random Ascii drawings!
+
+**Prompts**
+1. Harm
+2. Joy
+3. Nature
+4. Man-Made
+5. Pet
+6. Space
+7. School
+8. Home
+9. Weather
+10. Work
+
+//Put your response below here by listing the number and then your text. Eg, 2: "ART"
+
+2. Joy: Smiling person - Dante Livingston
+
+          \=\+./
+          +==--.
+         /{_   {\
+         | +  +  |
+        (.  <    .)
+         \  __   /
+          <|__/ |
+            \  /            
+
+3. I neeedddd
+            ___...(-------)-....___
+               .-""       )    (          ""-.
+         .-'``'|-._             )         _.-|
+        /  .--.|   `""---...........---""`   |
+       /  /    |                             |
+       |  |    |                             |
+        \  \   |                             |
+         `\ `\ |                             |
+           `\ `|                             |
+           _/ /\                             /
+          (__/  \                           /
+       _..---""` \                         /`""---.._
+    .-'           \                       /          '-.
+   :               `-.__             __.-'              :
+   :                  ) ""---...---"" (                 :
+    '._               `"--...___...--"`              _.'
+  jgs \""--..__                              __..--""/
+       '._     """----.....______.....----"""     _.'
+          `""--..,,_____            _____,,..--""`
+                        `"""----"""`
+
+4.Home - Ahmer Ahmed
+
+				   ~
+				 ~
+			/\    _~
+		       /  \  |x|
+		      /	   \ |x|
+		     /      \|x|
+                    /        \x|
+		   / 	      \| 
+		  |------------|
+		 /|   _        |\
+  		/ |  |_|  ____ | \
+	       /  |       | .| |  \
+--------------/---|------------|---\----------------
