@@ -5,8 +5,16 @@ function setup() {
   createCanvas(600,600);
   background(200);
 
-console.log (plants[0])
+console.log("initial array is ");
+console.log(plants);
 
+plants.pop();
+console.log("array after pop");
+console.log(plants);
+  
+plants.push("Norbert") 
+console.log("array after push");
+console.log(plants);
 }
 
 function draw() {
