@@ -1,22 +1,42 @@
 // Plants that i currently own
-let plants = ["Ogre's Ear", "Lucky bamboo", "Mickey Mouse Cactus", "Hoya Heart", "Ficus Ginseng", "Money Tree", "Coconut"];
+let plants = [
+  {
+    commonName: "Ogre's Ear",
+    scientificName:"Crassula Ovata Monstruosa"
+  }, {
+    commonName: "Lucky bamboo",
+    scientificName: "Dracaena Sanderiana"
+  }, {
+    commonName: "Mickey Mouse Cactus",
+    scientificName: "Opuntia Microdasys"
+  }, {
+    commonName:"Hoya Heart",
+    scientificName: "hoya kerriificus "
+  }, {
+    commonName:"Ficus Ginseng",
+    scientificName: "ficus retusa"
+  }, {
+    commonName:"Money Tree",
+    scientificName: "Pachira aquatica"
+  }, {
+    commonName:"Coconut Tree",
+    scientificName: "Cocos Nucifera"
+  }];
+let randomIndex;
 
 function setup() {
   createCanvas(600,600);
   background(200);
 
-console.log("initial array is ");
-console.log(plants);
-
-plants.pop();
-console.log("array after pop");
-console.log(plants);
-  
-plants.push("Norbert") 
-console.log("array after push");
-console.log(plants);
 }
 
 function draw() {
 
+}
+
+function mousePressed() {
+  background(random(200, 255));
+  randomIndex = int(random(plants.length))
+  text(plants[randomIndex].commonName, 50,50);
+  plants.splice(randomIndex, 1);
 }
