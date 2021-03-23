@@ -1,6 +1,7 @@
 // TODAY I WANT TO EAT CHOCOLATE
+//MAR2321
 let randomIndex;
-
+let counter = 0;
 let mm = [{
   name: "ROD",
   color: "yummy red"
@@ -29,9 +30,20 @@ function setup() {
 
   text("PINCH ME NOW!", 50, 50);
 
+  //setTimeout(changeBackround, 1000);
+  setInterval(changeBackround, 1000);
 }
 
 function draw() {
+}
+
+function changeBackround(){
+  if (counter <=5) {
+    counter++;
+    console.log(counter);
+    background(random(255), random(255), random(255));
+    setTimeout(changeBackround, 1000);
+  } else {
 }
 
 function mousePressed(){
@@ -41,8 +53,9 @@ function mousePressed(){
     text(mm[randomIndex].name, 50, 50);
     mm.splice(randomIndex, 1);
 
-  } else {
+    } else {
     background(255, 0, 0);
     text("HUHM! IT'S OVER!", 50, 50);
+    }
   }
 }

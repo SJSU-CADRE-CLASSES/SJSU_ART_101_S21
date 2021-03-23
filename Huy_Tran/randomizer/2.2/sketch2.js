@@ -1,7 +1,6 @@
 // TODAY I WANT TO EAT CHOCOLATE
-//MAR2321
 let randomIndex;
-
+let animating = false;
 let mm = [{
   name: "ROD",
   color: "yummy red"
@@ -33,17 +32,30 @@ function setup() {
 }
 
 function draw() {
+
+  if(animating == true){
+    ellipse(random(width), random(height), random(50, 200))
+  }
 }
 
-function mousePressed(){
+function randomizer() {
+  animating = false;
   if (mm[0]){
     background(random(55), random(155),random(255));
     randomIndex = int(random(mm.length));
-    text(mm[randomIndex].name, 50, 50);
+    // text(mm[randomIndex].name, + "'s my fav color" + mm.[randomIndex].color, 50, 50);
+    text(`${mm[randomIndex].name}'s my fav color is
+    ${mm[randomIndex].color}`, 50, 50);
     mm.splice(randomIndex, 1);
 
   } else {
     background(255, 0, 0);
     text("HUHM! IT'S OVER!", 50, 50);
   }
+}
+
+function mousePressed(){
+  setTimeout(randomizer, 2000);
+  animating = true;
+
 }
