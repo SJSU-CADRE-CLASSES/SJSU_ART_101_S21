@@ -2,6 +2,7 @@
 let plants = [{
   commonName: "Ogre's Ear",
   scientificName: "Crassula Ovata Monstruosa"
+
 }, {
   commonName: "Lucky bamboo",
   scientificName: "Dracaena Sanderiana"
@@ -23,23 +24,43 @@ let plants = [{
 }];
 let randomIndex;
 let animating = false;
+let myPlants = [];
+let imageCounter = 0;
+let button;
+
+function preload() {
+
+  for (let i = 0; i <= 6; i++) {
+    myPlants[i] = loadImage(`assets/myplants_${i}.jpg`)
+  }
+}
+
 
 
 function setup() {
   createCanvas(600, 600);
   background(200);
-  textSize(30);
+  textSize(15);
+  imageMode(CENTER);
+  frameRate(8);
 
   text("click to randomize", 150, 300);
 
-
+ button = createButton("click to randomize");
+ button.mousePressed(buttonPressed);
 
 }
 
 function draw() {
 
   if (animating == true) {
-    ellipse(random(width), random(height), random(25, 100));
+    clear();
+    image(myPlants[imageCounter], width / 2, height / 2);
+    if (imageCounter < myPlants.length - 1) {
+      imageCounter++;
+    } else {
+      imageCounter = 0;
+    }
   }
 }
 
@@ -50,21 +71,22 @@ function randomizer() {
   if (plants[0]) {
 
     // this displays  random names and splices it out of array
-    background(random(200, 255));
+    // background(random(200, 255));
+    clear();
     randomIndex = int(random(plants.length))
-    text(`The ${plants[randomIndex].commonName}'s
-scientific name is
-${plants[randomIndex].scientificName}`, 150, 300);
+
+    image(random(myPlants), width / 2, height / 2);
+    text(`The ${plants[randomIndex].commonName}'s scientific name is ${plants[randomIndex].scientificName}`, 50, height - 20);
     plants.splice(randomIndex, 1);
     // text(plants[randomIndex].commonName + "'s scientific name is " + plants[randomIndex].scientificName, 50, 300);
     // plants.splice(randomIndex, 1);
   } else {
     background(random(200, 255));
-    text("nada mas!", 150, 300);
+    text("nada mas!", 50, 50);
   }
 }
 
-function mousePressed() {
+function buttonPressed() {
   animating = true;
   setTimeout(randomizer, 2000)
 
