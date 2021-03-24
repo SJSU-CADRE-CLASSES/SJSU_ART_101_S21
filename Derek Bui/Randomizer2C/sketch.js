@@ -6,6 +6,14 @@ let dogs = [{name: "sippi", color: "red"}
 
 let randomIndex;
 let animating = false;
+let pic = [];
+
+function preload(){
+
+  for (let i = 1; i <= 4; i++){
+    pic[i] = loadImage("assets/pic_" + i + ".png")
+  }
+}
 
 
 function setup() {
@@ -20,7 +28,7 @@ function setup() {
 function draw() {
 
   if(animating == true){
-   ellipse(random(width), random(height), random(50, 400));
+  image(pic[1], 0, 0);
   }
 }
 
