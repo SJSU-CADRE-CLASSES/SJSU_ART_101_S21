@@ -53,9 +53,10 @@ text("Click to Kill", width/6, height/2);
 function draw() {
 if (animating == true){
 stroke(random(10, 50))
-strokeWeight(20);
+strokeWeight(10,50);
+frameRate(35);
 fill(random(colorArray));
-ellipse(random(width), random(height),random(80, 500));
+ellipse(random(width), random(height),random(80, 300));
 // color(random(#FFF9F7, #FFB69E, #FF5922));
 }
 }
@@ -110,9 +111,11 @@ function randomizer(){
     text(animals[randomIndex].why, 100, 1300);
     animals.splice(randomIndex, 1);
   } else{
-    background(255, 50, 0);
-    stroke(250);
-    fill(255, 50, 0);
+    background(10);
+    strokeWeight(10);
+    // stroke(250);
+    noStroke();
+    fill(255, 0, 0);
     textSize(100);
     text("All are going extinct in 2021", width/9, height/2);
   }
