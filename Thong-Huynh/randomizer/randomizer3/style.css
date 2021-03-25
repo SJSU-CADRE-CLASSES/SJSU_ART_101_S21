@@ -1,0 +1,35 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+canvas {
+  display: block;
+}
+
+.randomizerButton {
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 20px;
+  background-color: rgba(235, 138, 138,100%);
+}
+
+.row {
+  /* margin: 0 auto; */
+  display: flex;
+  margin: 1rem;
+}
+
+.column {
+  flex: 50%;
+  display: flex;
+  flex-direction: column;
+  padding: 0 0.5rem;
+}
+
+.addOn {
+  display: flex;
+  flex-direction: column;
+}

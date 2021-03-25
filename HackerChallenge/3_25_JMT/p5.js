@@ -1,4 +1,4 @@
-/*! p5.js v1.2.0 December 19, 2020 */
+/*! p5.js v1.1.9 July 22, 2020 */
 (function(f) {
   if (typeof exports === 'object' && typeof module !== 'undefined') {
     module.exports = f();
@@ -58,73 +58,6 @@
         function(_dereq_, module, exports) {
           module.exports = {
             p5: {
-              describe: {
-                name: 'describe',
-                params: [
-                  {
-                    name: 'text',
-                    description: '<p>description of the canvas</p>\n',
-                    type: 'String'
-                  },
-                  {
-                    name: 'display',
-                    description: '<p>either LABEL or FALLBACK (Optional)</p>\n',
-                    type: 'Constant',
-                    optional: true
-                  }
-                ],
-                class: 'p5',
-                module: 'Environment'
-              },
-              describeElement: {
-                name: 'describeElement',
-                params: [
-                  {
-                    name: 'name',
-                    description: '<p>name of the element</p>\n',
-                    type: 'String'
-                  },
-                  {
-                    name: 'text',
-                    description: '<p>description of the element</p>\n',
-                    type: 'String'
-                  },
-                  {
-                    name: 'display',
-                    description: '<p>either LABEL or FALLBACK (Optional)</p>\n',
-                    type: 'Constant',
-                    optional: true
-                  }
-                ],
-                class: 'p5',
-                module: 'Environment'
-              },
-              textOutput: {
-                name: 'textOutput',
-                params: [
-                  {
-                    name: 'display',
-                    description: '<p>either FALLBACK or LABEL (Optional)</p>\n',
-                    type: 'Constant',
-                    optional: true
-                  }
-                ],
-                class: 'p5',
-                module: 'Environment'
-              },
-              gridOutput: {
-                name: 'gridOutput',
-                params: [
-                  {
-                    name: 'display',
-                    description: '<p>either FALLBACK or LABEL (Optional)</p>\n',
-                    type: 'Constant',
-                    optional: true
-                  }
-                ],
-                class: 'p5',
-                module: 'Environment'
-              },
               alpha: {
                 name: 'alpha',
                 params: [
@@ -2539,16 +2472,6 @@
               },
               AXES: {
                 name: 'AXES',
-                class: 'p5',
-                module: 'Constants'
-              },
-              LABEL: {
-                name: 'LABEL',
-                class: 'p5',
-                module: 'Constants'
-              },
-              FALLBACK: {
-                name: 'FALLBACK',
                 class: 'p5',
                 module: 'Constants'
               },
@@ -5883,14 +5806,12 @@
                   {
                     name: 'mean',
                     description: '<p>the mean</p>\n',
-                    type: 'Number',
-                    optional: true
+                    type: 'Number'
                   },
                   {
                     name: 'sd',
                     description: '<p>the standard deviation</p>\n',
-                    type: 'Number',
-                    optional: true
+                    type: 'Number'
                   }
                 ],
                 class: 'p5',
@@ -10257,7 +10178,7 @@
                   {
                     name: 'filterType',
                     description:
-                      '<p>either THRESHOLD, GRAY, OPAQUE, INVERT,\n                               POSTERIZE, ERODE, DILATE or BLUR.\n                               See Filters.js for docs on\n                               each available filter</p>\n',
+                      '<p>either THRESHOLD, GRAY, OPAQUE, INVERT,\n                               POSTERIZE, BLUR, ERODE, DILATE or BLUR.\n                               See Filters.js for docs on\n                               each available filter</p>\n',
                     type: 'Constant'
                   },
                   {
@@ -11869,18 +11790,6 @@
               },
               heading: {
                 name: 'heading',
-                class: 'p5.Vector',
-                module: 'Math'
-              },
-              setHeading: {
-                name: 'setHeading',
-                params: [
-                  {
-                    name: 'angle',
-                    description: '<p>the angle of rotation</p>\n',
-                    type: 'Number'
-                  }
-                ],
                 class: 'p5.Vector',
                 module: 'Math'
               },
@@ -19077,9 +18986,9 @@
                 /**
     `finally` will be invoked regardless of the promise's fate just as native
     try/catch/finally behaves
-
+  
     Synchronous example:
-
+  
     ```js
     findAuthor() {
       if (Math.random() > 0.5) {
@@ -19087,7 +18996,7 @@
       }
       return new Author();
     }
-
+  
     try {
       return findAuthor(); // succeed or fail
     } catch(error) {
@@ -19097,9 +19006,9 @@
       // doesn't affect the return value
     }
     ```
-
+  
     Asynchronous example:
-
+  
     ```js
     findAuthor().catch(function(reason){
       return findOtherAuther();
@@ -19107,7 +19016,7 @@
       // author was either found, or not
     });
     ```
-
+  
     @method finally
     @param {Function} callback
     @return {Promise}
@@ -41218,2172 +41127,6 @@
       38: [
         function(_dereq_, module, exports) {
           'use strict';
-          Object.defineProperty(exports, '__esModule', { value: true });
-          exports.default = void 0;
-
-          var _main = _interopRequireDefault(_dereq_('../core/main'));
-          var _color_conversion = _interopRequireDefault(
-            _dereq_('../color/color_conversion')
-          );
-          function _interopRequireDefault(obj) {
-            return obj && obj.__esModule ? obj : { default: obj };
-          } /** //stores the original hsb values
-           * @module Environment
-           * @submodule Environment
-           * @for p5
-           * @requires core
-           */
-          var originalHSB; //stores values for color name exceptions
-          var colorExceptions = [
-            {
-              h: 0,
-              s: 0,
-              b: 0.8275,
-              name: 'gray'
-            },
-
-            {
-              h: 0,
-              s: 0,
-              b: 0.8627,
-              name: 'gray'
-            },
-
-            {
-              h: 0,
-              s: 0,
-              b: 0.7529,
-              name: 'gray'
-            },
-
-            {
-              h: 0.0167,
-              s: 0.1176,
-              b: 1,
-              name: 'light pink'
-            }
-          ];
-
-          //stores values for color names
-          var colorLookUp = [
-            {
-              h: 0,
-              s: 0,
-              b: 0,
-              name: 'black'
-            },
-
-            {
-              h: 0,
-              s: 0,
-              b: 0.5,
-              name: 'gray'
-            },
-
-            {
-              h: 0,
-              s: 0,
-              b: 1,
-              name: 'white'
-            },
-
-            {
-              h: 0,
-              s: 0.5,
-              b: 0.5,
-              name: 'dark maroon'
-            },
-
-            {
-              h: 0,
-              s: 0.5,
-              b: 1,
-              name: 'salmon pink'
-            },
-
-            {
-              h: 0,
-              s: 1,
-              b: 0,
-              name: 'black'
-            },
-
-            {
-              h: 0,
-              s: 1,
-              b: 0.5,
-              name: 'dark red'
-            },
-
-            {
-              h: 0,
-              s: 1,
-              b: 1,
-              name: 'red'
-            },
-
-            {
-              h: 5,
-              s: 0,
-              b: 1,
-              name: 'very light peach'
-            },
-
-            {
-              h: 5,
-              s: 0.5,
-              b: 0.5,
-              name: 'brown'
-            },
-
-            {
-              h: 5,
-              s: 0.5,
-              b: 1,
-              name: 'peach'
-            },
-
-            {
-              h: 5,
-              s: 1,
-              b: 0.5,
-              name: 'brick red'
-            },
-
-            {
-              h: 5,
-              s: 1,
-              b: 1,
-              name: 'crimson'
-            },
-
-            {
-              h: 10,
-              s: 0,
-              b: 1,
-              name: 'light peach'
-            },
-
-            {
-              h: 10,
-              s: 0.5,
-              b: 0.5,
-              name: 'brown'
-            },
-
-            {
-              h: 10,
-              s: 0.5,
-              b: 1,
-              name: 'light orange'
-            },
-
-            {
-              h: 10,
-              s: 1,
-              b: 0.5,
-              name: 'brown'
-            },
-
-            {
-              h: 10,
-              s: 1,
-              b: 1,
-              name: 'orange'
-            },
-
-            {
-              h: 15,
-              s: 0,
-              b: 1,
-              name: 'very light yellow'
-            },
-
-            {
-              h: 15,
-              s: 0.5,
-              b: 0.5,
-              name: 'olive green'
-            },
-
-            {
-              h: 15,
-              s: 0.5,
-              b: 1,
-              name: 'light yellow'
-            },
-
-            {
-              h: 15,
-              s: 1,
-              b: 0,
-              name: 'dark olive green'
-            },
-
-            {
-              h: 15,
-              s: 1,
-              b: 0.5,
-              name: 'olive green'
-            },
-
-            {
-              h: 15,
-              s: 1,
-              b: 1,
-              name: 'yellow'
-            },
-
-            {
-              h: 20,
-              s: 0,
-              b: 1,
-              name: 'very light yellow'
-            },
-
-            {
-              h: 20,
-              s: 0.5,
-              b: 0.5,
-              name: 'olive green'
-            },
-
-            {
-              h: 20,
-              s: 0.5,
-              b: 1,
-              name: 'light yellow green'
-            },
-
-            {
-              h: 20,
-              s: 1,
-              b: 0,
-              name: 'dark olive green'
-            },
-
-            {
-              h: 20,
-              s: 1,
-              b: 0.5,
-              name: 'dark yellow green'
-            },
-
-            {
-              h: 20,
-              s: 1,
-              b: 1,
-              name: 'yellow green'
-            },
-
-            {
-              h: 25,
-              s: 0.5,
-              b: 0.5,
-              name: 'dark yellow green'
-            },
-
-            {
-              h: 25,
-              s: 0.5,
-              b: 1,
-              name: 'light green'
-            },
-
-            {
-              h: 25,
-              s: 1,
-              b: 0.5,
-              name: 'dark green'
-            },
-
-            {
-              h: 25,
-              s: 1,
-              b: 1,
-              name: 'green'
-            },
-
-            {
-              h: 30,
-              s: 0.5,
-              b: 1,
-              name: 'light green'
-            },
-
-            {
-              h: 30,
-              s: 1,
-              b: 0.5,
-              name: 'dark green'
-            },
-
-            {
-              h: 30,
-              s: 1,
-              b: 1,
-              name: 'green'
-            },
-
-            {
-              h: 35,
-              s: 0,
-              b: 0.5,
-              name: 'light green'
-            },
-
-            {
-              h: 35,
-              s: 0,
-              b: 1,
-              name: 'very light green'
-            },
-
-            {
-              h: 35,
-              s: 0.5,
-              b: 0.5,
-              name: 'dark green'
-            },
-
-            {
-              h: 35,
-              s: 0.5,
-              b: 1,
-              name: 'light green'
-            },
-
-            {
-              h: 35,
-              s: 1,
-              b: 0,
-              name: 'very dark green'
-            },
-
-            {
-              h: 35,
-              s: 1,
-              b: 0.5,
-              name: 'dark green'
-            },
-
-            {
-              h: 35,
-              s: 1,
-              b: 1,
-              name: 'green'
-            },
-
-            {
-              h: 40,
-              s: 0,
-              b: 1,
-              name: 'very light green'
-            },
-
-            {
-              h: 40,
-              s: 0.5,
-              b: 0.5,
-              name: 'dark green'
-            },
-
-            {
-              h: 40,
-              s: 0.5,
-              b: 1,
-              name: 'light green'
-            },
-
-            {
-              h: 40,
-              s: 1,
-              b: 0.5,
-              name: 'dark green'
-            },
-
-            {
-              h: 40,
-              s: 1,
-              b: 1,
-              name: 'green'
-            },
-
-            {
-              h: 45,
-              s: 0.5,
-              b: 1,
-              name: 'light turquoise'
-            },
-
-            {
-              h: 45,
-              s: 1,
-              b: 0.5,
-              name: 'dark turquoise'
-            },
-
-            {
-              h: 45,
-              s: 1,
-              b: 1,
-              name: 'turquoise'
-            },
-
-            {
-              h: 50,
-              s: 0,
-              b: 1,
-              name: 'light sky blue'
-            },
-
-            {
-              h: 50,
-              s: 0.5,
-              b: 0.5,
-              name: 'dark cyan'
-            },
-
-            {
-              h: 50,
-              s: 0.5,
-              b: 1,
-              name: 'light cyan'
-            },
-
-            {
-              h: 50,
-              s: 1,
-              b: 0.5,
-              name: 'dark cyan'
-            },
-
-            {
-              h: 50,
-              s: 1,
-              b: 1,
-              name: 'cyan'
-            },
-
-            {
-              h: 55,
-              s: 0,
-              b: 1,
-              name: 'light sky blue'
-            },
-
-            {
-              h: 55,
-              s: 0.5,
-              b: 1,
-              name: 'light sky blue'
-            },
-
-            {
-              h: 55,
-              s: 1,
-              b: 0.5,
-              name: 'dark blue'
-            },
-
-            {
-              h: 55,
-              s: 1,
-              b: 1,
-              name: 'sky blue'
-            },
-
-            {
-              h: 60,
-              s: 0,
-              b: 0.5,
-              name: 'gray'
-            },
-
-            {
-              h: 60,
-              s: 0,
-              b: 1,
-              name: 'very light blue'
-            },
-
-            {
-              h: 60,
-              s: 0.5,
-              b: 0.5,
-              name: 'blue'
-            },
-
-            {
-              h: 60,
-              s: 0.5,
-              b: 1,
-              name: 'light blue'
-            },
-
-            {
-              h: 60,
-              s: 1,
-              b: 0.5,
-              name: 'navy blue'
-            },
-
-            {
-              h: 60,
-              s: 1,
-              b: 1,
-              name: 'blue'
-            },
-
-            {
-              h: 65,
-              s: 0,
-              b: 1,
-              name: 'lavender'
-            },
-
-            {
-              h: 65,
-              s: 0.5,
-              b: 0.5,
-              name: 'navy blue'
-            },
-
-            {
-              h: 65,
-              s: 0.5,
-              b: 1,
-              name: 'light purple'
-            },
-
-            {
-              h: 65,
-              s: 1,
-              b: 0.5,
-              name: 'dark navy blue'
-            },
-
-            {
-              h: 65,
-              s: 1,
-              b: 1,
-              name: 'blue'
-            },
-
-            {
-              h: 70,
-              s: 0,
-              b: 1,
-              name: 'lavender'
-            },
-
-            {
-              h: 70,
-              s: 0.5,
-              b: 0.5,
-              name: 'navy blue'
-            },
-
-            {
-              h: 70,
-              s: 0.5,
-              b: 1,
-              name: 'lavender blue'
-            },
-
-            {
-              h: 70,
-              s: 1,
-              b: 0.5,
-              name: 'dark navy blue'
-            },
-
-            {
-              h: 70,
-              s: 1,
-              b: 1,
-              name: 'blue'
-            },
-
-            {
-              h: 75,
-              s: 0.5,
-              b: 1,
-              name: 'lavender'
-            },
-
-            {
-              h: 75,
-              s: 1,
-              b: 0.5,
-              name: 'dark purple'
-            },
-
-            {
-              h: 75,
-              s: 1,
-              b: 1,
-              name: 'purple'
-            },
-
-            {
-              h: 80,
-              s: 0.5,
-              b: 1,
-              name: 'pinkish purple'
-            },
-
-            {
-              h: 80,
-              s: 1,
-              b: 0.5,
-              name: 'dark purple'
-            },
-
-            {
-              h: 80,
-              s: 1,
-              b: 1,
-              name: 'purple'
-            },
-
-            {
-              h: 85,
-              s: 0,
-              b: 1,
-              name: 'light pink'
-            },
-
-            {
-              h: 85,
-              s: 0.5,
-              b: 0.5,
-              name: 'purple'
-            },
-
-            {
-              h: 85,
-              s: 0.5,
-              b: 1,
-              name: 'light fuchsia'
-            },
-
-            {
-              h: 85,
-              s: 1,
-              b: 0.5,
-              name: 'dark fuchsia'
-            },
-
-            {
-              h: 85,
-              s: 1,
-              b: 1,
-              name: 'fuchsia'
-            },
-
-            {
-              h: 90,
-              s: 0.5,
-              b: 0.5,
-              name: 'dark fuchsia'
-            },
-
-            {
-              h: 90,
-              s: 0.5,
-              b: 1,
-              name: 'hot pink'
-            },
-
-            {
-              h: 90,
-              s: 1,
-              b: 0.5,
-              name: 'dark fuchsia'
-            },
-
-            {
-              h: 90,
-              s: 1,
-              b: 1,
-              name: 'fuchsia'
-            },
-
-            {
-              h: 95,
-              s: 0,
-              b: 1,
-              name: 'pink'
-            },
-
-            {
-              h: 95,
-              s: 0.5,
-              b: 1,
-              name: 'light pink'
-            },
-
-            {
-              h: 95,
-              s: 1,
-              b: 0.5,
-              name: 'dark magenta'
-            },
-
-            {
-              h: 95,
-              s: 1,
-              b: 1,
-              name: 'magenta'
-            }
-          ];
-
-          //returns text with color name
-          function _calculateColor(hsb) {
-            var colortext;
-            //round hue
-            if (hsb[0] !== 0) {
-              hsb[0] = Math.round(hsb[0] * 100);
-              var hue = hsb[0].toString().split('');
-              var last = hue.length - 1;
-              hue[last] = parseInt(hue[last]);
-              //if last digit of hue is < 2.5 make it 0
-              if (hue[last] < 2.5) {
-                hue[last] = 0;
-                //if last digit of hue is >= 2.5 and less than 7.5 make it 5
-              } else if (hue[last] >= 2.5 && hue[last] < 7.5) {
-                hue[last] = 5;
-              }
-              //if hue only has two digits
-              if (hue.length === 2) {
-                hue[0] = parseInt(hue[0]);
-                //if last is greater than 7.5
-                if (hue[last] >= 7.5) {
-                  //add one to the tens
-                  hue[last] = 0;
-                  hue[0] = hue[0] + 1;
-                }
-                hsb[0] = hue[0] * 10 + hue[1];
-              } else {
-                if (hue[last] >= 7.5) {
-                  hsb[0] = 10;
-                } else {
-                  hsb[0] = hue[last];
-                }
-              }
-            }
-            //map brightness from 0 to 1
-            hsb[2] = hsb[2] / 255;
-            //round saturation and brightness
-            for (var i = hsb.length - 1; i >= 1; i--) {
-              if (hsb[i] <= 0.25) {
-                hsb[i] = 0;
-              } else if (hsb[i] > 0.25 && hsb[i] < 0.75) {
-                hsb[i] = 0.5;
-              } else {
-                hsb[i] = 1;
-              }
-            }
-            //after rounding, if the values are hue 0, saturation 0 and brightness 1
-            //look at color exceptions which includes several tones from white to gray
-            if (hsb[0] === 0 && hsb[1] === 0 && hsb[2] === 1) {
-              //round original hsb values
-              for (var _i = 2; _i >= 0; _i--) {
-                originalHSB[_i] = Math.round(originalHSB[_i] * 10000) / 10000;
-              }
-              //compare with the values in the colorExceptions array
-              for (var e = 0; e < colorExceptions.length; e++) {
-                if (
-                  colorExceptions[e].h === originalHSB[0] &&
-                  colorExceptions[e].s === originalHSB[1] &&
-                  colorExceptions[e].b === originalHSB[2]
-                ) {
-                  colortext = colorExceptions[e].name;
-                  break;
-                } else {
-                  //if there is no match return white
-                  colortext = 'white';
-                }
-              }
-            } else {
-              //otherwise, compare with values in colorLookUp
-              for (var _i2 = 0; _i2 < colorLookUp.length; _i2++) {
-                if (
-                  colorLookUp[_i2].h === hsb[0] &&
-                  colorLookUp[_i2].s === hsb[1] &&
-                  colorLookUp[_i2].b === hsb[2]
-                ) {
-                  colortext = colorLookUp[_i2].name;
-                  break;
-                }
-              }
-            }
-            return colortext;
-          }
-
-          //gets rgba and returs a color name
-          _main.default.prototype._rgbColorName = function(arg) {
-            //conversts rgba to hsb
-            var hsb = _color_conversion.default._rgbaToHSBA(arg);
-            //stores hsb in global variable
-            originalHSB = hsb;
-            //calculate color name
-            return _calculateColor([hsb[0], hsb[1], hsb[2]]);
-          };
-          var _default = _main.default;
-          exports.default = _default;
-        },
-        { '../color/color_conversion': 44, '../core/main': 59 }
-      ],
-      39: [
-        function(_dereq_, module, exports) {
-          'use strict';
-          Object.defineProperty(exports, '__esModule', { value: true });
-          exports.default = void 0;
-
-          var _main = _interopRequireDefault(_dereq_('../core/main'));
-          function _interopRequireDefault(obj) {
-            return obj && obj.__esModule ? obj : { default: obj };
-          }
-          /**
-           * @module Environment
-           * @submodule Environment
-           * @for p5
-           * @requires core
-           */ var descContainer = '_Description'; //Fallback container
-          var fallbackDescId = '_fallbackDesc'; //Fallback description
-          var fallbackTableId = '_fallbackTable'; //Fallback Table
-          var fallbackTableElId = '_fte_'; //Fallback Table Element
-          var labelContainer = '_Label'; //Label container
-          var labelDescId = '_labelDesc'; //Label description
-          var labelTableId = '_labelTable'; //Label Table
-          var labelTableElId = '_lte_'; //Label Table Element
-          /**
-           * Creates a screen reader accessible description for the canvas.
-           * The first parameter should be a string with a description of the canvas.
-           * The second parameter is optional. If specified, it determines how the
-           * description is displayed.
-           *
-           * <code class="language-javascript">describe(text, LABEL)</code> displays
-           * the description to all users as a <a
-           * href="https://en.wikipedia.org/wiki/Museum_label" target="_blank">
-           * tombstone or exhibit label/caption</a> in a
-           * <code class="language-javascript">&lt;div class="p5Label"&gt;&lt;/div&gt;</code>
-           * adjacent to the canvas. You can style it as you wish in your CSS.
-           *
-           * <code class="language-javascript">describe(text, FALLBACK)</code> makes the
-           * description accessible to screen-reader users only, in
-           * <a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Hit_regions_and_accessibility" target="_blank">
-           * a sub DOM inside the canvas element</a>. If a second parameter is not
-           * specified, by default, the description will only be available to
-           * screen-reader users.
-           *
-           * @method describe
-           * @param  {String} text      description of the canvas
-           * @param  {Constant} [display] either LABEL or FALLBACK (Optional)
-           *
-           * @example
-           * <div>
-           * <code>
-           * describe('pink square with red heart in the bottom right corner', LABEL);
-           * background('pink');
-           * fill('red');
-           * noStroke();
-           * ellipse(67, 67, 20, 20);
-           * ellipse(83, 67, 20, 20);
-           * triangle(91, 73, 75, 95, 59, 73);
-           * </code>
-           * </div>
-           *
-           * <div>
-           * <code>
-           * let x = 0;
-           * function draw() {
-           *   if (x > 100) {
-           *     x = 0;
-           *   }
-           *   background(220);
-           *   fill(0, 255, 0);
-           *   ellipse(x, 50, 40, 40);
-           *   x = x + 0.1;
-           *   describe('green circle at x pos ' + round(x) + ' moving to the right');
-           * }
-           * </code>
-           * </div>
-           *
-           */ _main.default.prototype.describe = function(text, display) {
-            _main.default._validateParameters('describe', arguments);
-            if (typeof text !== 'string') {
-              return;
-            }
-            var cnvId = this.canvas.id;
-            //calls function that adds punctuation for better screen reading
-            text = _descriptionText(text);
-            //if there is no dummyDOM
-            if (!this.dummyDOM) {
-              this.dummyDOM = document.getElementById(cnvId).parentNode;
-            }
-            if (!this.descriptions) {
-              this.descriptions = {};
-            }
-            //check if html structure for description is ready
-            if (this.descriptions.fallback) {
-              //check if text is different from current description
-              if (this.descriptions.fallback.innerHTML !== text) {
-                //update description
-                this.descriptions.fallback.innerHTML = text;
-              }
-            } else {
-              //create fallback html structure
-              this._describeHTML('fallback', text);
-            }
-            //if display is LABEL
-            if (display === this.LABEL) {
-              //check if html structure for label is ready
-              if (this.descriptions.label) {
-                //check if text is different from current label
-                if (this.descriptions.label.innerHTML !== text) {
-                  //update label description
-                  this.descriptions.label.innerHTML = text;
-                }
-              } else {
-                //create label html structure
-                this._describeHTML('label', text);
-              }
-            }
-          };
-
-          /**
-           * This function creates a screen-reader accessible
-           * description for elements —shapes or groups of shapes that create
-           * meaning together— in the canvas. The first paramater should
-           * be the name of the element. The second parameter should be a string
-           * with a description of the element. The third parameter is optional.
-           * If specified, it determines how the element description is displayed.
-           *
-           * <code class="language-javascript">describeElement(name, text, LABEL)</code>
-           * displays the element description to all users as a
-           * <a href="https://en.wikipedia.org/wiki/Museum_label" target="_blank">
-           * tombstone or exhibit label/caption</a> in a
-           * <code class="language-javascript">&lt;div class="p5Label"&gt;&lt;/div&gt;</code>
-           * adjacent to the canvas. You can style it as you wish in your CSS.
-           *
-           * <code class="language-javascript">describeElement(name, text, FALLBACK)</code>
-           * makes the element description accessible to screen-reader users
-           * only, in <a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Hit_regions_and_accessibility" target="_blank">
-           * a sub DOM inside the canvas element</a>. If a second parameter is not
-           * specified, by default, the element description will only be available
-           * to screen-reader users.
-           *
-           * @method describeElement
-           * @param  {String} name      name of the element
-           * @param  {String} text      description of the element
-           * @param  {Constant} [display] either LABEL or FALLBACK (Optional)
-           *
-           * @example
-           * <div>
-           * <code>
-           * describe('Heart and yellow circle over pink background', LABEL);
-           * noStroke();
-           * background('pink');
-           * describeElement('Circle', 'Yellow circle in the top left corner', LABEL);
-           * fill('yellow');
-           * ellipse(25, 25, 40, 40);
-           * describeElement('Heart', 'red heart in the bottom right corner', LABEL);
-           * fill('red');
-           * ellipse(66.6, 66.6, 20, 20);
-           * ellipse(83.2, 66.6, 20, 20);
-           * triangle(91.2, 72.6, 75, 95, 58.6, 72.6);
-           * </code>
-           * </div>
-           */
-
-          _main.default.prototype.describeElement = function(name, text, display) {
-            _main.default._validateParameters('describeElement', arguments);
-            if (typeof text !== 'string' || typeof name !== 'string') {
-              return;
-            }
-            var cnvId = this.canvas.id;
-            //calls function that adds punctuation for better screen reading
-            text = _descriptionText(text);
-            //calls function that adds punctuation for better screen reading
-            var elementName = _elementName(name);
-            //remove any special characters from name to use it as html id
-            name = name.replace(/[^a-zA-Z0-9 ]/g, '');
-            //store element description
-            var inner = '<th scope="row">'
-              .concat(elementName, '</th><td>')
-              .concat(text, '</td>');
-            //if there is no dummyDOM
-            if (!this.dummyDOM) {
-              this.dummyDOM = document.getElementById(cnvId).parentNode;
-            }
-            if (!this.descriptions) {
-              this.descriptions = { fallbackElements: {} };
-            } else if (!this.descriptions.fallbackElements) {
-              this.descriptions.fallbackElements = {};
-            }
-            //check if html structure for element description is ready
-            if (this.descriptions.fallbackElements[name]) {
-              //if current element description is not the same as inner
-              if (this.descriptions.fallbackElements[name].innerHTML !== inner) {
-                //update element description
-                this.descriptions.fallbackElements[name].innerHTML = inner;
-              }
-            } else {
-              //create fallback html structure
-              this._describeElementHTML('fallback', name, inner);
-            }
-            //if display is LABEL
-            if (display === this.LABEL) {
-              if (!this.descriptions.labelElements) {
-                this.descriptions.labelElements = {};
-              }
-              //if html structure for label element description is ready
-              if (this.descriptions.labelElements[name]) {
-                //if label element description is different
-                if (this.descriptions.labelElements[name].innerHTML !== inner) {
-                  //update label element description
-                  this.descriptions.labelElements[name].innerHTML = inner;
-                }
-              } else {
-                //create label element html structure
-                this._describeElementHTML('label', name, inner);
-              }
-            }
-          };
-
-          /*
-    *
-    * Helper functions for describe() and describeElement().
-    *
-    */
-
-          // check that text is not LABEL or FALLBACK and ensure text ends with punctuation mark
-          function _descriptionText(text) {
-            if (text === 'label' || text === 'fallback') {
-              throw new Error('description should not be LABEL or FALLBACK');
-            }
-            //if string does not end with '.'
-            if (
-              !text.endsWith('.') &&
-              !text.endsWith(';') &&
-              !text.endsWith(',') &&
-              !text.endsWith('?') &&
-              !text.endsWith('!')
-            ) {
-              //add '.' to the end of string
-              text = text + '.';
-            }
-            return text;
-          }
-
-          /*
-   * Helper functions for describe()
-   */
-
-          //creates HTML structure for canvas descriptions
-          _main.default.prototype._describeHTML = function(type, text) {
-            var cnvId = this.canvas.id;
-            if (type === 'fallback') {
-              //if there is no description container
-              if (!this.dummyDOM.querySelector('#'.concat(cnvId + descContainer))) {
-                //if there are no accessible outputs (see textOutput() and gridOutput())
-                var html = '<div id="'
-                  .concat(cnvId)
-                  .concat(
-                    descContainer,
-                    '" role="region" aria-label="Canvas Description"><p id="'
-                  )
-                  .concat(cnvId)
-                  .concat(fallbackDescId, '"></p></div>');
-                if (!this.dummyDOM.querySelector('#'.concat(cnvId, 'accessibleOutput'))) {
-                  //create description container + <p> for fallback description
-                  this.dummyDOM.querySelector('#'.concat(cnvId)).innerHTML = html;
-                } else {
-                  //create description container + <p> for fallback description before outputs
-                  this.dummyDOM
-                    .querySelector('#'.concat(cnvId, 'accessibleOutput'))
-                    .insertAdjacentHTML('beforebegin', html);
-                }
-              } else {
-                //if describeElement() has already created the container and added a table of elements
-                //create fallback description <p> before the table
-                this.dummyDOM
-                  .querySelector('#' + cnvId + fallbackTableId)
-                  .insertAdjacentHTML(
-                    'beforebegin',
-                    '<p id="'.concat(cnvId + fallbackDescId, '"></p>')
-                  );
-              }
-              //if the container for the description exists
-              this.descriptions.fallback = this.dummyDOM.querySelector(
-                '#'.concat(cnvId).concat(fallbackDescId)
-              );
-
-              this.descriptions.fallback.innerHTML = text;
-              return;
-            } else if (type === 'label') {
-              //if there is no label container
-              if (!this.dummyDOM.querySelector('#'.concat(cnvId + labelContainer))) {
-                var _html = '<div id="'
-                  .concat(cnvId)
-                  .concat(labelContainer, '" class="p5Label"><p id="')
-                  .concat(cnvId)
-                  .concat(labelDescId, '"></p></div>');
-                //if there are no accessible outputs (see textOutput() and gridOutput())
-                if (
-                  !this.dummyDOM.querySelector('#'.concat(cnvId, 'accessibleOutputLabel'))
-                ) {
-                  //create label container + <p> for label description
-                  this.dummyDOM
-                    .querySelector('#' + cnvId)
-                    .insertAdjacentHTML('afterend', _html);
-                } else {
-                  //create label container + <p> for label description before outputs
-                  this.dummyDOM
-                    .querySelector('#'.concat(cnvId, 'accessibleOutputLabel'))
-                    .insertAdjacentHTML('beforebegin', _html);
-                }
-              } else if (this.dummyDOM.querySelector('#'.concat(cnvId + labelTableId))) {
-                //if describeElement() has already created the container and added a table of elements
-                //create label description <p> before the table
-                this.dummyDOM
-                  .querySelector('#'.concat(cnvId + labelTableId))
-                  .insertAdjacentHTML(
-                    'beforebegin',
-                    '<p id="'.concat(cnvId).concat(labelDescId, '"></p>')
-                  );
-              }
-              this.descriptions.label = this.dummyDOM.querySelector(
-                '#' + cnvId + labelDescId
-              );
-
-              this.descriptions.label.innerHTML = text;
-              return;
-            }
-          };
-
-          /*
-    * Helper functions for describeElement().
-    */
-
-          //check that name is not LABEL or FALLBACK and ensure text ends with colon
-          function _elementName(name) {
-            if (name === 'label' || name === 'fallback') {
-              throw new Error('element name should not be LABEL or FALLBACK');
-            }
-            //check if last character of string n is '.', ';', or ','
-            if (name.endsWith('.') || name.endsWith(';') || name.endsWith(',')) {
-              //replace last character with ':'
-              name = name.replace(/.$/, ':');
-            } else if (!name.endsWith(':')) {
-              //if string n does not end with ':'
-              //add ':'' at the end of string
-              name = name + ':';
-            }
-            return name;
-          }
-
-          //creates HTML structure for element descriptions
-          _main.default.prototype._describeElementHTML = function(type, name, text) {
-            var cnvId = this.canvas.id;
-            if (type === 'fallback') {
-              //if there is no description container
-              if (!this.dummyDOM.querySelector('#'.concat(cnvId + descContainer))) {
-                //if there are no accessible outputs (see textOutput() and gridOutput())
-                var html = '<div id="'
-                  .concat(cnvId)
-                  .concat(
-                    descContainer,
-                    '" role="region" aria-label="Canvas Description"><table id="'
-                  )
-                  .concat(cnvId)
-                  .concat(
-                    fallbackTableId,
-                    '"><caption>Canvas elements and their descriptions</caption></table></div>'
-                  );
-                if (!this.dummyDOM.querySelector('#'.concat(cnvId, 'accessibleOutput'))) {
-                  //create container + table for element descriptions
-                  this.dummyDOM.querySelector('#' + cnvId).innerHTML = html;
-                } else {
-                  //create container + table for element descriptions before outputs
-                  this.dummyDOM
-                    .querySelector('#'.concat(cnvId, 'accessibleOutput'))
-                    .insertAdjacentHTML('beforebegin', html);
-                }
-              } else if (!this.dummyDOM.querySelector('#' + cnvId + fallbackTableId)) {
-                //if describe() has already created the container and added a description
-                //and there is no table create fallback table for element description after
-                //fallback description
-                this.dummyDOM
-                  .querySelector('#' + cnvId + fallbackDescId)
-                  .insertAdjacentHTML(
-                    'afterend',
-                    '<table id="'
-                      .concat(cnvId)
-                      .concat(
-                        fallbackTableId,
-                        '"><caption>Canvas elements and their descriptions</caption></table>'
-                      )
-                  );
-              }
-              //create a table row for the element
-              var tableRow = document.createElement('tr');
-              tableRow.id = cnvId + fallbackTableElId + name;
-              this.dummyDOM
-                .querySelector('#' + cnvId + fallbackTableId)
-                .appendChild(tableRow);
-              //update element description
-              this.descriptions.fallbackElements[name] = this.dummyDOM.querySelector(
-                '#'
-                  .concat(cnvId)
-                  .concat(fallbackTableElId)
-                  .concat(name)
-              );
-
-              this.descriptions.fallbackElements[name].innerHTML = text;
-              return;
-            } else if (type === 'label') {
-              //If display is LABEL creates a div adjacent to the canvas element with
-              //a table, a row header cell with the name of the elements,
-              //and adds the description of the element in adjecent cell.
-              //if there is no label description container
-              if (!this.dummyDOM.querySelector('#'.concat(cnvId + labelContainer))) {
-                //if there are no accessible outputs (see textOutput() and gridOutput())
-                var _html2 = '<div id="'
-                  .concat(cnvId)
-                  .concat(labelContainer, '" class="p5Label"><table id="')
-                  .concat(cnvId)
-                  .concat(labelTableId, '"></table></div>');
-                if (
-                  !this.dummyDOM.querySelector('#'.concat(cnvId, 'accessibleOutputLabel'))
-                ) {
-                  //create container + table for element descriptions
-                  this.dummyDOM
-                    .querySelector('#' + cnvId)
-                    .insertAdjacentHTML('afterend', _html2);
-                } else {
-                  //create container + table for element descriptions before outputs
-                  this.dummyDOM
-                    .querySelector('#'.concat(cnvId, 'accessibleOutputLabel'))
-                    .insertAdjacentHTML('beforebegin', _html2);
-                }
-              } else if (!this.dummyDOM.querySelector('#'.concat(cnvId + labelTableId))) {
-                //if describe() has already created the label container and added a description
-                //and there is no table create label table for element description after
-                //label description
-                this.dummyDOM
-                  .querySelector('#' + cnvId + labelDescId)
-                  .insertAdjacentHTML(
-                    'afterend',
-                    '<table id="'.concat(cnvId + labelTableId, '"></table>')
-                  );
-              }
-              //create a table row for the element label description
-              var _tableRow = document.createElement('tr');
-              _tableRow.id = cnvId + labelTableElId + name;
-              this.dummyDOM
-                .querySelector('#' + cnvId + labelTableId)
-                .appendChild(_tableRow);
-              //update element label description
-              this.descriptions.labelElements[name] = this.dummyDOM.querySelector(
-                '#'
-                  .concat(cnvId)
-                  .concat(labelTableElId)
-                  .concat(name)
-              );
-
-              this.descriptions.labelElements[name].innerHTML = text;
-            }
-          };
-          var _default = _main.default;
-          exports.default = _default;
-        },
-        { '../core/main': 59 }
-      ],
-      40: [
-        function(_dereq_, module, exports) {
-          'use strict';
-          Object.defineProperty(exports, '__esModule', { value: true });
-          exports.default = void 0;
-
-          var _main = _interopRequireDefault(_dereq_('../core/main'));
-          function _interopRequireDefault(obj) {
-            return obj && obj.__esModule ? obj : { default: obj };
-          } /** //the functions in this file support updating the grid output
-           * @module Environment
-           * @submodule Environment
-           * @for p5
-           * @requires core
-           */
-          //updates gridOutput
-          _main.default.prototype._updateGridOutput = function(idT) {
-            //if html structure is not there yet
-            if (!this.dummyDOM.querySelector('#'.concat(idT, '_summary'))) {
-              return;
-            }
-            var current = this._accessibleOutputs[idT];
-            //create shape details list
-            var innerShapeDetails = _gridShapeDetails(idT, this.ingredients.shapes);
-            //create summary
-            var innerSummary = _gridSummary(
-              innerShapeDetails.numShapes,
-              this.ingredients.colors.background,
-              this.width,
-              this.height
-            );
-
-            //create grid map
-            var innerMap = _gridMap(idT, this.ingredients.shapes);
-            //if it is different from current summary
-            if (innerSummary !== current.summary.innerHTML) {
-              //update
-              current.summary.innerHTML = innerSummary;
-            }
-            //if it is different from current map
-            if (innerMap !== current.map.innerHTML) {
-              //update
-              current.map.innerHTML = innerMap;
-            }
-            //if it is different from current shape details
-            if (innerShapeDetails.details !== current.shapeDetails.innerHTML) {
-              //update
-              current.shapeDetails.innerHTML = innerShapeDetails.details;
-            }
-            this._accessibleOutputs[idT] = current;
-          };
-
-          //creates spatial grid that maps the location of shapes
-          function _gridMap(idT, ingredients) {
-            var shapeNumber = 0;
-            var table = '';
-            //create an array of arrays 10*10 of empty cells
-            var cells = Array.apply(null, Array(10)).map(function() {});
-            for (var r in cells) {
-              cells[r] = Array.apply(null, Array(10)).map(function() {});
-            }
-            for (var x in ingredients) {
-              for (var y in ingredients[x]) {
-                var fill = void 0;
-                if (x !== 'line') {
-                  fill = '<a href="#'
-                    .concat(idT, 'shape')
-                    .concat(shapeNumber, '">')
-                    .concat(ingredients[x][y].color, ' ')
-                    .concat(x, '</a>');
-                } else {
-                  fill = '<a href="#'
-                    .concat(idT, 'shape')
-                    .concat(shapeNumber, '">')
-                    .concat(ingredients[x][y].color, ' ')
-                    .concat(x, ' midpoint</a>');
-                }
-                //if empty cell of location of shape is undefined
-                if (!cells[ingredients[x][y].loc.locY][ingredients[x][y].loc.locX]) {
-                  //fill it with shape info
-                  cells[ingredients[x][y].loc.locY][ingredients[x][y].loc.locX] = fill;
-                  //if a shape is already in that location
-                } else {
-                  //add it
-                  cells[ingredients[x][y].loc.locY][ingredients[x][y].loc.locX] =
-                    cells[ingredients[x][y].loc.locY][ingredients[x][y].loc.locX] +
-                    '  ' +
-                    fill;
-                }
-                shapeNumber++;
-              }
-            }
-            //make table based on array
-            for (var _r in cells) {
-              var row = '<tr>';
-              for (var c in cells[_r]) {
-                row = row + '<td>';
-                if (cells[_r][c] !== undefined) {
-                  row = row + cells[_r][c];
-                }
-                row = row + '</td>';
-              }
-              table = table + row + '</tr>';
-            }
-            return table;
-          }
-
-          //creates grid summary
-          function _gridSummary(numShapes, background, width, height) {
-            var text = ''
-              .concat(background, ' canvas, ')
-              .concat(width, ' by ')
-              .concat(height, ' pixels, contains ')
-              .concat(numShapes[0]);
-
-            if (numShapes[0] === 1) {
-              text = ''.concat(text, ' shape: ').concat(numShapes[1]);
-            } else {
-              text = ''.concat(text, ' shapes: ').concat(numShapes[1]);
-            }
-            return text;
-          }
-
-          //creates list of shapes
-          function _gridShapeDetails(idT, ingredients) {
-            var shapeDetails = '';
-            var shapes = '';
-            var totalShapes = 0;
-            //goes trhough every shape type in ingredients
-            for (var x in ingredients) {
-              var shapeNum = 0;
-              for (var y in ingredients[x]) {
-                //it creates a line in a list
-                var line = '<li id="'
-                  .concat(idT, 'shape')
-                  .concat(totalShapes, '">')
-                  .concat(ingredients[x][y].color, ' ')
-                  .concat(x, ',');
-                if (x === 'line') {
-                  line =
-                    line +
-                    ' location = '
-                      .concat(ingredients[x][y].pos, ', length = ')
-                      .concat(ingredients[x][y].length, ' pixels');
-                } else {
-                  line = line + ' location = '.concat(ingredients[x][y].pos);
-                  if (x !== 'point') {
-                    line = line + ', area = '.concat(ingredients[x][y].area, ' %');
-                  }
-                  line = line + '</li>';
-                }
-                shapeDetails = shapeDetails + line;
-                shapeNum++;
-                totalShapes++;
-              }
-              if (shapeNum > 1) {
-                shapes = ''
-                  .concat(shapes, ' ')
-                  .concat(shapeNum, ' ')
-                  .concat(x, 's');
-              } else {
-                shapes = ''
-                  .concat(shapes, ' ')
-                  .concat(shapeNum, ' ')
-                  .concat(x);
-              }
-            }
-            return { numShapes: [totalShapes, shapes], details: shapeDetails };
-          }
-          var _default = _main.default;
-          exports.default = _default;
-        },
-        { '../core/main': 59 }
-      ],
-      41: [
-        function(_dereq_, module, exports) {
-          'use strict';
-          Object.defineProperty(exports, '__esModule', { value: true });
-          exports.default = void 0;
-
-          var _main = _interopRequireDefault(_dereq_('../core/main'));
-          function _interopRequireDefault(obj) {
-            return obj && obj.__esModule ? obj : { default: obj };
-          }
-          /**
-           * @module Environment
-           * @submodule Environment
-           * @for p5
-           * @requires core
-           */ /**
-           * <code class="language-javascript">textOutput()</code> creates a screenreader
-           * accessible output that describes the shapes present on the canvas.
-           * The general description of the canvas includes canvas size,
-           * canvas color, and number of elements in the canvas
-           * (example: 'Your output is a, 400 by 400 pixels, lavender blue
-           * canvas containing the following 4 shapes:'). This description
-           * is followed by a list of shapes where the color, position, and area
-           * of each shape are described (example: "orange ellipse at top left
-           * covering 1% of the canvas"). Each element can be selected to get
-           * more details. A table of elements is also provided. In this table,
-           * shape, color, location, coordinates and area are described
-           * (example: "orange ellipse location=top left area=2").
-           *
-           * <code class="language-javascript">textOutput()</code> and <code class="language-javascript">texOutput(FALLBACK)</code>
-           * make the output available in <a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Hit_regions_and_accessibility" target="_blank">
-           * a sub DOM inside the canvas element</a> which is accessible to screen readers.
-           * <code class="language-javascript">textOutput(LABEL)</code> creates an
-           * additional div with the output adjacent to the canvas, this is useful
-           * for non-screen reader users that might want to display the output outside
-           * of the canvas' sub DOM as they code. However, using LABEL will create
-           * unnecessary redundancy for screen reader users. We recommend using LABEL
-           * only as part of the development process of a sketch and removing it before
-           * publishing or sharing with screen reader users.
-           *
-           * @method textOutput
-           * @param  {Constant} [display] either FALLBACK or LABEL (Optional)
-           *
-           * @example
-           * <div>
-           * <code>
-           * textOutput();
-           * background(148, 196, 0);
-           * fill(255, 0, 0);
-           * ellipse(20, 20, 20, 20);
-           * fill(0, 0, 255);
-           * rect(50, 50, 50, 50);
-           * </code>
-           * </div>
-           *
-           *
-           * <div>
-           * <code>
-           * let x = 0;
-           * function draw() {
-           *   textOutput();
-           *   background(148, 196, 0);
-           *   fill(255, 0, 0);
-           *   ellipse(x, 20, 20, 20);
-           *   fill(0, 0, 255);
-           *   rect(50, 50, 50, 50);
-           *   ellipse(20, 20, 20, 20);
-           *   x += 0.1;
-           * }
-           * </code>
-           * </div>
-           *
-           */ _main.default.prototype.textOutput = function(display) {
-            _main.default._validateParameters('textOutput', arguments);
-            //if textOutput is already true
-            if (this._accessibleOutputs.text) {
-              return;
-            } else {
-              //make textOutput true
-              this._accessibleOutputs.text = true;
-              //create output for fallback
-              this._createOutput('textOutput', 'Fallback');
-              if (display === this.LABEL) {
-                //make textOutput label true
-                this._accessibleOutputs.textLabel = true;
-                //create output for label
-                this._createOutput('textOutput', 'Label');
-              }
-            }
-          };
-
-          /**
-           * <code class="language-javascript">gridOutput()</code> lays out the
-           * content of the canvas in the form of a grid (html table) based
-           * on the spatial location of each shape. A brief
-           * description of the canvas is available before the table output.
-           * This description includes: color of the background, size of the canvas,
-           * number of objects, and object types (example: "lavender blue canvas is
-           * 200 by 200 and contains 4 objects - 3 ellipses 1 rectangle"). The grid
-           * describes the content spatially, each element is placed on a cell of the
-           * table depending on its position. Within each cell an element the color
-           * and type of shape of that element are available (example: "orange ellipse").
-           * These descriptions can be selected individually to get more details.
-           * A list of elements where shape, color, location, and area are described
-           * (example: "orange ellipse location=top left area=1%") is also available.
-           *
-           * <code class="language-javascript">gridOutput()</code> and <code class="language-javascript">gridOutput(FALLBACK)</code>
-           * make the output available in <a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Hit_regions_and_accessibility" target="_blank">
-           * a sub DOM inside the canvas element</a> which is accessible to screen readers.
-           * <code class="language-javascript">gridOutput(LABEL)</code> creates an
-           * additional div with the output adjacent to the canvas, this is useful
-           * for non-screen reader users that might want to display the output outside
-           * of the canvas' sub DOM as they code. However, using LABEL will create
-           * unnecessary redundancy for screen reader users. We recommend using LABEL
-           * only as part of the development process of a sketch and removing it before
-           * publishing or sharing with screen reader users.
-           *
-           * @method gridOutput
-           * @param  {Constant} [display] either FALLBACK or LABEL (Optional)
-           *
-           * @example
-           * <div>
-           * <code>
-           * gridOutput();
-           * background(148, 196, 0);
-           * fill(255, 0, 0);
-           * ellipse(20, 20, 20, 20);
-           * fill(0, 0, 255);
-           * rect(50, 50, 50, 50);
-           * </code>
-           * </div>
-           *
-           *
-           * <div>
-           * <code>
-           * let x = 0;
-           * function draw() {
-           *   gridOutput();
-           *   background(148, 196, 0);
-           *   fill(255, 0, 0);
-           *   ellipse(x, 20, 20, 20);
-           *   fill(0, 0, 255);
-           *   rect(50, 50, 50, 50);
-           *   ellipse(20, 20, 20, 20);
-           *   x += 0.1;
-           * }
-           * </code>
-           * </div>
-           *
-           */
-
-          _main.default.prototype.gridOutput = function(display) {
-            _main.default._validateParameters('gridOutput', arguments);
-            //if gridOutput is already true
-            if (this._accessibleOutputs.grid) {
-              return;
-            } else {
-              //make gridOutput true
-              this._accessibleOutputs.grid = true;
-              //create output for fallback
-              this._createOutput('gridOutput', 'Fallback');
-              if (display === this.LABEL) {
-                //make gridOutput label true
-                this._accessibleOutputs.gridLabel = true;
-                //create output for label
-                this._createOutput('gridOutput', 'Label');
-              }
-            }
-          };
-
-          //helper function returns true when accessible outputs are true
-          _main.default.prototype._addAccsOutput = function() {
-            //if there are no accessible outputs create object with all false
-            if (!this._accessibleOutputs) {
-              this._accessibleOutputs = {
-                text: false,
-                grid: false,
-                textLabel: false,
-                gridLabel: false
-              };
-            }
-            return this._accessibleOutputs.grid || this._accessibleOutputs.text;
-          };
-
-          //helper function that creates html structure for accessible outputs
-          _main.default.prototype._createOutput = function(type, display) {
-            var cnvId = this.canvas.id;
-            //if there are no ingredients create object. this object stores data for the outputs
-            if (!this.ingredients) {
-              this.ingredients = {
-                shapes: {},
-                colors: { background: 'white', fill: 'white', stroke: 'black' },
-                pShapes: ''
-              };
-            }
-            //if there is no dummyDOM create it
-            if (!this.dummyDOM) {
-              this.dummyDOM = document.getElementById(cnvId).parentNode;
-            }
-            var cIdT, container, inner;
-            var query = '';
-            if (display === 'Fallback') {
-              cIdT = cnvId + type;
-              container = cnvId + 'accessibleOutput';
-              if (!this.dummyDOM.querySelector('#'.concat(container))) {
-                //if there is no canvas description (see describe() and describeElement())
-                if (!this.dummyDOM.querySelector('#'.concat(cnvId, '_Description'))) {
-                  //create html structure inside of canvas
-                  this.dummyDOM.querySelector(
-                    '#'.concat(cnvId)
-                  ).innerHTML = '<div id="'.concat(
-                    container,
-                    '" role="region" aria-label="Canvas Outputs"></div>'
-                  );
-                } else {
-                  //create html structure after canvas description container
-                  this.dummyDOM
-                    .querySelector('#'.concat(cnvId, '_Description'))
-                    .insertAdjacentHTML(
-                      'afterend',
-                      '<div id="'.concat(
-                        container,
-                        '" role="region" aria-label="Canvas Outputs"></div>'
-                      )
-                    );
-                }
-              }
-            } else if (display === 'Label') {
-              query = display;
-              cIdT = cnvId + type + display;
-              container = cnvId + 'accessibleOutput' + display;
-              if (!this.dummyDOM.querySelector('#'.concat(container))) {
-                //if there is no canvas description label (see describe() and describeElement())
-                if (!this.dummyDOM.querySelector('#'.concat(cnvId, '_Label'))) {
-                  //create html structure adjacent to canvas
-                  this.dummyDOM
-                    .querySelector('#'.concat(cnvId))
-                    .insertAdjacentHTML(
-                      'afterend',
-                      '<div id="'.concat(container, '"></div>')
-                    );
-                } else {
-                  //create html structure after canvas label
-                  this.dummyDOM
-                    .querySelector('#'.concat(cnvId, '_Label'))
-                    .insertAdjacentHTML(
-                      'afterend',
-                      '<div id="'.concat(container, '"></div>')
-                    );
-                }
-              }
-            }
-            //create an object to store the latest output. this object is used in _updateTextOutput() and _updateGridOutput()
-            this._accessibleOutputs[cIdT] = {};
-            if (type === 'textOutput') {
-              query = '#'.concat(cnvId, 'gridOutput').concat(query); //query is used to check if gridOutput already exists
-              inner = '<div id="'
-                .concat(cIdT, '">Text Output<div id="')
-                .concat(cIdT, 'Summary" aria-label="text output summary"><p id="')
-                .concat(cIdT, '_summary"></p><ul id="')
-                .concat(cIdT, '_list"></ul></div><table id="')
-                .concat(
-                  cIdT,
-                  '_shapeDetails" summary="text output shape details"></table></div>'
-                );
-              //if gridOutput already exists
-              if (this.dummyDOM.querySelector(query)) {
-                //create textOutput before gridOutput
-                this.dummyDOM.querySelector(query).insertAdjacentHTML('beforebegin', inner);
-              } else {
-                //create output inside of container
-                this.dummyDOM.querySelector('#'.concat(container)).innerHTML = inner;
-              }
-              //store output html elements
-              this._accessibleOutputs[cIdT].list = this.dummyDOM.querySelector(
-                '#'.concat(cIdT, '_list')
-              );
-            } else if (type === 'gridOutput') {
-              query = '#'.concat(cnvId, 'textOutput').concat(query); //query is used to check if textOutput already exists
-              inner = '<div id="'
-                .concat(cIdT, '">Grid Output<p id="')
-                .concat(cIdT, '_summary" aria-label="grid output summary"><table id="')
-                .concat(cIdT, '_map" summary="grid output content"></table><ul id="')
-                .concat(
-                  cIdT,
-                  '_shapeDetails" aria-label="grid output shape details"></ul></div>'
-                );
-              //if textOutput already exists
-              if (this.dummyDOM.querySelector(query)) {
-                //create gridOutput after textOutput
-                this.dummyDOM.querySelector(query).insertAdjacentHTML('afterend', inner);
-              } else {
-                //create output inside of container
-                this.dummyDOM.querySelector('#'.concat(container)).innerHTML = inner;
-              }
-              //store output html elements
-              this._accessibleOutputs[cIdT].map = this.dummyDOM.querySelector(
-                '#'.concat(cIdT, '_map')
-              );
-            }
-            this._accessibleOutputs[cIdT].shapeDetails = this.dummyDOM.querySelector(
-              '#'.concat(cIdT, '_shapeDetails')
-            );
-
-            this._accessibleOutputs[cIdT].summary = this.dummyDOM.querySelector(
-              '#'.concat(cIdT, '_summary')
-            );
-          };
-
-          //this function is called at the end of setup and draw if using
-          //accessibleOutputs and calls update functions of outputs
-          _main.default.prototype._updateAccsOutput = function() {
-            var cnvId = this.canvas.id;
-            //if the shapes are not the same as before
-            if (JSON.stringify(this.ingredients.shapes) !== this.ingredients.pShapes) {
-              //save current shapes as string in pShapes
-              this.ingredients.pShapes = JSON.stringify(this.ingredients.shapes);
-              if (this._accessibleOutputs.text) {
-                this._updateTextOutput(cnvId + 'textOutput');
-              }
-              if (this._accessibleOutputs.grid) {
-                this._updateGridOutput(cnvId + 'gridOutput');
-              }
-              if (this._accessibleOutputs.textLabel) {
-                this._updateTextOutput(cnvId + 'textOutputLabel');
-              }
-              if (this._accessibleOutputs.gridLabel) {
-                this._updateGridOutput(cnvId + 'gridOutputLabel');
-              }
-            }
-          };
-
-          //helper function that resets all ingredients when background is called
-          //and saves background color name
-          _main.default.prototype._accsBackground = function(args) {
-            //save current shapes as string in pShapes
-            this.ingredients.pShapes = JSON.stringify(this.ingredients.shapes);
-            //empty shapes JSON
-            this.ingredients.shapes = {};
-            //update background different
-            if (this.ingredients.colors.backgroundRGBA !== args) {
-              this.ingredients.colors.backgroundRGBA = args;
-              this.ingredients.colors.background = this._rgbColorName(args);
-            }
-          };
-
-          //helper function that gets fill and stroke of shapes
-          _main.default.prototype._accsCanvasColors = function(f, args) {
-            if (f === 'fill') {
-              //update fill different
-              if (this.ingredients.colors.fillRGBA !== args) {
-                this.ingredients.colors.fillRGBA = args;
-                this.ingredients.colors.fill = this._rgbColorName(args);
-              }
-            } else if (f === 'stroke') {
-              //update stroke if different
-              if (this.ingredients.colors.strokeRGBA !== args) {
-                this.ingredients.colors.strokeRGBA = args;
-                this.ingredients.colors.stroke = this._rgbColorName(args);
-              }
-            }
-          };
-
-          //builds ingredients.shapes used for building outputs
-          _main.default.prototype._accsOutput = function(f, args) {
-            if (f === 'ellipse' && args[2] === args[3]) {
-              f = 'circle';
-            } else if (f === 'rectangle' && args[2] === args[3]) {
-              f = 'square';
-            }
-            var include = {};
-            var add = true;
-            var middle = _getMiddle(f, args);
-            if (f === 'line') {
-              //make color stroke
-              include.color = this.ingredients.colors.stroke;
-              //get lenght
-              include.length = Math.round(this.dist(args[0], args[1], args[2], args[3]));
-              //get position of end points
-              var p1 = _getPos([args[0], [1]], this.width, this.height);
-              var p2 = _getPos([args[2], [3]], this.width, this.height);
-              include.loc = _canvasLocator(middle, this.width, this.height);
-              if (p1 === p2) {
-                include.pos = 'at '.concat(p1);
-              } else {
-                include.pos = 'from '.concat(p1, ' to ').concat(p2);
-              }
-            } else {
-              if (f === 'point') {
-                //make color stroke
-                include.color = this.ingredients.colors.stroke;
-              } else {
-                //make color fill
-                include.color = this.ingredients.colors.fill;
-                //get area of shape
-                include.area = _getArea(f, args, this.width, this.height);
-              }
-              //get middle of shapes
-              //calculate position using middle of shape
-              include.pos = _getPos(middle, this.width, this.height);
-              //calculate location using middle of shape
-              include.loc = _canvasLocator(middle, this.width, this.height);
-            }
-            //if it is the first time this shape is created
-            if (!this.ingredients.shapes[f]) {
-              this.ingredients.shapes[f] = [include];
-              //if other shapes of this type have been created
-            } else if (this.ingredients.shapes[f] !== [include]) {
-              //for every shape of this type
-              for (var y in this.ingredients.shapes[f]) {
-                //compare it with current shape and if it already exists make add false
-                if (
-                  JSON.stringify(this.ingredients.shapes[f][y]) === JSON.stringify(include)
-                ) {
-                  add = false;
-                }
-              }
-              //add shape by pushing it to the end
-              if (add === true) {
-                this.ingredients.shapes[f].push(include);
-              }
-            }
-          };
-
-          //gets middle point / centroid of shape
-          function _getMiddle(f, args) {
-            var x, y;
-            if (
-              f === 'rectangle' ||
-              f === 'ellipse' ||
-              f === 'arc' ||
-              f === 'circle' ||
-              f === 'square'
-            ) {
-              x = Math.round(args[0] + args[2] / 2);
-              y = Math.round(args[1] + args[3] / 2);
-            } else if (f === 'triangle') {
-              x = (args[0] + args[2] + args[4]) / 3;
-              y = (args[1] + args[3] + args[5]) / 3;
-            } else if (f === 'quadrilateral') {
-              x = (args[0] + args[2] + args[4] + args[6]) / 4;
-              y = (args[1] + args[3] + args[5] + args[7]) / 4;
-            } else if (f === 'line') {
-              x = (args[0] + args[2]) / 2;
-              y = (args[1] + args[3]) / 2;
-            } else {
-              x = args[0];
-              y = args[1];
-            }
-            return [x, y];
-          }
-
-          //gets position of shape in the canvas
-          function _getPos(args, canvasWidth, canvasHeight) {
-            if (args[0] < 0.4 * canvasWidth) {
-              if (args[1] < 0.4 * canvasHeight) {
-                return 'top left';
-              } else if (args[1] > 0.6 * canvasHeight) {
-                return 'bottom left';
-              } else {
-                return 'mid left';
-              }
-            } else if (args[0] > 0.6 * canvasWidth) {
-              if (args[1] < 0.4 * canvasHeight) {
-                return 'top right';
-              } else if (args[1] > 0.6 * canvasHeight) {
-                return 'bottom right';
-              } else {
-                return 'mid right';
-              }
-            } else {
-              if (args[1] < 0.4 * canvasHeight) {
-                return 'top middle';
-              } else if (args[1] > 0.6 * canvasHeight) {
-                return 'bottom middle';
-              } else {
-                return 'middle';
-              }
-            }
-          }
-
-          //locates shape in a 10*10 grid
-          function _canvasLocator(args, canvasWidth, canvasHeight) {
-            var noRows = 10;
-            var noCols = 10;
-            var locX = Math.floor(args[0] / canvasWidth * noRows);
-            var locY = Math.floor(args[1] / canvasHeight * noCols);
-            if (locX === noRows) {
-              locX = locX - 1;
-            }
-            if (locY === noCols) {
-              locY = locY - 1;
-            }
-            return {
-              locX: locX,
-              locY: locY
-            };
-          }
-
-          //calculates area of shape
-          function _getArea(objectType, shapeArgs, canvasWidth, canvasHeight) {
-            var objectArea = 0;
-            if (objectType === 'arc') {
-              // area of full ellipse = PI * horizontal radius * vertical radius.
-              // therefore, area of arc = difference bet. arc's start and end radians * horizontal radius * vertical radius.
-              // the below expression is adjusted for negative values and differences in arc's start and end radians over PI*2
-              var arcSizeInRadians =
-                ((shapeArgs[5] - shapeArgs[4]) % (Math.PI * 2) + Math.PI * 2) %
-                (Math.PI * 2);
-              objectArea = arcSizeInRadians * shapeArgs[2] * shapeArgs[3] / 8;
-              if (shapeArgs[6] === 'open' || shapeArgs[6] === 'chord') {
-                // when the arc's mode is OPEN or CHORD, we need to account for the area of the triangle that is formed to close the arc
-                // (Ax( By −  Cy) + Bx(Cy − Ay) + Cx(Ay − By ) )/2
-                var Ax = shapeArgs[0];
-                var Ay = shapeArgs[1];
-                var Bx =
-                  shapeArgs[0] + shapeArgs[2] / 2 * Math.cos(shapeArgs[4]).toFixed(2);
-                var By =
-                  shapeArgs[1] + shapeArgs[3] / 2 * Math.sin(shapeArgs[4]).toFixed(2);
-                var Cx =
-                  shapeArgs[0] + shapeArgs[2] / 2 * Math.cos(shapeArgs[5]).toFixed(2);
-                var Cy =
-                  shapeArgs[1] + shapeArgs[3] / 2 * Math.sin(shapeArgs[5]).toFixed(2);
-                var areaOfExtraTriangle =
-                  Math.abs(Ax * (By - Cy) + Bx * (Cy - Ay) + Cx * (Ay - By)) / 2;
-                if (arcSizeInRadians > Math.PI) {
-                  objectArea = objectArea + areaOfExtraTriangle;
-                } else {
-                  objectArea = objectArea - areaOfExtraTriangle;
-                }
-              }
-            } else if (objectType === 'ellipse' || objectType === 'circle') {
-              objectArea = 3.14 * shapeArgs[2] / 2 * shapeArgs[3] / 2;
-            } else if (objectType === 'line') {
-              objectArea = 0;
-            } else if (objectType === 'point') {
-              objectArea = 0;
-            } else if (objectType === 'quadrilateral') {
-              // ((x4+x1)*(y4-y1)+(x1+x2)*(y1-y2)+(x2+x3)*(y2-y3)+(x3+x4)*(y3-y4))/2
-              objectArea =
-                Math.abs(
-                  (shapeArgs[6] + shapeArgs[0]) * (shapeArgs[7] - shapeArgs[1]) +
-                    (shapeArgs[0] + shapeArgs[2]) * (shapeArgs[1] - shapeArgs[3]) +
-                    (shapeArgs[2] + shapeArgs[4]) * (shapeArgs[3] - shapeArgs[5]) +
-                    (shapeArgs[4] + shapeArgs[6]) * (shapeArgs[5] - shapeArgs[7])
-                ) / 2;
-            } else if (objectType === 'rectangle' || objectType === 'square') {
-              objectArea = shapeArgs[2] * shapeArgs[3];
-            } else if (objectType === 'triangle') {
-              objectArea =
-                Math.abs(
-                  shapeArgs[0] * (shapeArgs[3] - shapeArgs[5]) +
-                    shapeArgs[2] * (shapeArgs[5] - shapeArgs[1]) +
-                    shapeArgs[4] * (shapeArgs[1] - shapeArgs[3])
-                ) / 2;
-              // (Ax( By −  Cy) + Bx(Cy − Ay) + Cx(Ay − By ))/2
-            }
-
-            return Math.round(objectArea * 100 / (canvasWidth * canvasHeight));
-          }
-          var _default = _main.default;
-          exports.default = _default;
-        },
-        { '../core/main': 59 }
-      ],
-      42: [
-        function(_dereq_, module, exports) {
-          'use strict';
-          Object.defineProperty(exports, '__esModule', { value: true });
-          exports.default = void 0;
-
-          var _main = _interopRequireDefault(_dereq_('../core/main'));
-          function _interopRequireDefault(obj) {
-            return obj && obj.__esModule ? obj : { default: obj };
-          } /** //the functions in this file support updating the text output
-           * @module Environment
-           * @submodule Environment
-           * @for p5
-           * @requires core
-           */
-          //updates textOutput
-          _main.default.prototype._updateTextOutput = function(idT) {
-            //if html structure is not there yet
-            if (!this.dummyDOM.querySelector('#'.concat(idT, '_summary'))) {
-              return;
-            }
-            var current = this._accessibleOutputs[idT];
-            //create shape list
-            var innerList = _shapeList(idT, this.ingredients.shapes);
-            //create output summary
-            var innerSummary = _textSummary(
-              innerList.numShapes,
-              this.ingredients.colors.background,
-              this.width,
-              this.height
-            );
-
-            //create shape details
-            var innerShapeDetails = _shapeDetails(idT, this.ingredients.shapes);
-            //if it is different from current summary
-            if (innerSummary !== current.summary.innerHTML) {
-              //update
-              current.summary.innerHTML = innerSummary;
-            }
-            //if it is different from current shape list
-            if (innerList.listShapes !== current.list.innerHTML) {
-              //update
-              current.list.innerHTML = innerList.listShapes;
-            }
-            //if it is different from current shape details
-            if (innerShapeDetails !== current.shapeDetails.innerHTML) {
-              //update
-              current.shapeDetails.innerHTML = innerShapeDetails;
-            }
-            this._accessibleOutputs[idT] = current;
-          };
-
-          //Builds textOutput summary
-          function _textSummary(numShapes, background, width, height) {
-            var text = 'Your output is a, '
-              .concat(width, ' by ')
-              .concat(height, ' pixels, ')
-              .concat(background, ' canvas containing the following');
-            if (numShapes === 1) {
-              text = ''.concat(text, ' shape:');
-            } else {
-              text = ''.concat(text, ' ').concat(numShapes, ' shapes:');
-            }
-            return text;
-          }
-
-          //Builds textOutput table with shape details
-          function _shapeDetails(idT, ingredients) {
-            var shapeDetails = '';
-            var shapeNumber = 0;
-            //goes trhough every shape type in ingredients
-            for (var x in ingredients) {
-              //and for every shape
-              for (var y in ingredients[x]) {
-                //it creates a table row
-                var row = '<tr id="'
-                  .concat(idT, 'shape')
-                  .concat(shapeNumber, '"><th>')
-                  .concat(ingredients[x][y].color, ' ')
-                  .concat(x, '</th>');
-                if (x === 'line') {
-                  row =
-                    row +
-                    '<td>location = '
-                      .concat(ingredients[x][y].pos, '</td><td>length = ')
-                      .concat(ingredients[x][y].length, ' pixels</td></tr>');
-                } else {
-                  row = row + '<td>location = '.concat(ingredients[x][y].pos, '</td>');
-                  if (x !== 'point') {
-                    row = row + '<td> area = '.concat(ingredients[x][y].area, '%</td>');
-                  }
-                  row = row + '</tr>';
-                }
-                shapeDetails = shapeDetails + row;
-                shapeNumber++;
-              }
-            }
-            return shapeDetails;
-          }
-
-          //Builds textOutput shape list
-          function _shapeList(idT, ingredients) {
-            var shapeList = '';
-            var shapeNumber = 0;
-            //goes trhough every shape type in ingredients
-            for (var x in ingredients) {
-              for (var y in ingredients[x]) {
-                //it creates a line in a list
-                var _line = '<li><a href="#'
-                  .concat(idT, 'shape')
-                  .concat(shapeNumber, '">')
-                  .concat(ingredients[x][y].color, ' ')
-                  .concat(x, '</a>');
-                if (x === 'line') {
-                  _line =
-                    _line +
-                    ', '
-                      .concat(ingredients[x][y].pos, ', ')
-                      .concat(ingredients[x][y].length, ' pixels long.</li>');
-                } else {
-                  _line = _line + ', at '.concat(ingredients[x][y].pos);
-                  if (x !== 'point') {
-                    _line =
-                      _line +
-                      ', covering '.concat(ingredients[x][y].area, '% of the canvas');
-                  }
-                  _line = _line + '.</li>';
-                }
-                shapeList = shapeList + _line;
-                shapeNumber++;
-              }
-            }
-            return { numShapes: shapeNumber, listShapes: shapeList };
-          }
-          var _default = _main.default;
-          exports.default = _default;
-        },
-        { '../core/main': 59 }
-      ],
-      43: [
-        function(_dereq_, module, exports) {
-          'use strict';
           var _main = _interopRequireDefault(_dereq_('./core/main'));
           _dereq_('./core/constants');
           _dereq_('./core/environment');
@@ -43407,11 +41150,6 @@
           _dereq_('./core/shape/curves');
           _dereq_('./core/shape/vertex');
 
-          _dereq_('./accessibility/outputs');
-          _dereq_('./accessibility/textOutput');
-          _dereq_('./accessibility/gridOutput');
-          _dereq_('./accessibility/color_namer');
-
           _dereq_('./color/color_conversion');
           _dereq_('./color/creating_reading');
           _dereq_('./color/p5.Color');
@@ -43421,8 +41159,6 @@
           _dereq_('./data/local_storage.js');
 
           _dereq_('./dom/dom');
-
-          _dereq_('./accessibility/describe');
 
           _dereq_('./events/acceleration');
           _dereq_('./events/keyboard');
@@ -43476,11 +41212,9 @@
           function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : { default: obj };
           } // core
-          //accessibility
           // color
           // data
           // DOM
-          // accessibility
           // events
           // image
           // io
@@ -43491,85 +41225,80 @@
           module.exports = _main.default;
         },
         {
-          './accessibility/color_namer': 38,
-          './accessibility/describe': 39,
-          './accessibility/gridOutput': 40,
-          './accessibility/outputs': 41,
-          './accessibility/textOutput': 42,
-          './color/color_conversion': 44,
-          './color/creating_reading': 45,
-          './color/p5.Color': 46,
-          './color/setting': 47,
-          './core/constants': 48,
-          './core/environment': 49,
-          './core/friendly_errors/fes_core': 51,
-          './core/friendly_errors/file_errors': 52,
-          './core/friendly_errors/stacktrace': 53,
-          './core/friendly_errors/validate_params': 54,
-          './core/helpers': 55,
-          './core/init': 56,
-          './core/legacy': 58,
-          './core/main': 59,
-          './core/p5.Element': 60,
-          './core/p5.Graphics': 61,
-          './core/p5.Renderer': 62,
-          './core/p5.Renderer2D': 63,
-          './core/preload': 64,
-          './core/rendering': 65,
-          './core/shape/2d_primitives': 66,
-          './core/shape/attributes': 67,
-          './core/shape/curves': 68,
-          './core/shape/vertex': 69,
-          './core/shim': 70,
-          './core/structure': 71,
-          './core/transform': 72,
-          './data/local_storage.js': 73,
-          './data/p5.TypedDict': 74,
-          './dom/dom': 75,
-          './events/acceleration': 76,
-          './events/keyboard': 77,
-          './events/mouse': 78,
-          './events/touch': 79,
-          './image/filters': 80,
-          './image/image': 81,
-          './image/loading_displaying': 82,
-          './image/p5.Image': 83,
-          './image/pixels': 84,
-          './io/files': 85,
-          './io/p5.Table': 86,
-          './io/p5.TableRow': 87,
-          './io/p5.XML': 88,
-          './math/calculation': 89,
-          './math/math': 90,
-          './math/noise': 91,
-          './math/p5.Vector': 92,
-          './math/random': 93,
-          './math/trigonometry': 94,
-          './typography/attributes': 95,
-          './typography/loading_displaying': 96,
-          './typography/p5.Font': 97,
-          './utilities/array_functions': 98,
-          './utilities/conversion': 99,
-          './utilities/string_functions': 100,
-          './utilities/time_date': 101,
-          './webgl/3d_primitives': 102,
-          './webgl/interaction': 103,
-          './webgl/light': 104,
-          './webgl/loading': 105,
-          './webgl/material': 106,
-          './webgl/p5.Camera': 107,
-          './webgl/p5.Geometry': 108,
-          './webgl/p5.Matrix': 109,
-          './webgl/p5.RenderBuffer': 110,
-          './webgl/p5.RendererGL': 113,
-          './webgl/p5.RendererGL.Immediate': 111,
-          './webgl/p5.RendererGL.Retained': 112,
-          './webgl/p5.Shader': 114,
-          './webgl/p5.Texture': 115,
-          './webgl/text': 116
+          './color/color_conversion': 39,
+          './color/creating_reading': 40,
+          './color/p5.Color': 41,
+          './color/setting': 42,
+          './core/constants': 43,
+          './core/environment': 44,
+          './core/friendly_errors/fes_core': 46,
+          './core/friendly_errors/file_errors': 47,
+          './core/friendly_errors/stacktrace': 48,
+          './core/friendly_errors/validate_params': 49,
+          './core/helpers': 50,
+          './core/init': 51,
+          './core/legacy': 53,
+          './core/main': 54,
+          './core/p5.Element': 55,
+          './core/p5.Graphics': 56,
+          './core/p5.Renderer': 57,
+          './core/p5.Renderer2D': 58,
+          './core/preload': 59,
+          './core/rendering': 60,
+          './core/shape/2d_primitives': 61,
+          './core/shape/attributes': 62,
+          './core/shape/curves': 63,
+          './core/shape/vertex': 64,
+          './core/shim': 65,
+          './core/structure': 66,
+          './core/transform': 67,
+          './data/local_storage.js': 68,
+          './data/p5.TypedDict': 69,
+          './dom/dom': 70,
+          './events/acceleration': 71,
+          './events/keyboard': 72,
+          './events/mouse': 73,
+          './events/touch': 74,
+          './image/filters': 75,
+          './image/image': 76,
+          './image/loading_displaying': 77,
+          './image/p5.Image': 78,
+          './image/pixels': 79,
+          './io/files': 80,
+          './io/p5.Table': 81,
+          './io/p5.TableRow': 82,
+          './io/p5.XML': 83,
+          './math/calculation': 84,
+          './math/math': 85,
+          './math/noise': 86,
+          './math/p5.Vector': 87,
+          './math/random': 88,
+          './math/trigonometry': 89,
+          './typography/attributes': 90,
+          './typography/loading_displaying': 91,
+          './typography/p5.Font': 92,
+          './utilities/array_functions': 93,
+          './utilities/conversion': 94,
+          './utilities/string_functions': 95,
+          './utilities/time_date': 96,
+          './webgl/3d_primitives': 97,
+          './webgl/interaction': 98,
+          './webgl/light': 99,
+          './webgl/loading': 100,
+          './webgl/material': 101,
+          './webgl/p5.Camera': 102,
+          './webgl/p5.Geometry': 103,
+          './webgl/p5.Matrix': 104,
+          './webgl/p5.RenderBuffer': 105,
+          './webgl/p5.RendererGL': 108,
+          './webgl/p5.RendererGL.Immediate': 106,
+          './webgl/p5.RendererGL.Retained': 107,
+          './webgl/p5.Shader': 109,
+          './webgl/p5.Texture': 110,
+          './webgl/text': 111
         }
       ],
-      44: [
+      39: [
         function(_dereq_, module, exports) {
           'use strict';
           Object.defineProperty(exports, '__esModule', { value: true });
@@ -43840,9 +41569,9 @@
           var _default = _main.default.ColorConversion;
           exports.default = _default;
         },
-        { '../core/main': 59 }
+        { '../core/main': 54 }
       ],
-      45: [
+      40: [
         function(_dereq_, module, exports) {
           'use strict';
           function _typeof(obj) {
@@ -44468,15 +42197,15 @@
           exports.default = _default;
         },
         {
-          '../core/constants': 48,
-          '../core/friendly_errors/fes_core': 51,
-          '../core/friendly_errors/file_errors': 52,
-          '../core/friendly_errors/validate_params': 54,
-          '../core/main': 59,
-          './p5.Color': 46
+          '../core/constants': 43,
+          '../core/friendly_errors/fes_core': 46,
+          '../core/friendly_errors/file_errors': 47,
+          '../core/friendly_errors/validate_params': 49,
+          '../core/main': 54,
+          './p5.Color': 41
         }
       ],
-      46: [
+      41: [
         function(_dereq_, module, exports) {
           'use strict';
           function _typeof(obj) {
@@ -44614,15 +42343,8 @@
            * </code>
            * </div>
            *
-           * <div>
-           * <code>
-           * let myColor = color(100, 130, 250);
-           * text(myColor.toString('#rrggbb'), 25, 25);
-           * </code>
-           * </div>
-           *
            * @alt
-           * A canvas with 3 text representation of their color.
+           * A canvas with 3 text representation of thier color.
            */
           _main.default.Color.prototype.toString = function(format) {
             var a = this.levels;
@@ -45555,9 +43277,9 @@
           var _default = _main.default.Color;
           exports.default = _default;
         },
-        { '../core/constants': 48, '../core/main': 59, './color_conversion': 44 }
+        { '../core/constants': 43, '../core/main': 54, './color_conversion': 39 }
       ],
-      47: [
+      42: [
         function(_dereq_, module, exports) {
           'use strict';
           function _typeof(obj) {
@@ -46479,14 +44201,14 @@
           var _default = _main.default;
           exports.default = _default;
         },
-        { '../core/constants': 48, '../core/main': 59, './p5.Color': 46 }
+        { '../core/constants': 43, '../core/main': 54, './p5.Color': 41 }
       ],
-      48: [
+      43: [
         function(_dereq_, module, exports) {
           'use strict';
           Object.defineProperty(exports, '__esModule', { value: true });
           exports.FILL = exports.STROKE = exports.CURVE = exports.BEZIER = exports.QUADRATIC = exports.LINEAR = exports._CTX_MIDDLE = exports._DEFAULT_LEADMULT = exports._DEFAULT_TEXT_FILL = exports.BOLDITALIC = exports.BOLD = exports.ITALIC = exports.NORMAL = exports.BLUR = exports.ERODE = exports.DILATE = exports.POSTERIZE = exports.INVERT = exports.OPAQUE = exports.GRAY = exports.THRESHOLD = exports.BURN = exports.DODGE = exports.SOFT_LIGHT = exports.HARD_LIGHT = exports.OVERLAY = exports.REPLACE = exports.SCREEN = exports.MULTIPLY = exports.EXCLUSION = exports.SUBTRACT = exports.DIFFERENCE = exports.LIGHTEST = exports.DARKEST = exports.ADD = exports.REMOVE = exports.BLEND = exports.UP_ARROW = exports.TAB = exports.SHIFT = exports.RIGHT_ARROW = exports.RETURN = exports.OPTION = exports.LEFT_ARROW = exports.ESCAPE = exports.ENTER = exports.DOWN_ARROW = exports.DELETE = exports.CONTROL = exports.BACKSPACE = exports.ALT = exports.AUTO = exports.HSL = exports.HSB = exports.RGB = exports.MITER = exports.BEVEL = exports.ROUND = exports.SQUARE = exports.PROJECT = exports.PIE = exports.CHORD = exports.OPEN = exports.CLOSE = exports.TESS = exports.QUAD_STRIP = exports.QUADS = exports.TRIANGLE_STRIP = exports.TRIANGLE_FAN = exports.TRIANGLES = exports.LINE_LOOP = exports.LINE_STRIP = exports.LINES = exports.POINTS = exports.BASELINE = exports.BOTTOM = exports.TOP = exports.CENTER = exports.LEFT = exports.RIGHT = exports.RADIUS = exports.CORNERS = exports.CORNER = exports.RAD_TO_DEG = exports.DEG_TO_RAD = exports.RADIANS = exports.DEGREES = exports.TWO_PI = exports.TAU = exports.QUARTER_PI = exports.PI = exports.HALF_PI = exports.WAIT = exports.TEXT = exports.MOVE = exports.HAND = exports.CROSS = exports.ARROW = exports.WEBGL = exports.P2D = void 0;
-          exports.FALLBACK = exports.LABEL = exports.AXES = exports.GRID = exports._DEFAULT_FILL = exports._DEFAULT_STROKE = exports.PORTRAIT = exports.LANDSCAPE = exports.MIRROR = exports.CLAMP = exports.REPEAT = exports.NEAREST = exports.IMAGE = exports.IMMEDIATE = exports.TEXTURE = void 0; /**
+          exports.AXES = exports.GRID = exports._DEFAULT_FILL = exports._DEFAULT_STROKE = exports.PORTRAIT = exports.LANDSCAPE = exports.MIRROR = exports.CLAMP = exports.REPEAT = exports.NEAREST = exports.IMAGE = exports.IMMEDIATE = exports.TEXTURE = void 0; /**
            * @module Constants
            * @submodule Constants
            * @for p5
@@ -47192,22 +44914,11 @@
            * @final
            */ exports.GRID = GRID;
           var AXES = 'axes';
-
-          /**
-           * @property {String} LABEL
-           * @final
-           */ exports.AXES = AXES;
-          var LABEL = 'label';
-          /**
-           * @property {String} FALLBACK
-           * @final
-           */ exports.LABEL = LABEL;
-          var FALLBACK = 'fallback';
-          exports.FALLBACK = FALLBACK;
+          exports.AXES = AXES;
         },
         {}
       ],
-      49: [
+      44: [
         function(_dereq_, module, exports) {
           'use strict';
           function _typeof(obj) {
@@ -47501,13 +45212,13 @@
     * Specifies the number of frames to be displayed every second. For example,
     * the function call frameRate(30) will attempt to refresh 30 times a second.
     * If the processor is not fast enough to maintain the specified rate, the
-    * frame rate will not be achieved. Setting the frame rate within
+    * frame rate will not be achieved. Setting the frame rate within 
     * <a href="#/p5/setup">setup()</a> is recommended. The default frame rate is
-    * based on the frame rate of the display (here also called "refresh rate"),
+    * based on the frame rate of the display (here also called "refresh rate"), 
     * which is set to 60 frames per second on most computers. A frame rate of 24
-    * frames per second (usual for movies) or above will be enough for smooth
+    * frames per second (usual for movies) or above will be enough for smooth 
     * animations. This is the same as setFrameRate(val).
-    *
+    * 
     * Calling <a href="#/p5/frameRate">frameRate()</a> with no arguments returns
     * the current framerate. The draw function must run at least once before it will
     * return a value. This is the same as <a href="#/p5/getFrameRate">getFrameRate()</a>.
@@ -48018,9 +45729,9 @@
           var _default = _main.default;
           exports.default = _default;
         },
-        { './constants': 48, './main': 59 }
+        { './constants': 43, './main': 54 }
       ],
-      50: [
+      45: [
         function(_dereq_, module, exports) {
           'use strict';
           Object.defineProperty(exports, '__esModule', { value: true });
@@ -48090,7 +45801,7 @@
         },
         {}
       ],
-      51: [
+      46: [
         function(_dereq_, module, exports) {
           'use strict';
           Object.defineProperty(exports, '__esModule', { value: true });
@@ -48259,45 +45970,13 @@
             };
 
             /**
-             * Takes a message and a p5 function func, and adds a link pointing to
-             * the reference documentation of func at the end of the message
-             *
-             * @method mapToReference
-             * @private
-             * @param {String} message the words to be said
-             * @param {String} [func]    the name of the function to link
-             *
-             * @returns {String}
-             */
-            var mapToReference = function mapToReference(message, func) {
-              var msgWithReference = '';
-              if (func == null || func.substring(0, 4) === 'load') {
-                msgWithReference = message;
-              } else {
-                var methodParts = func.split('.');
-                var referenceSection =
-                  methodParts.length > 1
-                    ? ''.concat(methodParts[0], '.').concat(methodParts[1])
-                    : 'p5';
-
-                var funcName =
-                  methodParts.length === 1 ? func : methodParts.slice(2).join('/');
-                msgWithReference = ''
-                  .concat(message, ' (http://p5js.org/reference/#/')
-                  .concat(referenceSection, '/')
-                  .concat(funcName, ')');
-              }
-              return msgWithReference;
-            };
-
-            /**
              * Prints out a fancy, colorful message to the console log
              *
              * @method report
              * @private
              * @param  {String}               message the words to be said
-             * @param  {String}               [func]  the name of the function to link
-             * @param  {Number|String} [color]   CSS color string or error type
+             * @param  {String}               func    the name of the function to link
+             * @param  {Number|String} color   CSS color string or error type
              *
              * @return console logs
              */
@@ -48320,17 +45999,33 @@
                 color = typeColors[color];
               }
 
-              // Add a link to the reference docs of func at the end of the message
-              message = mapToReference(message, func);
+              var prefixedMsg;
               var style = [
                 'color: '.concat(color),
                 'font-family: Arial',
                 'font-size: larger'
               ];
-              var prefixedMsg = (0, _internationalization.translator)('fes.pre', {
-                message: message
-              });
+              if (func == null || func.substring(0, 4) === 'load') {
+                prefixedMsg = (0, _internationalization.translator)('fes.pre', {
+                  message: message
+                });
+              } else {
+                var methodParts = func.split('.');
+                var referenceSection =
+                  methodParts.length > 1
+                    ? ''.concat(methodParts[0], '.').concat(methodParts[1])
+                    : 'p5';
 
+                var funcName =
+                  methodParts.length === 1 ? func : methodParts.slice(2).join('/');
+
+                prefixedMsg = (0, _internationalization.translator)('fes.pre', {
+                  message: ''
+                    .concat(message, ' (http://p5js.org/reference/#/')
+                    .concat(referenceSection, '/')
+                    .concat(funcName, ')')
+                });
+              }
               if (ENABLE_FES_STYLING) {
                 log('%c' + prefixedMsg, style.join(';'));
               } else {
@@ -48344,7 +46039,7 @@
              * @method _friendlyError
              * @private
              * @param  {Number} message message to be printed
-             * @param  {String} [method] name of method
+             * @param  {String} method name of method
              * @param  {Number|String} [color]   CSS color string or error type (Optional)
              */
             _main.default._friendlyError = function(message, method, color) {
@@ -48368,21 +46063,12 @@
               );
             };
 
-            /**
-             * An implementation of
-             * https://en.wikipedia.org/wiki/Wagner%E2%80%93Fischer_algorithm to
-             * compute the Levenshtein distance. It gives a measure of how dissimilar
-             * two strings are. If the "distance" between them is small enough, it is
-             * reasonable to think that one is the misspelled version of the other.
-             * @method computeEditDistance
-             * @private
-             * @param {String} w1 the first word
-             * @param {String} w2 the second word
-             *
-             * @returns {Number} the "distance" between the two words, a smaller value
-             *                   indicates that the words are similar
-             */
             var computeEditDistance = function computeEditDistance(w1, w2) {
+              // An implementation of
+              // https://en.wikipedia.org/wiki/Wagner%E2%80%93Fischer_algorithm to
+              // compute the Levenshtein distance. It gives a measure of how dissimilar
+              // two strings are. If the "distance" between them is small enough, it is
+              // reasonable to think that one is the misspelled version of the other.
               var l1 = w1.length,
                 l2 = w2.length;
               if (l1 === 0) return w2;
@@ -48419,14 +46105,8 @@
               return cur[l2];
             };
 
-            /**
-             * checks if the various functions such as setup, draw, preload have been
-             * defined with capitalization mistakes
-             * @method checkForUserDefinedFunctions
-             * @private
-             * @param {*} context The current default context. It's set to window in
-             * "global mode" and to a p5 instance in "instance mode"
-             */
+            // checks if the various functions such as setup, draw, preload have been
+            // defined with capitalization mistakes
             var checkForUserDefinedFunctions = function checkForUserDefinedFunctions(
               context
             ) {
@@ -48468,53 +46148,40 @@
                     }
                   );
 
-                  report(msg, fxns[lowercase]);
+                  _main.default._friendlyError(msg, fxns[lowercase]);
                 }
               }
             };
 
-            /**
-             * compares the the symbol caught in the ReferenceErrror to everything
-             * in misusedAtTopLevel ( all public p5 properties ). The use of
-             * misusedAtTopLevel here is for convenience as it was an array that was
-             * already defined when spelling check was implemented. For this particular
-             * use-case, it's a misnomer.
-             *
-             * @method handleMisspelling
-             * @private
-             * @param {String} errSym the symbol to whose spelling to check
-             * @param {Error} error the ReferenceError object
-             *
-             * @returns {Boolean} a boolean value indicating if this error was likely due
-             * to a mis-spelling
-             */
+            // compares the the symbol caught in the ReferenceErrror to everything
+            // in misusedAtTopLevel ( all public p5 properties ). The use of
+            // misusedAtTopLevel here is for convenience as it was an array that was
+            // already defined when spelling check was implemented. For this particular
+            // use-case, it's a misnomer.
             var handleMisspelling = function handleMisspelling(errSym, error) {
               if (!misusedAtTopLevelCode) {
                 defineMisusedAtTopLevelCode();
               }
 
-              var distanceMap = {};
-              var min = 999999;
+              var min = 999999,
+                minIndex = 0;
               // compute the levenshtein distance for the symbol against all known
               // public p5 properties. Find the property with the minimum distance
-              misusedAtTopLevelCode.forEach(function(symbol) {
+              misusedAtTopLevelCode.forEach(function(symbol, idx) {
                 var dist = computeEditDistance(errSym, symbol.name);
-                if (distanceMap[dist]) distanceMap[dist].push(symbol);
-                else distanceMap[dist] = [symbol];
-
-                if (dist < min) min = dist;
+                if (dist < min) {
+                  min = dist;
+                  minIndex = idx;
+                }
               });
 
-              // if the closest match has more "distance" than the max allowed threshold
               if (min > Math.min(EDIT_DIST_THRESHOLD, errSym.length)) return false;
+
+              var symbol = misusedAtTopLevelCode[minIndex];
 
               // Show a message only if the caught symbol and the matched property name
               // differ in their name ( either letter difference or difference of case )
-              var matchedSymbols = distanceMap[min].filter(function(symbol) {
-                return symbol.name !== errSym;
-              });
-
-              if (matchedSymbols.length !== 0) {
+              if (errSym !== symbol.name) {
                 var parsed = _main.default._getErrorStackParser().parse(error);
                 var locationObj;
                 if (
@@ -48530,125 +46197,29 @@
                       .concat(parsed[0].lineNumber, ':')
                       .concat(parsed[0].columnNumber),
 
-                    file: parsed[0].fileName.split('/').slice(-1),
+                    file: parsed[0].fileName,
                     line: parsed[0].lineNumber
                   };
                 }
+                var msg = (0, _internationalization.translator)('fes.misspelling', {
+                  name: errSym,
+                  actualName: symbol.name,
+                  type: symbol.type,
+                  location: locationObj
+                    ? (0, _internationalization.translator)('fes.location', locationObj)
+                    : ''
+                });
 
-                var msg;
-                if (matchedSymbols.length === 1) {
-                  // To be used when there is only one closest match. The count parameter
-                  // allows i18n to pick between the keys "fes.misspelling" and
-                  // "fes.misspelling__plural"
-                  msg = (0, _internationalization.translator)('fes.misspelling', {
-                    name: errSym,
-                    actualName: matchedSymbols[0].name,
-                    type: matchedSymbols[0].type,
-                    location: locationObj
-                      ? (0, _internationalization.translator)('fes.location', locationObj)
-                      : '',
-                    count: matchedSymbols.length
-                  });
-                } else {
-                  // To be used when there are multiple closest matches. Gives each
-                  // suggestion on its own line, the function name followed by a link to
-                  // reference documentation
-                  var suggestions = matchedSymbols
-                    .map(function(symbol) {
-                      var message =
-                        '▶️ ' + symbol.name + (symbol.type === 'function' ? '()' : '');
-                      return mapToReference(message, symbol.name);
-                    })
-                    .join('\n');
-
-                  msg = (0, _internationalization.translator)('fes.misspelling', {
-                    name: errSym,
-                    suggestions: suggestions,
-                    location: locationObj
-                      ? (0, _internationalization.translator)('fes.location', locationObj)
-                      : '',
-                    count: matchedSymbols.length
-                  });
-                }
-
-                // If there is only one closest match, tell _friendlyError to also add
-                // a link to the reference documentation. In case of multiple matches,
-                // this is already done in the suggestions variable, one link for each
-                // suggestion.
-                report(
-                  msg,
-                  matchedSymbols.length === 1 ? matchedSymbols[0].name : undefined
-                );
-
+                _main.default._friendlyError(msg, symbol.name);
                 return true;
               }
               return false;
             };
 
-            /**
-             * prints a friendly stacktrace which only includes user-written functions
-             * and is easier for newcomers to understand
-             * @method printFriendlyStack
-             * @private
-             * @param {Array} friendlyStack
-             */
-            var printFriendlyStack = function printFriendlyStack(friendlyStack) {
-              var log =
-                _main.default._fesLogger && typeof _main.default._fesLogger === 'function'
-                  ? _main.default._fesLogger
-                  : console.log.bind(console);
-              if (friendlyStack.length > 1) {
-                var stacktraceMsg = '';
-                friendlyStack.forEach(function(frame, idx) {
-                  var location = ''
-                    .concat(frame.fileName, ':')
-                    .concat(frame.lineNumber, ':')
-                    .concat(frame.columnNumber);
-
-                  var frameMsg,
-                    translationObj = {
-                      func: frame.functionName,
-                      line: frame.lineNumber,
-                      location: location,
-                      file: frame.fileName.split('/').slice(-1)
-                    };
-
-                  if (idx === 0) {
-                    frameMsg = (0, _internationalization.translator)(
-                      'fes.globalErrors.stackTop',
-                      translationObj
-                    );
-                  } else {
-                    frameMsg = (0, _internationalization.translator)(
-                      'fes.globalErrors.stackSubseq',
-                      translationObj
-                    );
-                  }
-                  stacktraceMsg += frameMsg;
-                });
-                log(stacktraceMsg);
-              }
-            };
-
-            /**
-             * Takes a stacktrace array and filters out all frames that show internal p5
-             * details. It also uses this processed stack to figure out if the error
-             * error happened internally within the library, and if the error was due to
-             * a non-loadX() method being used in preload
-             * "Internally" here means that the error exact location of the error (the
-             * top of the stack) is a piece of code write in the p5.js library (which may
-             * or may not have been called from the user's sketch)
-             *
-             * @method processStack
-             * @private
-             * @param {Error} error
-             * @param {Array} stacktrace
-             *
-             * @returns {Array} An array with two elements, [isInternal, friendlyStack]
-             * isInternal: a boolean indicating if the error happened internally
-             * friendlyStack: the simplified stacktrace, with internal details filtered
-             */
             var processStack = function processStack(error, stacktrace) {
+              // Responsible for removing internal library calls from the stacktrace
+              // and also for detectiong if the error happened inside the library
+
               // cannot process a stacktrace that doesn't exist
               if (!stacktrace) return [false, null];
 
@@ -48735,7 +46306,7 @@
                   currentEntryPoint === 'preload' &&
                   _main.default.prototype._preloadMethods[func] == null
                 ) {
-                  report(
+                  _main.default._friendlyError(
                     (0, _internationalization.translator)('fes.wrongPreload', {
                       func: func,
                       location: locationObj
@@ -48748,7 +46319,7 @@
                   );
                 } else {
                   // Library error
-                  report(
+                  _main.default._friendlyError(
                     (0, _internationalization.translator)('fes.libraryError', {
                       func: func,
                       location: locationObj
@@ -48760,25 +46331,50 @@
                     func
                   );
                 }
-
-                // Finally, if it's an internal error, print the friendlyStack
-                // ( fesErrorMonitor won't handle this error )
-                if (friendlyStack && friendlyStack.length) {
-                  printFriendlyStack(friendlyStack);
-                }
               }
               return [isInternal, friendlyStack];
             };
 
-            /**
-             * The main function for handling global errors. Called when an error
-             * happens and is responsible for detecting the type of error that
-             * has happened and showing the appropriate message
-             *
-             * @method fesErrorMonitor
-             * @private
-             * @param {*} e The object to extract error details from
-             */
+            // prints a friendly stacktrace which only includes user-written functions
+            // and is easier for newcomers to understand
+            var printFriendlyStack = function printFriendlyStack(friendlyStack) {
+              var log =
+                _main.default._fesLogger && typeof _main.default._fesLogger === 'function'
+                  ? _main.default._fesLogger
+                  : console.log.bind(console);
+              if (friendlyStack.length > 1) {
+                var stacktraceMsg = '';
+                friendlyStack.forEach(function(frame, idx) {
+                  var location = ''
+                    .concat(frame.fileName, ':')
+                    .concat(frame.lineNumber, ':')
+                    .concat(frame.columnNumber);
+
+                  var frameMsg,
+                    translationObj = {
+                      func: frame.functionName,
+                      line: frame.lineNumber,
+                      location: location,
+                      file: frame.fileName.split('/').slice(-1)
+                    };
+
+                  if (idx === 0) {
+                    frameMsg = (0, _internationalization.translator)(
+                      'fes.globalErrors.stackTop',
+                      translationObj
+                    );
+                  } else {
+                    frameMsg = (0, _internationalization.translator)(
+                      'fes.globalErrors.stackSubseq',
+                      translationObj
+                    );
+                  }
+                  stacktraceMsg += frameMsg;
+                });
+                log(stacktraceMsg);
+              }
+            };
+
             var fesErrorMonitor = function fesErrorMonitor(e) {
               if (_main.default.disableFriendlyErrors) return;
               // Try to get the error object from e
@@ -48802,8 +46398,9 @@
                 friendlyStack = _processStack2[1];
 
               // if this is an internal library error, the type of the error is not relevant,
-              // only the user code that lead to it is.
+              // only the user code that lead to it is. Show the friendlyStack and return
               if (isInternal) {
+                if (friendlyStack) printFriendlyStack(friendlyStack);
                 return;
               }
 
@@ -48878,7 +46475,7 @@
                     case 'INVALIDTOKEN': {
                       var url =
                         'https://developer.mozilla.org/docs/Web/JavaScript/Reference/Errors/Illegal_character#What_went_wrong';
-                      report(
+                      _main.default._friendlyError(
                         (0, _internationalization.translator)(
                           'fes.globalErrors.syntax.invalidToken',
                           {
@@ -48892,7 +46489,7 @@
                     case 'UNEXPECTEDTOKEN': {
                       var _url =
                         'https://developer.mozilla.org/docs/Web/JavaScript/Reference/Errors/Unexpected_token#What_went_wrong';
-                      report(
+                      _main.default._friendlyError(
                         (0, _internationalization.translator)(
                           'fes.globalErrors.syntax.unexpectedToken',
                           {
@@ -48921,7 +46518,7 @@
                       var url1 = 'https://p5js.org/examples/data-variable-scope.html';
                       var url2 =
                         'https://developer.mozilla.org/docs/Web/JavaScript/Reference/Errors/Not_Defined#What_went_wrong';
-                      report(
+                      _main.default._friendlyError(
                         (0, _internationalization.translator)(
                           'fes.globalErrors.reference.notDefined',
                           {
@@ -48971,14 +46568,14 @@
                       // as a property of an object and when it's called independently.
                       // Both have different explanations.
                       if (splitSym.length > 1) {
-                        report(
+                        _main.default._friendlyError(
                           (0, _internationalization.translator)(
                             'fes.globalErrors.type.notfuncObj',
                             translationObj
                           )
                         );
                       } else {
-                        report(
+                        _main.default._friendlyError(
                           (0, _internationalization.translator)(
                             'fes.globalErrors.type.notfunc',
                             translationObj
@@ -49172,13 +46769,13 @@
           exports.default = _default;
         },
         {
-          '../constants': 48,
-          '../internationalization': 57,
-          '../main': 59,
-          './browser_errors': 50
+          '../constants': 43,
+          '../internationalization': 52,
+          '../main': 54,
+          './browser_errors': 45
         }
       ],
-      52: [
+      47: [
         function(_dereq_, module, exports) {
           'use strict';
           Object.defineProperty(exports, '__esModule', { value: true });
@@ -49192,9 +46789,6 @@
           /**
            * @for p5
            * @requires core
-           *
-           * This file contains the part of the FES responsible for dealing with
-           * file load errors
            */ if (typeof IS_MINIFIED !== 'undefined') {
             _main.default._friendlyFileLoadError = function() {};
           } else {
@@ -49327,9 +46921,9 @@
           var _default = _main.default;
           exports.default = _default;
         },
-        { '../internationalization': 57, '../main': 59 }
+        { '../internationalization': 52, '../main': 54 }
       ],
-      53: [
+      48: [
         function(_dereq_, module, exports) {
           'use strict';
           Object.defineProperty(exports, '__esModule', { value: true });
@@ -49369,7 +46963,7 @@
             return {
               /**
                * Given an Error object, extract the most information from it.
-               * @private
+               *
                * @param {Error} error object
                * @return {Array} of stack frames
                */
@@ -49584,9 +47178,9 @@
           var _default = _main.default;
           exports.default = _default;
         },
-        { '../main': 59 }
+        { '../main': 54 }
       ],
-      54: [
+      49: [
         function(_dereq_, module, exports) {
           'use strict';
           Object.defineProperty(exports, '__esModule', { value: true });
@@ -50472,12 +48066,12 @@
         },
         {
           '../../../docs/parameterData.json': 1,
-          '../constants': 48,
-          '../internationalization': 57,
-          '../main': 59
+          '../constants': 43,
+          '../internationalization': 52,
+          '../main': 54
         }
       ],
-      55: [
+      50: [
         function(_dereq_, module, exports) {
           'use strict';
           function _typeof(obj) {
@@ -50557,9 +48151,9 @@
           var _default = { modeAdjust: modeAdjust };
           exports.default = _default;
         },
-        { './constants': 48 }
+        { './constants': 43 }
       ],
-      56: [
+      51: [
         function(_dereq_, module, exports) {
           'use strict';
           var _main = _interopRequireDefault(_dereq_('../core/main'));
@@ -50627,9 +48221,9 @@
 
           Promise.all([waitForDocumentReady(), waitingForTranslator]).then(_globalInit);
         },
-        { '../core/main': 59, './internationalization': 57 }
+        { '../core/main': 54, './internationalization': 52 }
       ],
-      57: [
+      52: [
         function(_dereq_, module, exports) {
           'use strict';
           Object.defineProperty(exports, '__esModule', { value: true });
@@ -50641,153 +48235,12 @@
           function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : { default: obj };
           }
-          function _classCallCheck(instance, Constructor) {
-            if (!(instance instanceof Constructor)) {
-              throw new TypeError('Cannot call a class as a function');
-            }
-          }
-          function _defineProperties(target, props) {
-            for (var i = 0; i < props.length; i++) {
-              var descriptor = props[i];
-              descriptor.enumerable = descriptor.enumerable || false;
-              descriptor.configurable = true;
-              if ('value' in descriptor) descriptor.writable = true;
-              Object.defineProperty(target, descriptor.key, descriptor);
-            }
-          }
-          function _createClass(Constructor, protoProps, staticProps) {
-            if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-            if (staticProps) _defineProperties(Constructor, staticProps);
-            return Constructor;
-          }
 
-          var fallbackResources, languages;
+          var resources;
+          // Do not include translations in the minified js
           if (typeof IS_MINIFIED === 'undefined') {
-            // internationalization is only for the unminified build
-
-            var translationsModule = _dereq_('../../translations');
-            fallbackResources = translationsModule.default;
-            languages = translationsModule.languages;
-
-            if (typeof P5_DEV_BUILD !== 'undefined') {
-              // When the library is built in development mode ( using npm run dev )
-              // we want to use the current translation files on the disk, which may have
-              // been updated but not yet pushed to the CDN.
-              var completeResources = _dereq_('../../translations/dev');
-              for (
-                var _i = 0, _Object$keys = Object.keys(completeResources);
-                _i < _Object$keys.length;
-                _i++
-              ) {
-                var language = _Object$keys[_i];
-                // In es_translation, language is es and namespace is translation
-                // In es_MX_translation, language is es-MX and namespace is translation
-                var parts = language.split('_');
-                var lng = parts.slice(0, parts.length - 1).join('-');
-                var ns = parts[parts.length - 1];
-
-                fallbackResources[lng] = fallbackResources[lng] || {};
-                fallbackResources[lng][ns] = completeResources[language];
-              }
-            }
+            resources = _dereq_('../../translations').default;
           }
-
-          /**
-           * This is our i18next "backend" plugin. It tries to fetch languages
-           * from a CDN.
-           */ var FetchResources = /*#__PURE__*/ (function() {
-            function FetchResources(services, options) {
-              _classCallCheck(this, FetchResources);
-              this.init(services, options);
-            }
-
-            // run fetch with a timeout. Automatically rejects on timeout
-            // default timeout = 2000 ms
-            _createClass(FetchResources, [
-              {
-                key: 'fetchWithTimeout',
-                value: function fetchWithTimeout(url, options) {
-                  var timeout =
-                    arguments.length > 2 && arguments[2] !== undefined
-                      ? arguments[2]
-                      : 2000;
-                  return Promise.race([
-                    fetch(url, options),
-                    new Promise(function(_, reject) {
-                      return setTimeout(function() {
-                        return reject(new Error('timeout'));
-                      }, timeout);
-                    })
-                  ]);
-                }
-              },
-              {
-                key: 'init',
-                value: function init(services) {
-                  var options =
-                    arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-                  this.services = services;
-                  this.options = options;
-                }
-              },
-              {
-                key: 'read',
-                value: function read(language, namespace, callback) {
-                  var loadPath = this.options.loadPath;
-
-                  if (language === this.options.fallback) {
-                    // if the default language of the user is the same as our inbuilt fallback,
-                    // there's no need to fetch resources from the cdn. This won't actually
-                    // need to run when we use "partialBundledLanguages" in the init
-                    // function.
-                    callback(null, fallbackResources[language][namespace]);
-                  } else if (languages.includes(language)) {
-                    // The user's language is included in the list of languages
-                    // that we so far added translations for.
-
-                    var url = this.services.interpolator.interpolate(loadPath, {
-                      lng: language,
-                      ns: namespace
-                    });
-
-                    this.loadUrl(url, callback);
-                  } else {
-                    // We don't have translations for this language. i18next will use
-                    // the default language instead.
-                    callback('Not found', false);
-                  }
-                }
-              },
-              {
-                key: 'loadUrl',
-                value: function loadUrl(url, callback) {
-                  this.fetchWithTimeout(url)
-                    .then(
-                      function(response) {
-                        var ok = response.ok;
-
-                        if (!ok) {
-                          // caught in the catch() below
-                          throw new Error('failed loading '.concat(url));
-                        }
-                        return response.json();
-                      },
-                      function() {
-                        // caught in the catch() below
-                        throw new Error('failed loading '.concat(url));
-                      }
-                    )
-                    .then(function(data) {
-                      return callback(null, data);
-                    })
-                    .catch(callback);
-                }
-              }
-            ]);
-            return FetchResources;
-          })();
-
-          FetchResources.type = 'backend';
 
           /**
            * This is our translation function. Give it a key and
@@ -50800,13 +48253,9 @@
            * @returns {String} message (with values inserted) in the user's browser language
            * @private
            */
-          var translator = function translator(key, values) {
+          var translator = function translator() {
             console.debug('p5.js translator called before translations were loaded');
-
-            // Certain FES functionality may trigger before translations are downloaded.
-            // Using "partialBundledLanguages" option during initialization, we can
-            // still use our fallback language to display messages
-            _i18next.default.t(key, values); /* i18next-extract-disable-line */
+            return '';
           };
           // (We'll set this to a real value in the init function below!)
 
@@ -50814,61 +48263,41 @@
            * Set up our translation function, with loaded languages
            */ exports.translator = translator;
           var initialize = function initialize() {
-            var i18init = _i18next.default
-              .use(_i18nextBrowserLanguagedetector.default)
-              .use(FetchResources)
-              .init({
-                fallbackLng: 'en',
-                nestingPrefix: '$tr(',
-                nestingSuffix: ')',
-                defaultNS: 'translation',
-                returnEmptyString: false,
-                interpolation: {
-                  escapeValue: false
-                },
+            return new Promise(function(resolve, reject) {
+              _i18next.default
+                .use(_i18nextBrowserLanguagedetector.default)
+                .init({
+                  fallbackLng: 'en',
+                  nestingPrefix: '$tr(',
+                  nestingSuffix: ')',
+                  defaultNS: 'translation',
+                  returnEmptyString: false,
+                  interpolation: {
+                    escapeValue: false
+                  },
 
-                detection: {
-                  checkWhitelist: false,
+                  detection: {
+                    checkWhitelist: false
+                  },
 
-                  // prevent storing or locating language from cookie or localStorage
-                  // more info on https://github.com/processing/p5.js/issues/4862
-                  order: ['querystring', 'navigator', 'htmlTag', 'path', 'subdomain'],
-                  caches: []
-                },
-
-                backend: {
-                  fallback: 'en',
-                  loadPath:
-                    'https://cdn.jsdelivr.net/npm/p5/translations/{{lng}}/{{ns}}.json'
-                },
-
-                partialBundledLanguages: true,
-                resources: fallbackResources
-              })
-              .then(
-                function(translateFn) {
-                  exports.translator = translator = translateFn;
-                },
-                function(e) {
-                  return console.debug('Translations failed to load ('.concat(e, ')'));
-                }
-              );
-
-            // i18next.init() returns a promise that resolves when the translations
-            // are loaded. We use this in core/init.js to hold p5 initialization until
-            // we have the translation files.
-            return i18init;
+                  resources: resources
+                })
+                .then(
+                  function(translateFn) {
+                    exports.translator = translator = translateFn;
+                    resolve();
+                  },
+                  function(e) {
+                    return reject('Translations failed to load ('.concat(e, ')'));
+                  }
+                );
+            });
           };
           exports.initialize = initialize;
         },
-        {
-          '../../translations': 118,
-          '../../translations/dev': undefined,
-          i18next: 30,
-          'i18next-browser-languagedetector': 27
-        }
+        { '../../translations': 114, i18next: 30, 'i18next-browser-languagedetector': 27 }
       ],
-      58: [
+      53: [
         function(_dereq_, module, exports) {
           'use strict';
           Object.defineProperty(exports, '__esModule', { value: true });
@@ -50903,9 +48332,9 @@
           var _default = _main.default;
           exports.default = _default;
         },
-        { './main': 59 }
+        { './main': 54 }
       ],
-      59: [
+      54: [
         function(_dereq_, module, exports) {
           'use strict';
           function _typeof(obj) {
@@ -51148,13 +48577,6 @@
               // PRIVATE p5 PROPERTIES AND METHODS
               //////////////////////////////////////////////
 
-              this._accessibleOutputs = {
-                text: false,
-                grid: false,
-                textLabel: false,
-                gridLabel: false
-              };
-
               this._setupDone = false;
               // for handling hidpi
               this._pixelDensity = Math.ceil(window.devicePixelRatio) || 1;
@@ -51251,7 +48673,8 @@
                 }
 
                 var context = _this._isGlobal ? window : _this;
-                if (context.preload) {
+                var userPreload = context.preload;
+                if (userPreload) {
                   // Setup loading screen
                   // Set loading screen into dom if not present
                   // Otherwise displays and removes user provided loading screen
@@ -51280,7 +48703,7 @@
                     obj[method] = _this._wrapPreload(obj, method);
                   }
 
-                  context.preload();
+                  userPreload();
                   _this._runIfPreloadsAreDone();
                 } else {
                   _this._setup();
@@ -51295,11 +48718,9 @@
                   if (loadingScreen) {
                     loadingScreen.parentNode.removeChild(loadingScreen);
                   }
-                  if (!this._setupDone) {
-                    this._lastFrameTime = window.performance.now();
-                    context._setup();
-                    context._draw();
-                  }
+                  this._lastFrameTime = window.performance.now();
+                  context._setup();
+                  context._draw();
                 }
               };
 
@@ -51397,9 +48818,6 @@
 
                 _this._lastFrameTime = window.performance.now();
                 _this._setupDone = true;
-                if (_this._accessibleOutputs.grid || _this._accessibleOutputs.text) {
-                  _this._updateAccsOutput();
-                }
               };
 
               this._draw = function() {
@@ -51815,9 +49233,9 @@
           var _default = p5;
           exports.default = _default;
         },
-        { './constants': 48, './shim': 70 }
+        { './constants': 43, './shim': 65 }
       ],
-      60: [
+      55: [
         function(_dereq_, module, exports) {
           'use strict';
           Object.defineProperty(exports, '__esModule', { value: true });
@@ -52657,9 +50075,9 @@
           var _default = _main.default.Element;
           exports.default = _default;
         },
-        { './main': 59 }
+        { './main': 54 }
       ],
-      61: [
+      56: [
         function(_dereq_, module, exports) {
           'use strict';
           function _typeof(obj) {
@@ -52911,9 +50329,9 @@
           var _default = _main.default.Graphics;
           exports.default = _default;
         },
-        { './constants': 48, './main': 59 }
+        { './constants': 43, './main': 54 }
       ],
-      62: [
+      57: [
         function(_dereq_, module, exports) {
           'use strict';
           Object.defineProperty(exports, '__esModule', { value: true });
@@ -53191,10 +50609,10 @@
             var jj;
             var line;
             var testLine;
+            var currentLineLength;
             var testWidth;
             var words;
             var totalHeight;
-            var shiftedY;
             var finalMaxHeight = Number.MAX_VALUE;
 
             if (!(this._doFill || this._doStroke)) {
@@ -53212,27 +50630,20 @@
 
             if (typeof maxWidth !== 'undefined') {
               totalHeight = 0;
+              currentLineLength = 1;
               for (ii = 0; ii < cars.length; ii++) {
                 line = '';
                 words = cars[ii].split(' ');
                 for (n = 0; n < words.length; n++) {
                   testLine = ''.concat(line + words[n], ' ');
                   testWidth = this.textWidth(testLine);
-                  if (testWidth > maxWidth) {
-                    var currentWord = words[n];
-                    for (var index = 0; index < currentWord.length; index++) {
-                      testLine = ''.concat(line + currentWord[index]);
-                      testWidth = this.textWidth(testLine);
-                      if (testWidth > maxWidth && line.length > 0) {
-                        line = ''.concat(currentWord[index]);
-                        totalHeight += p.textLeading();
-                      } else {
-                        line = testLine;
-                      }
-                    }
-                    line = ''.concat(line, ' ');
+                  if (testWidth > maxWidth && currentLineLength > 1) {
+                    line = ''.concat(words[n], ' ');
+                    totalHeight += p.textLeading();
+                    currentLineLength = 1;
                   } else {
                     line = testLine;
+                    currentLineLength += 1;
                   }
                 }
                 if (ii < cars.length - 1) {
@@ -53258,12 +50669,10 @@
               if (typeof maxHeight !== 'undefined') {
                 switch (this._textBaseline) {
                   case constants.BOTTOM:
-                    shiftedY = y + (maxHeight - totalHeight);
-                    y = Math.max(shiftedY, y);
+                    y += maxHeight - totalHeight;
                     break;
                   case constants.CENTER:
-                    shiftedY = y + (maxHeight - totalHeight) / 2;
-                    y = Math.max(shiftedY, y);
+                    y += (maxHeight - totalHeight) / 2;
                     break;
                   case constants.BASELINE:
                     baselineHacked = true;
@@ -53281,25 +50690,10 @@
                 for (n = 0; n < words.length; n++) {
                   testLine = ''.concat(line + words[n], ' ');
                   testWidth = this.textWidth(testLine);
-                  if (testWidth > maxWidth) {
-                    var _currentWord = words[n];
-                    for (var _index = 0; _index < _currentWord.length; _index++) {
-                      testLine = ''.concat(line + _currentWord[_index]);
-                      testWidth = this.textWidth(testLine);
-                      if (testWidth > maxWidth && line.length > 0) {
-                        var lastChar = line.slice(-1);
-                        var shouldAddHyphen = lastChar !== '\n' && lastChar !== ' ';
-                        line = ''.concat(line).concat(shouldAddHyphen ? '-' : '');
-
-                        this._renderText(p, line, x, y, finalMaxHeight);
-                        y += p.textLeading();
-
-                        line = ''.concat(_currentWord[_index]);
-                      } else {
-                        line = testLine;
-                      }
-                    }
-                    line = ''.concat(line, ' ');
+                  if (testWidth > maxWidth && line.length > 0) {
+                    this._renderText(p, line, x, y, finalMaxHeight);
+                    line = ''.concat(words[n], ' ');
+                    y += p.textLeading();
                   } else {
                     line = testLine;
                   }
@@ -53414,9 +50808,9 @@
           var _default = _main.default.Renderer;
           exports.default = _default;
         },
-        { '../core/constants': 48, './main': 59 }
+        { '../core/constants': 43, './main': 54 }
       ],
-      63: [
+      58: [
         function(_dereq_, module, exports) {
           'use strict';
           function _typeof(obj) {
@@ -53544,12 +50938,6 @@
               var curFill = this._getFill();
               // create background rect
               var color = (_this$_pInst = this._pInst).color.apply(_this$_pInst, arguments);
-
-              //accessible Outputs
-              if (this._pInst._addAccsOutput()) {
-                this._pInst._accsBackground(color.levels);
-              }
-
               var newFill = color.toString();
               this._setFill(newFill);
 
@@ -53579,22 +50967,12 @@
             var _this$_pInst2;
             var color = (_this$_pInst2 = this._pInst).color.apply(_this$_pInst2, arguments);
             this._setFill(color.toString());
-
-            //accessible Outputs
-            if (this._pInst._addAccsOutput()) {
-              this._pInst._accsCanvasColors('fill', color.levels);
-            }
           };
 
           _main.default.Renderer2D.prototype.stroke = function() {
             var _this$_pInst3;
             var color = (_this$_pInst3 = this._pInst).color.apply(_this$_pInst3, arguments);
             this._setStroke(color.toString());
-
-            //accessible Outputs
-            if (this._pInst._addAccsOutput()) {
-              this._pInst._accsCanvasColors('stroke', color.levels);
-            }
           };
 
           _main.default.Renderer2D.prototype.erase = function(opacityFill, opacityStroke) {
@@ -54787,9 +52165,9 @@
           var _default = _main.default.Renderer2D;
           exports.default = _default;
         },
-        { '../image/filters': 80, './constants': 48, './main': 59, './p5.Renderer': 62 }
+        { '../image/filters': 75, './constants': 43, './main': 54, './p5.Renderer': 57 }
       ],
-      64: [
+      59: [
         function(_dereq_, module, exports) {
           'use strict';
 
@@ -54973,9 +52351,9 @@
             return returnedFunction;
           };
         },
-        { './main': 59 }
+        { './main': 54 }
       ],
-      65: [
+      60: [
         function(_dereq_, module, exports) {
           'use strict';
           Object.defineProperty(exports, '__esModule', { value: true });
@@ -55056,11 +52434,6 @@
            * sketch will result in very unpredictable behavior. If you want more than
            * one drawing canvas you could use <a href="#/p5/createGraphics">createGraphics</a>
            * (hidden by default but it can be shown).
-           *
-           * Important note: in 2D mode (i.e. when `p5.Renderer` is not set) the origin (0,0)
-           * is positioned at the top left of the screen. In 3D mode (i.e. when `p5.Renderer`
-           * is set to `WEBGL`), the origin is positioned at the center of the canvas.
-           * See [this issue](https://github.com/processing/p5.js/issues/1545) for more information.
            *
            * The system variables width and height are set by the parameters passed to this
            * function. If <a href="#/p5/createCanvas">createCanvas()</a> is not used, the
@@ -55212,10 +52585,6 @@
               if (!noRedraw) {
                 this.redraw();
               }
-            }
-            //accessible Outputs
-            if (this._addAccsOutput()) {
-              this._updateAccsOutput();
             }
           };
 
@@ -55393,14 +52762,14 @@
           exports.default = _default;
         },
         {
-          '../webgl/p5.RendererGL': 113,
-          './constants': 48,
-          './main': 59,
-          './p5.Graphics': 61,
-          './p5.Renderer2D': 63
+          '../webgl/p5.RendererGL': 108,
+          './constants': 43,
+          './main': 54,
+          './p5.Graphics': 56,
+          './p5.Renderer2D': 58
         }
       ],
-      66: [
+      61: [
         function(_dereq_, module, exports) {
           'use strict';
           function _typeof(obj) {
@@ -55674,19 +53043,6 @@
                 mode,
                 detail
               );
-
-              //accessible Outputs
-              if (this._accessibleOutputs.grid || this._accessibleOutputs.text) {
-                this._accsOutput('arc', [
-                  vals.x,
-                  vals.y,
-                  vals.w,
-                  vals.h,
-                  angles.start,
-                  angles.stop,
-                  mode
-                ]);
-              }
             }
 
             return this;
@@ -55733,9 +53089,9 @@
           };
 
           /**
-           * Draws a circle to the screen. A circle is a simple closed shape. It is the set
+           * Draws a circle to the screen. A circle is a simple closed shape.It is the set
            * of all points in a plane that are at a given distance from a given point,
-           * the centre. This function is a special case of the ellipse() function, where
+           * the centre.This function is a special case of the ellipse() function, where
            * the width and height of the ellipse are the same. Height and width of the
            * ellipse correspond to the diameter of the circle. By default, the first two
            * parameters set the location of the centre of the circle, the third sets the
@@ -55787,11 +53143,6 @@
 
             var vals = _helpers.default.modeAdjust(x, y, w, h, this._renderer._ellipseMode);
             this._renderer.ellipse([vals.x, vals.y, vals.w, vals.h, detailX]);
-
-            //accessible Outputs
-            if (this._accessibleOutputs.grid || this._accessibleOutputs.text) {
-              this._accsOutput('ellipse', [vals.x, vals.y, vals.w, vals.h]);
-            }
 
             return this;
           };
@@ -55855,11 +53206,6 @@
             if (this._renderer._doStroke) {
               var _this$_renderer;
               (_this$_renderer = this._renderer).line.apply(_this$_renderer, args);
-            }
-
-            //accessible Outputs
-            if (this._accessibleOutputs.grid || this._accessibleOutputs.text) {
-              this._accsOutput('line', args);
             }
 
             return this;
@@ -55936,10 +53282,6 @@
               } else {
                 var _this$_renderer2;
                 (_this$_renderer2 = this._renderer).point.apply(_this$_renderer2, args);
-                //accessible Outputs
-                if (this._accessibleOutputs.grid || this._accessibleOutputs.text) {
-                  this._accsOutput('point', args);
-                }
               }
             }
 
@@ -56013,10 +53355,6 @@
               } else {
                 var _this$_renderer3;
                 (_this$_renderer3 = this._renderer).quad.apply(_this$_renderer3, args);
-                //accessibile outputs
-                if (this._accessibleOutputs.grid || this._accessibleOutputs.text) {
-                  this._accsOutput('quadrilateral', args);
-                }
               }
             }
 
@@ -56168,18 +53506,13 @@
                 args[i] = arguments[i];
               }
               this._renderer.rect(args);
-
-              //accessible outputs
-              if (this._accessibleOutputs.grid || this._accessibleOutputs.text) {
-                this._accsOutput('rectangle', [vals.x, vals.y, vals.w, vals.h]);
-              }
             }
 
             return this;
           };
 
           /**
-           * Draws a triangle to the canvas. A triangle is a plane created by connecting
+           * Draws a trangle to the canvas. A triangle is a plane created by connecting
            * three points. The first two arguments specify the first point, the middle two
            * arguments specify the second point, and the last two arguments specify the
            * third point.
@@ -56216,26 +53549,21 @@
               this._renderer.triangle(args);
             }
 
-            //accessible outputs
-            if (this._accessibleOutputs.grid || this._accessibleOutputs.text) {
-              this._accsOutput('triangle', args);
-            }
-
             return this;
           };
           var _default = _main.default;
           exports.default = _default;
         },
         {
-          '../constants': 48,
-          '../friendly_errors/fes_core': 51,
-          '../friendly_errors/file_errors': 52,
-          '../friendly_errors/validate_params': 54,
-          '../helpers': 55,
-          '../main': 59
+          '../constants': 43,
+          '../friendly_errors/fes_core': 46,
+          '../friendly_errors/file_errors': 47,
+          '../friendly_errors/validate_params': 49,
+          '../helpers': 50,
+          '../main': 54
         }
       ],
-      67: [
+      62: [
         function(_dereq_, module, exports) {
           'use strict';
           function _typeof(obj) {
@@ -56420,7 +53748,7 @@
            * width and height.
            *
            * rectMode(CORNERS) interprets the first two parameters as the location of
-           * one of the corners, and the third and fourth parameters as the location of
+           * one of the corner, and the third and fourth parameters as the location of
            * the diagonally opposite corner. Note, the rectangle is drawn between the
            * coordinates, so it is not neccesary that the first corner be the upper left
            * corner.
@@ -56429,7 +53757,7 @@
            * point, while the third and fourth parameters are its width and height.
            *
            * rectMode(RADIUS) also uses the first two parameters as the shape's center
-           * point, but uses the third and fourth parameters to specify half of the shape's
+           * point, but uses the third and fourth parameters to specify half of the shapes's
            * width and height respectively.
            *
            * The parameter to this method must be written in ALL CAPS because they are
@@ -56447,7 +53775,7 @@
            *
            * rectMode(CORNERS);
            * fill(100);
-           * rect(25, 25, 50, 50); // Draw gray rectangle using CORNERS mode
+           * rect(25, 25, 50, 50); // Draw gray rectanle using CORNERS mode
            * </code>
            * </div>
            *
@@ -56658,9 +53986,9 @@
           var _default = _main.default;
           exports.default = _default;
         },
-        { '../constants': 48, '../main': 59 }
+        { '../constants': 43, '../main': 54 }
       ],
-      68: [
+      63: [
         function(_dereq_, module, exports) {
           'use strict';
           Object.defineProperty(exports, '__esModule', { value: true });
@@ -57220,13 +54548,13 @@
           exports.default = _default;
         },
         {
-          '../friendly_errors/fes_core': 51,
-          '../friendly_errors/file_errors': 52,
-          '../friendly_errors/validate_params': 54,
-          '../main': 59
+          '../friendly_errors/fes_core': 46,
+          '../friendly_errors/file_errors': 47,
+          '../friendly_errors/validate_params': 49,
+          '../main': 54
         }
       ],
-      69: [
+      64: [
         function(_dereq_, module, exports) {
           'use strict';
           function _typeof(obj) {
@@ -58295,9 +55623,9 @@
           var _default = _main.default;
           exports.default = _default;
         },
-        { '../constants': 48, '../main': 59 }
+        { '../constants': 43, '../main': 54 }
       ],
-      70: [
+      65: [
         function(_dereq_, module, exports) {
           'use strict';
           function _typeof(obj) {
@@ -58415,7 +55743,7 @@
         },
         {}
       ],
-      71: [
+      66: [
         function(_dereq_, module, exports) {
           'use strict';
           Object.defineProperty(exports, '__esModule', { value: true });
@@ -58462,7 +55790,7 @@
                                                                                                                                                          *   background(200);
                                                                                                                                                          *   noLoop();
                                                                                                                                                          * }
-
+                                                                                                                                                        
                                                                                                                                                          * function draw() {
                                                                                                                                                          *   line(10, 10, 90, 90);
                                                                                                                                                          * }
@@ -58889,8 +56217,10 @@
             }
 
             var context = this._isGlobal ? window : this;
-            if (typeof context.draw === 'function') {
-              if (typeof context.setup === 'undefined') {
+            var userSetup = context.setup;
+            var userDraw = context.draw;
+            if (typeof userDraw === 'function') {
+              if (typeof userSetup === 'undefined') {
                 context.scale(context._pixelDensity, context._pixelDensity);
               }
               var callMethod = function callMethod(f) {
@@ -58898,9 +56228,6 @@
               };
               for (var idxRedraw = 0; idxRedraw < numberOfRedraws; idxRedraw++) {
                 context.resetMatrix();
-                if (this._accessibleOutputs.grid || this._accessibleOutputs.text) {
-                  this._updateAccsOutput();
-                }
                 if (context._renderer.isP3D) {
                   context._renderer._update();
                 }
@@ -58908,7 +56235,7 @@
                 context._registeredMethods.pre.forEach(callMethod);
                 this._inUserDraw = true;
                 try {
-                  context.draw();
+                  userDraw();
                 } finally {
                   this._inUserDraw = false;
                 }
@@ -58969,9 +56296,9 @@
            */ var _default = _main.default;
           exports.default = _default;
         },
-        { './main': 59 }
+        { './main': 54 }
       ],
-      72: [
+      67: [
         function(_dereq_, module, exports) {
           'use strict';
           Object.defineProperty(exports, '__esModule', { value: true });
@@ -59491,7 +56818,7 @@
     * </code>
     * </div>
     *
-
+   
     * <div>
     * <code>
     * function draw() {
@@ -59526,9 +56853,9 @@
           var _default = _main.default;
           exports.default = _default;
         },
-        { './main': 59 }
+        { './main': 54 }
       ],
-      73: [
+      68: [
         function(_dereq_, module, exports) {
           'use strict';
 
@@ -59726,7 +57053,7 @@
             } else if (value !== null) {
               switch (type) {
                 case 'number':
-                  value = parseFloat(value);
+                  value = parseInt(value);
                   break;
                 case 'boolean':
                   value = value === 'true';
@@ -59811,9 +57138,9 @@
             localStorage.removeItem(''.concat(key, 'p5TypeID'));
           };
         },
-        { '../core/main': 59 }
+        { '../core/main': 54 }
       ],
-      74: [
+      69: [
         function(_dereq_, module, exports) {
           'use strict';
           Object.defineProperty(exports, '__esModule', { value: true });
@@ -60502,9 +57829,9 @@
           var _default = _main.default.TypedDict;
           exports.default = _default;
         },
-        { '../core/main': 59 }
+        { '../core/main': 54 }
       ],
-      75: [
+      70: [
         function(_dereq_, module, exports) {
           'use strict';
           Object.defineProperty(exports, '__esModule', { value: true });
@@ -60830,7 +58157,7 @@
           }
 
           /**
-           * Creates a `&lt;div&gt;&lt;/div&gt;` element in the DOM with given inner HTML.
+           * Creates a &lt;div&gt;&lt;/div&gt; element in the DOM with given inner HTML.
            *
            * @method createDiv
            * @param  {String} [html] inner HTML for element created
@@ -60849,7 +58176,7 @@
           };
 
           /**
-           * Creates a `&lt;p&gt;&lt;/p&gt;` element in the DOM with given inner HTML. Used
+           * Creates a &lt;p&gt;&lt;/p&gt; element in the DOM with given inner HTML. Used
            * for paragraph length text.
            *
            * @method createP
@@ -60869,7 +58196,7 @@
           };
 
           /**
-           * Creates a `&lt;span&gt;&lt;/span&gt;` element in the DOM with given inner HTML.
+           * Creates a &lt;span&gt;&lt;/span&gt; element in the DOM with given inner HTML.
            *
            * @method createSpan
            * @param  {String} [html] inner HTML for element created
@@ -60888,7 +58215,7 @@
           };
 
           /**
-           * Creates an `&lt;img&gt;` element in the DOM with given src and
+           * Creates an &lt;img&gt; element in the DOM with given src and
            * alternate text.
            *
            * @method createImg
@@ -60934,7 +58261,7 @@
           };
 
           /**
-           * Creates an `&lt;a&gt;&lt;/a&gt;` element in the DOM for including a hyperlink.
+           * Creates an &lt;a&gt;&lt;/a&gt; element in the DOM for including a hyperlink.
            *
            * @method createA
            * @param  {String} href       url of page to link to
@@ -60959,7 +58286,7 @@
           /** INPUT **/
 
           /**
-           * Creates a slider `&lt;input&gt;&lt;/input&gt;` element in the DOM.
+           * Creates a slider &lt;input&gt;&lt;/input&gt; element in the DOM.
            * Use .size() to set the display length of the slider.
            *
            * @method createSlider
@@ -61014,7 +58341,7 @@
           };
 
           /**
-           * Creates a `&lt;button&gt;&lt;/button&gt;` element in the DOM.
+           * Creates a &lt;button&gt;&lt;/button&gt; element in the DOM.
            * Use .size() to set the display size of the button.
            * Use .mousePressed() to specify behavior on press.
            *
@@ -61048,7 +58375,7 @@
           };
 
           /**
-           * Creates a checkbox `&lt;input&gt;&lt;/input&gt;` element in the DOM.
+           * Creates a checkbox &lt;input&gt;&lt;/input&gt; element in the DOM.
            * Calling .checked() on a checkbox returns if it is checked or not
            *
            * @method createCheckbox
@@ -61116,7 +58443,7 @@
           };
 
           /**
-           * Creates a dropdown menu `&lt;select&gt;&lt;/select&gt;` element in the DOM.
+           * Creates a dropdown menu &lt;select&gt;&lt;/select&gt; element in the DOM.
            * It also helps to assign select-box methods to <a href="#/p5.Element">p5.Element</a> when selecting existing select box.
            * - `.option(name, [value])` can be used to set options for the select after it is created.
            * - `.value()` will return the currently selected option.
@@ -61331,10 +58658,10 @@
            *
            * function setup() {
            *   radio = createRadio();
-           *   radio.option(1, 'apple');
-           *   radio.option(2, 'bread');
-           *   radio.option(3, 'juice');
-           *   radio.style('width', '30px');
+           *   radio.option('apple', 1);
+           *   radio.option('bread', 2);
+           *   radio.option('juice', 3);
+           *   radio.style('width', '60px');
            *   textAlign(CENTER);
            * }
            *
@@ -61700,7 +59027,7 @@
           };
 
           /**
-           * Creates an `&lt;input&gt;&lt;/input&gt;` element in the DOM for text input.
+           * Creates an &lt;input&gt;&lt;/input&gt; element in the DOM for text input.
            * Use .<a href="#/p5.Element/size">size()</a> to set the display length of the box.
            *
            * @method createInput
@@ -61738,7 +59065,7 @@
           };
 
           /**
-           * Creates an `&lt;input&gt;&lt;/input&gt;` element in the DOM of type 'file'.
+           * Creates an &lt;input&gt;&lt;/input&gt; element in the DOM of type 'file'.
            * This allows users to select local files for use in a sketch.
            *
            * @method createFileInput
@@ -61894,7 +59221,7 @@
           }
 
           /**
-           * Creates an HTML5 `&lt;video&gt;` element in the DOM for simple playback
+           * Creates an HTML5 &lt;video&gt; element in the DOM for simple playback
            * of audio/video. Shown by default, can be hidden with .<a href="#/p5.Element/hide">hide()</a>
            * and drawn into canvas using <a href="#/p5/image">image()</a>. The first parameter
            * can be either a single string path to a video file, or an array of string
@@ -61942,7 +59269,7 @@
           /** AUDIO STUFF **/
 
           /**
-           * Creates a hidden HTML5 `&lt;audio&gt;` element in the DOM for simple audio
+           * Creates a hidden HTML5 &lt;audio&gt; element in the DOM for simple audio
            * playback. The first parameter can be either a single string path to a
            * audio file, or an array of string paths to different formats of the same
            * audio. This is useful for ensuring that your audio can play across
@@ -62023,7 +59350,7 @@
           }
 
           /**
-           * Creates a new HTML5 `&lt;video&gt;` element that contains the audio/video feed
+           * Creates a new HTML5 &lt;video&gt; element that contains the audio/video feed
            * from a webcam. The element is separate from the canvas and is displayed by
            * default. The element can be hidden using .<a href="#/p5.Element/hide">hide()</a>.
            * The feed can be drawn onto the canvas using <a href="#/p5/image">image()</a>.
@@ -62942,14 +60269,10 @@
             // stop all audios/videos and detach all devices like microphone/camera etc
             // used as input/output for audios/videos.
             if (this instanceof _main.default.MediaElement) {
-              this.stop();
-              var sources = this.elt.srcObject;
-              if (sources !== null) {
-                var tracks = sources.getTracks();
-                tracks.forEach(function(track) {
-                  track.stop();
-                });
-              }
+              var tracks = this.elt.srcObject.getTracks();
+              tracks.forEach(function(track) {
+                track.stop();
+              });
             }
 
             // delete the reference in this._pInst._elements
@@ -63205,7 +60528,6 @@
            * </code></div>
            */
           _main.default.MediaElement.prototype.play = function() {
-            var _this = this;
             if (this.elt.currentTime === this.elt.duration) {
               this.elt.currentTime = 0;
             }
@@ -63221,7 +60543,7 @@
               promise.catch(function(e) {
                 // if it's an autoplay failure error
                 if (e.name === 'NotAllowedError') {
-                  _main.default._friendlyAutoplayError(_this.src);
+                  _main.default._friendlyAutoplayError(this.src);
                 } else {
                   // any other kind of error
                   console.error('Media play method encountered an unexpected error', e);
@@ -63472,9 +60794,9 @@
            * @private
            */
           _main.default.MediaElement.prototype._setupAutoplayFailDetection = function() {
-            var _this2 = this;
+            var _this = this;
             var timeout = setTimeout(function() {
-              return _main.default._friendlyAutoplayError(_this2.src);
+              return _main.default._friendlyAutoplayError(_this.src);
             }, 500);
             this.elt.addEventListener(
               'play',
@@ -63534,14 +60856,14 @@
            */
 
           _main.default.MediaElement.prototype.autoplay = function(val) {
-            var _this3 = this;
+            var _this2 = this;
             var oldVal = this.elt.getAttribute('autoplay');
             this.elt.setAttribute('autoplay', val);
             // if we turned on autoplay
             if (val && !oldVal) {
               // bind method to this scope
               var setupAutoplayFailDetection = function setupAutoplayFailDetection() {
-                return _this3._setupAutoplayFailDetection();
+                return _this2._setupAutoplayFailDetection();
               };
               // if media is ready to play, schedule check now
               if (this.elt.readyState === 4) {
@@ -64116,7 +61438,7 @@
            * //
            * //
            * function setup() {
-           *   createCanvas(200, 200);
+           *   noCanvas();
            *
            *   let audioEl = createAudio('assets/beat.mp3');
            *   audioEl.showControls();
@@ -64338,9 +61660,9 @@
           var _default = _main.default;
           exports.default = _default;
         },
-        { '../core/main': 59 }
+        { '../core/main': 54 }
       ],
-      76: [
+      71: [
         function(_dereq_, module, exports) {
           'use strict';
           function _typeof(obj) {
@@ -65062,18 +62384,18 @@
             } else if (window.orientation === undefined) {
               this._setProperty('deviceOrientation', 'undefined');
             }
-            var context = this._isGlobal ? window : this;
-            if (typeof context.deviceMoved === 'function') {
+            var deviceMoved = this.deviceMoved || window.deviceMoved;
+            if (typeof deviceMoved === 'function') {
               if (
                 Math.abs(this.accelerationX - this.pAccelerationX) > move_threshold ||
                 Math.abs(this.accelerationY - this.pAccelerationY) > move_threshold ||
                 Math.abs(this.accelerationZ - this.pAccelerationZ) > move_threshold
               ) {
-                context.deviceMoved();
+                deviceMoved();
               }
             }
-
-            if (typeof context.deviceTurned === 'function') {
+            var deviceTurned = this.deviceTurned || window.deviceTurned;
+            if (typeof deviceTurned === 'function') {
               // The angles given by rotationX etc is from range -180 to 180.
               // The following will convert them to 0 to 360 for ease of calculation
               // of cases when the angles wrapped around.
@@ -65092,7 +62414,7 @@
               if (Math.abs(wRX - wSAX) > 90 && Math.abs(wRX - wSAX) < 270) {
                 wSAX = wRX;
                 this._setProperty('turnAxis', 'X');
-                context.deviceTurned();
+                deviceTurned();
               }
               this.pRotateDirectionX = rotateDirectionX;
               startAngleX = wSAX - 180;
@@ -65112,7 +62434,7 @@
               if (Math.abs(wRY - wSAY) > 90 && Math.abs(wRY - wSAY) < 270) {
                 wSAY = wRY;
                 this._setProperty('turnAxis', 'Y');
-                context.deviceTurned();
+                deviceTurned();
               }
               this.pRotateDirectionY = rotateDirectionY;
               startAngleY = wSAY - 180;
@@ -65140,12 +62462,13 @@
               ) {
                 startAngleZ = this.rotationZ;
                 this._setProperty('turnAxis', 'Z');
-                context.deviceTurned();
+                deviceTurned();
               }
               this.pRotateDirectionZ = rotateDirectionZ;
               this._setProperty('turnAxis', undefined);
             }
-            if (typeof context.deviceShaken === 'function') {
+            var deviceShaken = this.deviceShaken || window.deviceShaken;
+            if (typeof deviceShaken === 'function') {
               var accelerationChangeX;
               var accelerationChangeY;
               // Add accelerationChangeZ if acceleration change on Z is needed
@@ -65154,16 +62477,16 @@
                 accelerationChangeY = Math.abs(this.accelerationY - this.pAccelerationY);
               }
               if (accelerationChangeX + accelerationChangeY > shake_threshold) {
-                context.deviceShaken();
+                deviceShaken();
               }
             }
           };
           var _default = _main.default;
           exports.default = _default;
         },
-        { '../core/constants': 48, '../core/main': 59 }
+        { '../core/constants': 43, '../core/main': 54 }
       ],
-      77: [
+      72: [
         function(_dereq_, module, exports) {
           'use strict';
           Object.defineProperty(exports, '__esModule', { value: true });
@@ -65253,6 +62576,7 @@
            *   } else if (keyCode === DOWN_ARROW) {
            *     fillVal = 0;
            *   }
+           *   return false; // prevent default
            * }
            * </code></div>
            * <div><code>
@@ -65261,6 +62585,7 @@
            *   background('yellow');
            *   text(`${key} ${keyCode}`, 10, 40);
            *   print(key, ' ', keyCode);
+           *   return false; // prevent default
            * }
            * </code></div>
            * @alt
@@ -65347,9 +62672,9 @@
             this._setProperty('keyCode', e.which);
             this._downKeys[e.which] = true;
             this._setProperty('key', e.key || String.fromCharCode(e.which) || e.which);
-            var context = this._isGlobal ? window : this;
-            if (typeof context.keyPressed === 'function' && !e.charCode) {
-              var executeDefault = context.keyPressed(e);
+            var keyPressed = this.keyPressed || window.keyPressed;
+            if (typeof keyPressed === 'function' && !e.charCode) {
+              var executeDefault = keyPressed(e);
               if (executeDefault === false) {
                 e.preventDefault();
               }
@@ -65386,6 +62711,7 @@
            * black rect center. turns white when key pressed and black when pressed again
            */
           _main.default.prototype._onkeyup = function(e) {
+            var keyReleased = this.keyReleased || window.keyReleased;
             this._downKeys[e.which] = false;
 
             if (!this._areDownKeys()) {
@@ -65397,10 +62723,8 @@
 
             this._setProperty('key', e.key || String.fromCharCode(e.which) || e.which);
             this._setProperty('keyCode', e.which);
-
-            var context = this._isGlobal ? window : this;
-            if (typeof context.keyReleased === 'function') {
-              var executeDefault = context.keyReleased(e);
+            if (typeof keyReleased === 'function') {
+              var executeDefault = keyReleased(e);
               if (executeDefault === false) {
                 e.preventDefault();
               }
@@ -65451,11 +62775,10 @@
               return;
             }
             this._setProperty('_lastKeyCodeTyped', e.which); // track last keyCode
-            this._setProperty('key', e.key || String.fromCharCode(e.which) || e.which);
-
-            var context = this._isGlobal ? window : this;
-            if (typeof context.keyTyped === 'function') {
-              var executeDefault = context.keyTyped(e);
+            this._setProperty('key', String.fromCharCode(e.which));
+            var keyTyped = this.keyTyped || window.keyTyped;
+            if (typeof keyTyped === 'function') {
+              var executeDefault = keyTyped(e);
               if (executeDefault === false) {
                 e.preventDefault();
               }
@@ -65550,7 +62873,7 @@
           /**
     * The _areDownKeys function returns a boolean true if any keys pressed
     * and a false if no keys are currently pressed.
-
+   
     * Helps avoid instances where multiple keys are pressed simultaneously and
     * releasing a single key will then switch the
     * keyIsPressed property to true.
@@ -65567,9 +62890,9 @@
           var _default = _main.default;
           exports.default = _default;
         },
-        { '../core/main': 59 }
+        { '../core/main': 54 }
       ],
-      78: [
+      73: [
         function(_dereq_, module, exports) {
           'use strict';
           function _typeof(obj) {
@@ -66685,9 +64008,9 @@
           var _default = _main.default;
           exports.default = _default;
         },
-        { '../core/constants': 48, '../core/main': 59 }
+        { '../core/constants': 43, '../core/main': 54 }
       ],
-      79: [
+      74: [
         function(_dereq_, module, exports) {
           'use strict';
           Object.defineProperty(exports, '__esModule', { value: true });
@@ -66990,9 +64313,9 @@
           var _default = _main.default;
           exports.default = _default;
         },
-        { '../core/main': 59 }
+        { '../core/main': 54 }
       ],
-      80: [
+      75: [
         function(_dereq_, module, exports) {
           'use strict';
           Object.defineProperty(exports, '__esModule', { value: true });
@@ -67607,7 +64930,7 @@
         },
         {}
       ],
-      81: [
+      76: [
         function(_dereq_, module, exports) {
           'use strict';
           Object.defineProperty(exports, '__esModule', { value: true });
@@ -68199,9 +65522,9 @@
           var _default = _main.default;
           exports.default = _default;
         },
-        { '../core/main': 59, omggif: 33 }
+        { '../core/main': 54, omggif: 33 }
       ],
-      82: [
+      77: [
         function(_dereq_, module, exports) {
           'use strict';
           function _typeof(obj) {
@@ -68284,7 +65607,7 @@
            */ /**
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * Loads an image from a path and creates a <a href="#/p5.Image">p5.Image</a> from it.
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        *
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       * The image may not be immediately available for rendering.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       * The image may not be immediately available for rendering
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * If you want to ensure that the image is ready before doing
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * anything with it, place the <a href="#/p5/loadImage">loadImage()</a> call in <a href="#/p5/preload">preload()</a>.
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * You may also supply a callback function to handle the image when it's ready.
@@ -68293,7 +65616,7 @@
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * that links in your sketch. Loading an image from a URL or other
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * remote location may be blocked due to your browser's built-in
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * security.
-
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * You can also pass in a string of a base64 encoded image as an alternative to the file path.
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * Remember to add "data:image/png;base64," in front of the string.
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        *
@@ -68485,10 +65808,6 @@
                 loopLimit = null;
               }
 
-              // we used the pImg for painting and saving during load
-              // so we have to reset it to the first frame
-              pImg.drawingContext.putImageData(frames[0].image, 0, 0);
-
               pImg.gifProperties = {
                 displayIndex: 0,
                 loopLimit: loopLimit,
@@ -68496,8 +65815,7 @@
                 frames: frames,
                 numFrames: numFrames,
                 playing: true,
-                timeDisplayed: 0,
-                lastChangeTime: 0
+                timeDisplayed: 0
               };
             }
 
@@ -68947,17 +66265,17 @@
           exports.default = _default;
         },
         {
-          '../core/constants': 48,
-          '../core/friendly_errors/fes_core': 51,
-          '../core/friendly_errors/file_errors': 52,
-          '../core/friendly_errors/validate_params': 54,
-          '../core/helpers': 55,
-          '../core/main': 59,
-          './filters': 80,
+          '../core/constants': 43,
+          '../core/friendly_errors/fes_core': 46,
+          '../core/friendly_errors/file_errors': 47,
+          '../core/friendly_errors/validate_params': 49,
+          '../core/helpers': 50,
+          '../core/main': 54,
+          './filters': 75,
           omggif: 33
         }
       ],
-      83: [
+      78: [
         function(_dereq_, module, exports) {
           'use strict';
           Object.defineProperty(exports, '__esModule', { value: true });
@@ -69182,18 +66500,13 @@
            */
           _main.default.Image.prototype._animateGif = function(pInst) {
             var props = this.gifProperties;
-            var curTime = pInst._lastFrameTime + pInst.deltaTime;
-            if (props.lastChangeTime === 0) {
-              props.lastChangeTime = curTime;
-            }
             if (props.playing) {
-              props.timeDisplayed = curTime - props.lastChangeTime;
+              props.timeDisplayed += pInst.deltaTime;
               var curDelay = props.frames[props.displayIndex].delay;
               if (props.timeDisplayed >= curDelay) {
                 //GIF is bound to 'realtime' so can skip frames
                 var skips = Math.floor(props.timeDisplayed / curDelay);
                 props.timeDisplayed = 0;
-                props.lastChangeTime = curTime;
                 props.displayIndex += skips;
                 props.loopCount = Math.floor(props.displayIndex / props.numFrames);
                 if (props.loopLimit !== null && props.loopCount >= props.loopLimit) {
@@ -69409,7 +66722,7 @@
     * function preload() {
     *   img = loadImage('assets/rockies.jpg');
     * }
-
+   
     * function draw() {
     *   image(img, 0, 0);
     * }
@@ -69628,7 +66941,7 @@
            *
            * @method filter
            * @param  {Constant} filterType  either THRESHOLD, GRAY, OPAQUE, INVERT,
-           *                                POSTERIZE, ERODE, DILATE or BLUR.
+           *                                POSTERIZE, BLUR, ERODE, DILATE or BLUR.
            *                                See Filters.js for docs on
            *                                each available filter
            * @param  {Number} [filterParam] an optional parameter unique
@@ -69861,7 +67174,6 @@
               props.playing = true;
               props.timeSinceStart = 0;
               props.timeDisplayed = 0;
-              props.lastChangeTime = 0;
               props.loopCount = 0;
               props.displayIndex = 0;
               this.drawingContext.putImageData(props.frames[0].image, 0, 0);
@@ -69933,7 +67245,6 @@
               var props = this.gifProperties;
               if (index < props.numFrames && index >= 0) {
                 props.timeDisplayed = 0;
-                props.lastChangeTime = 0;
                 props.displayIndex = index;
                 this.drawingContext.putImageData(props.frames[index].image, 0, 0);
               } else {
@@ -70128,9 +67439,9 @@
           var _default = _main.default.Image;
           exports.default = _default;
         },
-        { '../core/main': 59, './filters': 80 }
+        { '../core/main': 54, './filters': 75 }
       ],
-      84: [
+      79: [
         function(_dereq_, module, exports) {
           'use strict';
           Object.defineProperty(exports, '__esModule', { value: true });
@@ -70893,9 +68204,9 @@
           var _default = _main.default;
           exports.default = _default;
         },
-        { '../color/p5.Color': 46, '../core/main': 59, './filters': 80 }
+        { '../color/p5.Color': 41, '../core/main': 54, './filters': 75 }
       ],
-      85: [
+      80: [
         function(_dereq_, module, exports) {
           'use strict';
           Object.defineProperty(exports, '__esModule', { value: true });
@@ -71133,7 +68444,7 @@
     * function preload() {
     *   result = loadStrings('assets/test.txt');
     * }
-
+   
     * function setup() {
     *   background(200);
     *   text(random(result), 10, 10, 80, 80);
@@ -71194,17 +68505,7 @@
                   .replace(/\r\n/g, '\r')
                   .replace(/\n/g, '\r')
                   .split(/\r/);
-
-                // safe insert approach which will not blow up stack when inserting
-                // >100k lines, but still be faster than iterating line-by-line. based on
-                // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply#Examples
-                var QUANTUM = 32768;
-                for (var _i = 0, len = lines.length; _i < len; _i += QUANTUM) {
-                  Array.prototype.push.apply(
-                    ret,
-                    lines.slice(_i, Math.min(_i + QUANTUM, len))
-                  );
-                }
+                Array.prototype.push.apply(ret, lines);
 
                 if (typeof callback !== 'undefined') {
                   callback(ret);
@@ -71338,6 +68639,8 @@
               }
             }
 
+            console.log('SEP IS ' + sep);
+
             var t = new _main.default.Table();
 
             var self = this;
@@ -71452,21 +68755,21 @@
                 if (header) {
                   t.columns = records.shift();
                 } else {
-                  for (var _i2 = 0; _i2 < records[0].length; _i2++) {
-                    t.columns[_i2] = 'null';
+                  for (var _i = 0; _i < records[0].length; _i++) {
+                    t.columns[_i] = 'null';
                   }
                 }
                 var row;
-                for (var _i3 = 0; _i3 < records.length; _i3++) {
+                for (var _i2 = 0; _i2 < records.length; _i2++) {
                   //Handles row of 'undefined' at end of some CSVs
-                  if (records[_i3].length === 1) {
-                    if (records[_i3][0] === 'undefined' || records[_i3][0] === '') {
+                  if (records[_i2].length === 1) {
+                    if (records[_i2][0] === 'undefined' || records[_i2][0] === '') {
                       continue;
                     }
                   }
                   row = new _main.default.TableRow();
-                  row.arr = records[_i3];
-                  row.obj = makeObject(records[_i3], t.columns);
+                  row.arr = records[_i2];
+                  row.obj = makeObject(records[_i2], t.columns);
                   t.addRow(row);
                 }
                 if (typeof callback === 'function') {
@@ -71787,16 +69090,23 @@
            * // Examples use jsonplaceholder.typicode.com for a Mock Data API
            *
            * let url = 'https://jsonplaceholder.typicode.com/posts';
-           * let postData = { userId: 1, title: 'p5 Clicked!', body: 'p5.js is very cool.' };
+           * let postData = { userId: 1, title: 'p5 Clicked!', body: 'p5.js is way cool.' };
            *
            * function setup() {
-           *   createCanvas(100, 100);
-           *   background(200);
+           *   createCanvas(800, 800);
            * }
            *
            * function mousePressed() {
+           *   // Pick new random color values
+           *   let r = random(255);
+           *   let g = random(255);
+           *   let b = random(255);
+           *
            *   httpPost(url, 'json', postData, function(result) {
            *     strokeWeight(2);
+           *     stroke(r, g, b);
+           *     fill(r, g, b, 127);
+           *     ellipse(mouseX, mouseY, 200, 200);
            *     text(result.body, mouseX, mouseY);
            *   });
            * }
@@ -71805,14 +69115,18 @@
            *
            * <div><code>
            * let url = 'ttps://invalidURL'; // A bad URL that will cause errors
-           * let postData = { title: 'p5 Clicked!', body: 'p5.js is very cool.' };
+           * let postData = { title: 'p5 Clicked!', body: 'p5.js is way cool.' };
            *
            * function setup() {
-           *   createCanvas(100, 100);
-           *   background(200);
+           *   createCanvas(800, 800);
            * }
            *
            * function mousePressed() {
+           *   // Pick new random color values
+           *   let r = random(255);
+           *   let g = random(255);
+           *   let b = random(255);
+           *
            *   httpPost(
            *     url,
            *     'json',
@@ -71822,6 +69136,8 @@
            *     },
            *     function(error) {
            *       strokeWeight(2);
+           *       stroke(r, g, b);
+           *       fill(r, g, b, 127);
            *       text(error.toString(), mouseX, mouseY);
            *     }
            *   );
@@ -72672,19 +69988,11 @@
                 var j = void 0;
                 for (j = 0; j < table.rows[i].arr.length; j++) {
                   if (j < table.rows[i].arr.length - 1) {
-                    //double quotes should be inserted in csv only if contains comma separated single value
-                    if (ext === 'csv' && table.rows[i].arr[j].includes(',')) {
-                      pWriter.write('"' + table.rows[i].arr[j] + '"' + sep);
-                    } else {
-                      pWriter.write(table.rows[i].arr[j] + sep);
-                    }
+                    pWriter.write(table.rows[i].arr[j] + sep);
+                  } else if (i < table.rows.length - 1) {
+                    pWriter.write(table.rows[i].arr[j]);
                   } else {
-                    //double quotes should be inserted in csv only if contains comma separated single value
-                    if (ext === 'csv' && table.rows[i].arr[j].includes(',')) {
-                      pWriter.write('"' + table.rows[i].arr[j] + '"');
-                    } else {
-                      pWriter.write(table.rows[i].arr[j]);
-                    }
+                    pWriter.write(table.rows[i].arr[j]);
                   }
                 }
                 pWriter.write('\n');
@@ -72864,17 +70172,17 @@
           exports.default = _default;
         },
         {
-          '../core/friendly_errors/fes_core': 51,
-          '../core/friendly_errors/file_errors': 52,
-          '../core/friendly_errors/validate_params': 54,
-          '../core/main': 59,
+          '../core/friendly_errors/fes_core': 46,
+          '../core/friendly_errors/file_errors': 47,
+          '../core/friendly_errors/validate_params': 49,
+          '../core/main': 54,
           'es6-promise/auto': 23,
           'fetch-jsonp': 25,
           'file-saver': 26,
           'whatwg-fetch': 37
         }
       ],
-      86: [
+      81: [
         function(_dereq_, module, exports) {
           'use strict';
           Object.defineProperty(exports, '__esModule', { value: true });
@@ -74232,9 +71540,9 @@
           var _default = _main.default;
           exports.default = _default;
         },
-        { '../core/main': 59 }
+        { '../core/main': 54 }
       ],
-      87: [
+      82: [
         function(_dereq_, module, exports) {
           'use strict';
           Object.defineProperty(exports, '__esModule', { value: true });
@@ -74588,9 +71896,9 @@
           var _default = _main.default;
           exports.default = _default;
         },
-        { '../core/main': 59 }
+        { '../core/main': 54 }
       ],
-      88: [
+      83: [
         function(_dereq_, module, exports) {
           'use strict';
           Object.defineProperty(exports, '__esModule', { value: true });
@@ -75577,9 +72885,9 @@
           var _default = _main.default;
           exports.default = _default;
         },
-        { '../core/main': 59 }
+        { '../core/main': 54 }
       ],
-      89: [
+      84: [
         function(_dereq_, module, exports) {
           'use strict';
           Object.defineProperty(exports, '__esModule', { value: true });
@@ -75726,7 +73034,7 @@
            *
            *   // d is the length of the line
            *   // the distance from point 1 to point 2.
-           *   let d = dist(x1, y1, x2, y2);
+           *   let d = int(dist(x1, y1, x2, y2));
            *
            *   // Let's write d along the line we are drawing!
            *   push();
@@ -76106,6 +73414,7 @@
             ) {
               args[_key2] = arguments[_key2];
             }
+            _main.default._validateParameters('max', args);
             if (args[0] instanceof Array) {
               return Math.max.apply(null, args[0]);
             } else {
@@ -76161,6 +73470,7 @@
             ) {
               args[_key3] = arguments[_key3];
             }
+            _main.default._validateParameters('min', args);
             if (args[0] instanceof Array) {
               return Math.min.apply(null, args[0]);
             } else {
@@ -76486,9 +73796,9 @@
           var _default = _main.default;
           exports.default = _default;
         },
-        { '../core/main': 59 }
+        { '../core/main': 54 }
       ],
-      90: [
+      85: [
         function(_dereq_, module, exports) {
           'use strict';
           Object.defineProperty(exports, '__esModule', { value: true });
@@ -76541,9 +73851,9 @@
           var _default = _main.default;
           exports.default = _default;
         },
-        { '../core/main': 59 }
+        { '../core/main': 54 }
       ],
-      91: [
+      86: [
         function(_dereq_, module, exports) {
           'use strict';
           Object.defineProperty(exports, '__esModule', { value: true });
@@ -76854,9 +74164,9 @@
           var _default = _main.default;
           exports.default = _default;
         },
-        { '../core/main': 59 }
+        { '../core/main': 54 }
       ],
-      92: [
+      87: [
         function(_dereq_, module, exports) {
           'use strict';
           function _typeof(obj) {
@@ -78400,31 +75710,6 @@
           };
 
           /**
-           * Rotate the vector to a specific angle (only 2D vectors), magnitude remains the
-           * same
-           *
-           * @method setHeading
-           * @param  {number}    angle the angle of rotation
-           * @chainable
-           * @example
-           * <div class="norender">
-           * <code>
-           * let v = createVector(10.0, 20.0);
-           * // result of v.heading() is 1.1071487177940904
-           * v.setHeading(Math.PI);
-           * // result of v.heading() is now 3.141592653589793
-           * </code>
-           * </div>
-           */
-
-          _main.default.Vector.prototype.setHeading = function setHeading(a) {
-            var m = this.mag();
-            this.x = m * Math.cos(a);
-            this.y = m * Math.sin(a);
-            return this;
-          };
-
-          /**
            * Rotate the vector by an angle (only 2D vectors), magnitude remains the
            * same
            *
@@ -79242,9 +76527,9 @@
           var _default = _main.default.Vector;
           exports.default = _default;
         },
-        { '../core/constants': 48, '../core/main': 59 }
+        { '../core/constants': 43, '../core/main': 54 }
       ],
-      93: [
+      88: [
         function(_dereq_, module, exports) {
           'use strict';
           Object.defineProperty(exports, '__esModule', { value: true });
@@ -79413,8 +76698,8 @@
            * If two args, first is mean, second is standard deviation.
            *
            * @method randomGaussian
-           * @param  {Number} [mean]  the mean
-           * @param  {Number} [sd]    the standard deviation
+           * @param  {Number} mean  the mean
+           * @param  {Number} sd    the standard deviation
            * @return {Number} the random number
            * @example
            * <div>
@@ -79454,8 +76739,7 @@
            * 100 horizontal lines from center of canvas. height & side change each render
            * black lines radiate from center of canvas. size determined each render
            */
-          _main.default.prototype.randomGaussian = function(mean) {
-            var sd = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+          _main.default.prototype.randomGaussian = function(mean, sd) {
             var y1, x1, x2, w;
             if (this._gaussian_previous) {
               y1 = y2;
@@ -79473,14 +76757,15 @@
             }
 
             var m = mean || 0;
-            return y1 * sd + m;
+            var s = sd || 1;
+            return y1 * s + m;
           };
           var _default = _main.default;
           exports.default = _default;
         },
-        { '../core/main': 59 }
+        { '../core/main': 54 }
       ],
-      94: [
+      89: [
         function(_dereq_, module, exports) {
           'use strict';
           function _typeof(obj) {
@@ -79911,9 +77196,9 @@
           var _default = _main.default;
           exports.default = _default;
         },
-        { '../core/constants': 48, '../core/main': 59 }
+        { '../core/constants': 43, '../core/main': 54 }
       ],
-      95: [
+      90: [
         function(_dereq_, module, exports) {
           'use strict';
           Object.defineProperty(exports, '__esModule', { value: true });
@@ -80246,9 +77531,9 @@
           var _default = _main.default;
           exports.default = _default;
         },
-        { '../core/main': 59 }
+        { '../core/main': 54 }
       ],
-      96: [
+      91: [
         function(_dereq_, module, exports) {
           'use strict';
           function _typeof(obj) {
@@ -80622,15 +77907,15 @@
           exports.default = _default;
         },
         {
-          '../core/constants': 48,
-          '../core/friendly_errors/fes_core': 51,
-          '../core/friendly_errors/file_errors': 52,
-          '../core/friendly_errors/validate_params': 54,
-          '../core/main': 59,
+          '../core/constants': 43,
+          '../core/friendly_errors/fes_core': 46,
+          '../core/friendly_errors/file_errors': 47,
+          '../core/friendly_errors/validate_params': 49,
+          '../core/main': 54,
           'opentype.js': 34
         }
       ],
-      97: [
+      92: [
         function(_dereq_, module, exports) {
           'use strict';
           Object.defineProperty(exports, '__esModule', { value: true });
@@ -81983,9 +79268,9 @@
           var _default = _main.default;
           exports.default = _default;
         },
-        { '../core/constants': 48, '../core/main': 59 }
+        { '../core/constants': 43, '../core/main': 54 }
       ],
-      98: [
+      93: [
         function(_dereq_, module, exports) {
           'use strict';
           Object.defineProperty(exports, '__esModule', { value: true });
@@ -82040,7 +79325,7 @@
            * iterating through a for() loop and copying each element individually.
            *
            * @method arrayCopy
-           * @deprecated Use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/copyWithin">arr1.copyWithin(arr2)</a> instead.
+           * @deprecated
            * @param {Array}  src           the source Array
            * @param {Integer} srcPosition  starting position in the source Array
            * @param {Array}  dst           the destination Array
@@ -82347,9 +79632,9 @@
           var _default = _main.default;
           exports.default = _default;
         },
-        { '../core/main': 59 }
+        { '../core/main': 54 }
       ],
-      99: [
+      94: [
         function(_dereq_, module, exports) {
           'use strict';
           Object.defineProperty(exports, '__esModule', { value: true });
@@ -82684,9 +79969,9 @@
           var _default = _main.default;
           exports.default = _default;
         },
-        { '../core/main': 59 }
+        { '../core/main': 54 }
       ],
-      100: [
+      95: [
         function(_dereq_, module, exports) {
           'use strict';
           Object.defineProperty(exports, '__esModule', { value: true });
@@ -83284,13 +80569,13 @@
           exports.default = _default;
         },
         {
-          '../core/friendly_errors/fes_core': 51,
-          '../core/friendly_errors/file_errors': 52,
-          '../core/friendly_errors/validate_params': 54,
-          '../core/main': 59
+          '../core/friendly_errors/fes_core': 46,
+          '../core/friendly_errors/file_errors': 47,
+          '../core/friendly_errors/validate_params': 49,
+          '../core/main': 54
         }
       ],
-      101: [
+      96: [
         function(_dereq_, module, exports) {
           'use strict';
           Object.defineProperty(exports, '__esModule', { value: true });
@@ -83460,9 +80745,9 @@
           var _default = _main.default;
           exports.default = _default;
         },
-        { '../core/main': 59 }
+        { '../core/main': 54 }
       ],
-      102: [
+      97: [
         function(_dereq_, module, exports) {
           'use strict';
           function _typeof(obj) {
@@ -85406,9 +82691,9 @@
           var _default = _main.default;
           exports.default = _default;
         },
-        { '../core/constants': 48, '../core/main': 59, './p5.Geometry': 108 }
+        { '../core/constants': 43, '../core/main': 54, './p5.Geometry': 103 }
       ],
-      103: [
+      98: [
         function(_dereq_, module, exports) {
           'use strict';
           function _typeof(obj) {
@@ -86026,9 +83311,9 @@
           var _default = _main.default;
           exports.default = _default;
         },
-        { '../core/constants': 48, '../core/main': 59 }
+        { '../core/constants': 43, '../core/main': 54 }
       ],
-      104: [
+      99: [
         function(_dereq_, module, exports) {
           'use strict';
           Object.defineProperty(exports, '__esModule', { value: true });
@@ -86968,9 +84253,9 @@
           var _default = _main.default;
           exports.default = _default;
         },
-        { '../core/main': 59 }
+        { '../core/main': 54 }
       ],
-      105: [
+      100: [
         function(_dereq_, module, exports) {
           'use strict';
           Object.defineProperty(exports, '__esModule', { value: true });
@@ -87620,9 +84905,9 @@
           var _default = _main.default;
           exports.default = _default;
         },
-        { '../core/main': 59, './p5.Geometry': 108 }
+        { '../core/main': 54, './p5.Geometry': 103 }
       ],
-      106: [
+      101: [
         function(_dereq_, module, exports) {
           'use strict';
           function _typeof(obj) {
@@ -88618,9 +85903,9 @@
           var _default = _main.default;
           exports.default = _default;
         },
-        { '../core/constants': 48, '../core/main': 59, './p5.Texture': 115 }
+        { '../core/constants': 43, '../core/main': 54, './p5.Texture': 110 }
       ],
-      107: [
+      102: [
         function(_dereq_, module, exports) {
           'use strict';
           Object.defineProperty(exports, '__esModule', { value: true });
@@ -89564,17 +86849,13 @@
             this.eyeY = eyeY;
             this.eyeZ = eyeZ;
 
-            if (typeof centerX !== 'undefined') {
-              this.centerX = centerX;
-              this.centerY = centerY;
-              this.centerZ = centerZ;
-            }
+            this.centerX = centerX;
+            this.centerY = centerY;
+            this.centerZ = centerZ;
 
-            if (typeof upX !== 'undefined') {
-              this.upX = upX;
-              this.upY = upY;
-              this.upZ = upZ;
-            }
+            this.upX = upX;
+            this.upY = upY;
+            this.upZ = upZ;
 
             var local = this._getLocalAxes();
 
@@ -90050,9 +87331,9 @@
           var _default = _main.default.Camera;
           exports.default = _default;
         },
-        { '../core/main': 59 }
+        { '../core/main': 54 }
       ],
-      108: [
+      103: [
         function(_dereq_, module, exports) {
           'use strict';
           Object.defineProperty(exports, '__esModule', { value: true });
@@ -90355,9 +87636,9 @@
           var _default = _main.default.Geometry;
           exports.default = _default;
         },
-        { '../core/main': 59 }
+        { '../core/main': 54 }
       ],
-      109: [
+      104: [
         function(_dereq_, module, exports) {
           'use strict';
           Object.defineProperty(exports, '__esModule', { value: true });
@@ -91144,9 +88425,9 @@
           var _default = _main.default.Matrix;
           exports.default = _default;
         },
-        { '../core/main': 59 }
+        { '../core/main': 54 }
       ],
-      110: [
+      105: [
         function(_dereq_, module, exports) {
           'use strict';
           Object.defineProperty(exports, '__esModule', { value: true });
@@ -91219,9 +88500,9 @@
           var _default = _main.default.RenderBuffer;
           exports.default = _default;
         },
-        { '../core/main': 59 }
+        { '../core/main': 54 }
       ],
-      111: [
+      106: [
         function(_dereq_, module, exports) {
           'use strict';
           function _typeof(obj) {
@@ -91643,9 +88924,9 @@
           var _default = _main.default.RendererGL;
           exports.default = _default;
         },
-        { '../core/constants': 48, '../core/main': 59, './p5.RenderBuffer': 110 }
+        { '../core/constants': 43, '../core/main': 54, './p5.RenderBuffer': 105 }
       ],
-      112: [
+      107: [
         function(_dereq_, module, exports) {
           'use strict';
           Object.defineProperty(exports, '__esModule', { value: true });
@@ -91935,9 +89216,9 @@
           var _default = _main.default.RendererGL;
           exports.default = _default;
         },
-        { '../core/main': 59, './p5.RenderBuffer': 110, './p5.RendererGL': 113 }
+        { '../core/main': 54, './p5.RenderBuffer': 105, './p5.RendererGL': 108 }
       ],
-      113: [
+      108: [
         function(_dereq_, module, exports) {
           'use strict';
           function _typeof(obj) {
@@ -92194,7 +89475,7 @@
               }
             };
 
-            // Immediate Mode
+            // Imediate Mode
             // Geometry and Material hashes stored here
             this.immediateMode = {
               geometry: new _main.default.Geometry(),
@@ -93359,10 +90640,7 @@
             pointShader.setUniform('uMaterialColor', this.curStrokeColor);
             // @todo is there an instance where this isn't stroke weight?
             // should be they be same var?
-            pointShader.setUniform(
-              'uPointSize',
-              this.pointSize * this._pInst._pixelDensity
-            );
+            pointShader.setUniform('uPointSize', this.pointSize);
           };
 
           /* Binds a buffer to the drawing context
@@ -93601,17 +90879,17 @@
           exports.default = _default;
         },
         {
-          '../core/constants': 48,
-          '../core/main': 59,
-          '../core/p5.Renderer': 62,
-          './p5.Camera': 107,
-          './p5.Matrix': 109,
-          './p5.Shader': 114,
+          '../core/constants': 43,
+          '../core/main': 54,
+          '../core/p5.Renderer': 57,
+          './p5.Camera': 102,
+          './p5.Matrix': 104,
+          './p5.Shader': 109,
           libtess: 32,
           path: 35
         }
       ],
-      114: [
+      109: [
         function(_dereq_, module, exports) {
           'use strict';
           Object.defineProperty(exports, '__esModule', { value: true });
@@ -94222,9 +91500,9 @@
           var _default = _main.default.Shader;
           exports.default = _default;
         },
-        { '../core/main': 59 }
+        { '../core/main': 54 }
       ],
-      115: [
+      110: [
         function(_dereq_, module, exports) {
           'use strict';
           function _typeof(obj) {
@@ -94641,9 +91919,9 @@
           var _default = _main.default.Texture;
           exports.default = _default;
         },
-        { '../core/constants': 48, '../core/main': 59 }
+        { '../core/constants': 43, '../core/main': 54 }
       ],
-      116: [
+      111: [
         function(_dereq_, module, exports) {
           'use strict';
           function _typeof(obj) {
@@ -95560,20 +92838,20 @@
           };
         },
         {
-          '../core/constants': 48,
-          '../core/main': 59,
-          './p5.RendererGL.Retained': 112,
-          './p5.Shader': 114
+          '../core/constants': 43,
+          '../core/main': 54,
+          './p5.RendererGL.Retained': 107,
+          './p5.Shader': 109
         }
       ],
-      117: [
+      112: [
         function(_dereq_, module, exports) {
           module.exports = {
             fes: {
               autoplay:
                 "The media that tried to play (with '{{src}}') wasn't allowed to by this browser, most likely due to the browser's autoplay policy. Check out {{link}} for more information about why.",
               checkUserDefinedFns:
-                "It seems that you may have accidentally written {{name}} instead of {{actualName}}.\n\nPlease correct it if it's not intentional.",
+                "It seems that you may have accidently written {{name}} instead of {{actualName}}.\n\nPlease correct it if it's not intentional.",
               fileLoadError: {
                 bytes:
                   'It looks like there was a problem loading your file. {{suggestion}}',
@@ -95631,9 +92909,7 @@
                 'An error with message "{{error}}" occured inside the p5js library when {{func}} was called {{location}}\n\nIf not stated otherwise, it might be an issue with the arguments passed to {{func}}.',
               location: '(on line {{line}} in {{file}} [{{location}}])',
               misspelling:
-                'It seems that you may have accidentally written "{{name}}" instead of "{{actualName}}" {{location}}.\n\nPlease correct it to {{actualName}} if you wish to use the {{type}} from p5.js',
-              misspelling_plural:
-                'It seems that you may have accidentally written "{{name}}" {{location}}.\n\nYou may have meant one of the following:\n{{suggestions}}',
+                'It seems that you may have accidently written {{name}} instead of {{actualName}} {{location}}.\n\nPlease correct it to {{actualName}} if you wish to use the {{type}} from p5.js',
               misusedTopLevel:
                 "Did you just try to use p5.js's {{symbolName}} {{symbolType}}? If so, you may want to move it into your sketch's setup() function.\n\nFor more details, see: {{link}}",
               positions: {
@@ -95660,43 +92936,104 @@
         },
         {}
       ],
-      118: [
+      113: [
+        function(_dereq_, module, exports) {
+          module.exports = {
+            fes: {
+              autoplay:
+                "Su browser impidío un medio tocar (de '{{src}}'), posiblemente porque las reglas de autoplay. Para aprender más, visite {{link}}.",
+              checkUserDefinedFns: '',
+              fileLoadError: {
+                bytes: '',
+                font: '',
+                gif: '',
+                image: '',
+                json: '',
+                large: '',
+                strings: '',
+                suggestion: '',
+                table: '',
+                xml: ''
+              },
+              friendlyParamError: {
+                type_EMPTY_VAR: '',
+                type_TOO_FEW_ARGUMENTS: '',
+                type_TOO_MANY_ARGUMENTS: '',
+                type_WRONG_TYPE: ''
+              },
+              globalErrors: {
+                reference: {
+                  notDefined: ''
+                },
+                stackSubseq: '',
+                stackTop: '',
+                syntax: {
+                  invalidToken: '',
+                  unexpectedToken: ''
+                },
+                type: {
+                  notfunc: '',
+                  notfuncObj: ''
+                }
+              },
+              libraryError: '',
+              location: '',
+              misspelling: '',
+              misusedTopLevel: '',
+              positions: {
+                p_1: '',
+                p_10: '',
+                p_11: '',
+                p_12: '',
+                p_2: '',
+                p_3: '',
+                p_4: '',
+                p_5: '',
+                p_6: '',
+                p_7: '',
+                p_8: '',
+                p_9: ''
+              },
+              pre: '🌸 p5.js dice: {{message}}',
+              welcome: '',
+              wrongPreload: ''
+            }
+          };
+        },
+        {}
+      ],
+      114: [
         function(_dereq_, module, exports) {
           'use strict';
           Object.defineProperty(exports, '__esModule', { value: true });
-          exports.languages = exports.default = void 0;
+          exports.default = void 0;
           var _translation = _interopRequireDefault(_dereq_('./en/translation'));
+          var _translation2 = _interopRequireDefault(_dereq_('./es/translation'));
           function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : { default: obj };
           }
 
-          // Only one language is imported above. This is intentional as other languages
-          // will be hosted online and then downloaded whenever needed
-
           /**
-           * Here, we define a default/fallback language which we can use without internet.
-           * You won't have to change this when adding a new language.
+           * Maps our translations to their language key
+           * (`en` is english, `es` es español)
            *
-           * `translation` is the namespace we are using for our initial set of strings
+           * `translation` is the namespace we're using for
+           * our initial set of translation strings.
            */ var _default = {
             en: {
               translation: _translation.default
+            },
+
+            es: {
+              translation: _translation2.default
             }
           };
-
-          /**
-           * This is a list of languages that we have added so far.
-           * If you have just added a new language (yay!), add its key to the list below
-           * (`en` is english, `es` es español). Also add its export to
-           * dev.js, which is another file in this folder.
-           */ exports.default = _default;
-          var languages = ['en', 'es'];
-          exports.languages = languages;
+          exports.default = _default;
         },
-        { './en/translation': 117 }
+        { './en/translation': 112, './es/translation': 113 }
       ]
     },
     {},
-    [43]
-  )(43);
+    [38]
+  )(38);
 });
