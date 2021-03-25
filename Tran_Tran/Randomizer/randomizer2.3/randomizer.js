@@ -42,7 +42,7 @@ text("What Happened?", width/2, height/2);
 button = createButton("Click to Kill");
 button.mousePressed(buttonPressed)
 button.style("padding", "20px");
-button.style("background-color", "#D50707");
+button.style("background-color", "#a60000");
 
 
 // console.log(animals.length)
