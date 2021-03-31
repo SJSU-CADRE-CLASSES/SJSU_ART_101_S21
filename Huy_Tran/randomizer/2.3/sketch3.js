@@ -1,7 +1,7 @@
 // TODAY I WANT TO EAT CHOCOLATE
 let randomIndex;
 let animating = false;
-// let mm = [];
+let mm = [];
   name: "ROD",
   color: "yummy red"
 }, {
@@ -23,7 +23,7 @@ let animating = false;
 
 function preload() {
   for (let i = 0, i<= 6, i++)
-    mm[i] = loadImage(`assets/mm_${i}.jpg`)
+    mm[i] = loadImage(`assets/mm/mm_${i}.jpg`)
 }
 
 function setup() {
@@ -33,7 +33,7 @@ function setup() {
   textSize(30);
 
   text("PINCH ME NOW!", 50, 50);
-  // console.log(mm);
+  console.log(mm);
 }
 
 function draw() {
