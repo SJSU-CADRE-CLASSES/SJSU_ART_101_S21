@@ -22,7 +22,7 @@ let mm = [];
 }];
 
 function preload(){
-  for (let i = 0, i <= 15, i++){
+  for (let i = 0, i <= 6, i++){
     mm[i] = loadImage(`assets/mm_${i}.jpg`)
   }
 }
@@ -40,7 +40,8 @@ function setup() {
 function draw() {
 
   if(animating == true){
-    ellipse(random(width), random(height), random(50, 200))
+    // ellipse(random(width), random(height), random(50, 200));
+    image(mm[0], 0, 0);
   }
 }
 
