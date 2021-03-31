@@ -39,8 +39,8 @@ function setup() {
 function draw() {
 
   if(animating == true){
-    ellipse(random(width), random(height), random(50, 200))
-    // image(mm[0], 0,0);
+    // ellipse(random(width), random(height), random(50, 200))
+    image(mms[0], 0,0);
   }
 }
 
