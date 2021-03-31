@@ -1,27 +1,45 @@
 let suger = [{
   name: "ice cream",
-  why: "cold"
+  why: "chocolate mint"
 }, {
   name: "gummy",
-  why: "elasticity"
+  why: "haribo goldbears"
 }, {
   name: "chocolate",
-  why: "melting"
+  why: "kitkat"
 }, {
   name: "candy",
-  why: "sweet"
+  why: "skittles"
 }];
 
 let randomIndex;
 let animating = false;
 //let counter = 0;
 
+let hanas = [];
+let imageCounter = 0;
+
+let button;
+
+
+function preload() {
+  for (let i = 0; i <= 11; i++) {
+    hanas[i] = loadImage("assets/hana_" + i + ".png")
+  }
+}
+
 function setup() {
   createCanvas(600, 600);
-  background(200);
+  background(200, 200, 233);
   textSize(35);
+  imageMode(CENTER);
+  frameRate(20);
 
-  text("click to randomize", 50, 50);
+  button = createButton("click to randomize");
+  button.mousePressed(buttonPressed);
+
+  text("MY RANDOMIZER",50, height/2);
+  console.log(hanas);
 
   //setTimeout(changeBackground, 1000);//1000milisec = 1000milisec
 
@@ -30,9 +48,9 @@ function setup() {
   //
   // suger[1] = "gummy bear";
   // console.log(suger);
-
-  console.log("intial array");
-  console.log(suger);
+  //
+  // console.log("intial array");
+  // console.log(suger);
 
   //substract one array element at the end - use shift if at the beginning
   // suger.pop();
@@ -68,8 +86,16 @@ function setup() {
 }
 
 function draw() {
-  if(animating == true){
-    ellipse (random(width), random(height), random(50,200),random(50,200));
+
+  if (animating == true) {
+    clear();
+    image(hanas[imageCounter], width / 2, height / 2);
+
+    if (imageCounter < hanas.length - 1) {
+      imageCounter++;
+    } else {
+      imageCounter = 0;
+    }
   }
 }
 
@@ -83,26 +109,27 @@ function draw() {
 // }
 // }
 
-function randomizer (){
+function randomizer() {
   animating = false;
 
   if (suger[0]) {
-    background(random(200, 255));
+    //background(random(200, 255));
     randomIndex = int(random(suger.length));
     //int means not decimals
     //  console.log(suger[randomIndex].name);
     //text(suger[randomIndex].name + " because " + suger[randomIndex].why, 50, 50);
-text(`${suger[randomIndex].name}
-  because ${suger[randomIndex].why}`, 50, 50);
+    text(`${suger[randomIndex].name}
+      especially ${suger[randomIndex].why}`, 50, 50);
+  image(random(hanas), width / 2, height / 2);
     suger.splice(randomIndex, 1);
   } else {
     background(random(200, 255));
-    text("nothing left", 50, 50)
+    text("nothing left", width/2 , width/2)
 
   }
 }
 
-function mousePressed() {
+function buttonPressed() {
   animating = true;
   setTimeout(randomizer, 2000);
 
