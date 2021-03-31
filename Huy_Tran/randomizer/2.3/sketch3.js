@@ -1,7 +1,7 @@
 // TODAY I WANT TO EAT CHOCOLATE
 let randomIndex;
 let animating = false;
-let mm = [];
+// let mm = [];
   name: "ROD",
   color: "yummy red"
 }, {
@@ -33,14 +33,14 @@ function setup() {
   textSize(30);
 
   text("PINCH ME NOW!", 50, 50);
-  console.log(mm);
+  // console.log(mm);
 }
 
 function draw() {
 
   if(animating == true){
-    // ellipse(random(width), random(height), random(50, 200))
-    image(mm[0], 0,0);
+    ellipse(random(width), random(height), random(50, 200))
+    // image(mm[0], 0,0);
   }
 }
 
