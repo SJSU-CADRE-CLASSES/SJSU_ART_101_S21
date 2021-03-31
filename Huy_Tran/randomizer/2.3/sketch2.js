@@ -1,7 +1,7 @@
 // TODAY I WANT TO EAT CHOCOLATE
 let randomIndex;
 let animating = false;
-let mm = [];
+let mm = [{
   name: "ROD",
   color: "yummy red"
 }, {
@@ -21,12 +21,6 @@ let mm = [];
   color: "energy orange"
 }];
 
-function preload(){
-  for (let i = 0, i <= 6, i++){
-    mm[i] = loadImage(`assets/mm_${i}.jpg`)
-  }
-}
-
 function setup() {
   createCanvas(350, 450);
   background(200);
@@ -34,14 +28,13 @@ function setup() {
   textSize(30);
 
   text("PINCH ME NOW!", 50, 50);
-  console.log(mm);
+
 }
 
 function draw() {
 
   if(animating == true){
-    // ellipse(random(width), random(height), random(50, 200));
-    image(mm[0], 0, 0);
+    ellipse(random(width), random(height), random(50, 200))
   }
 }
 
@@ -54,8 +47,6 @@ function randomizer() {
     text(`${mm[randomIndex].name}'s my fav color is
     ${mm[randomIndex].color}`, 50, 50);
     mm.splice(randomIndex, 1);
-    // translate(0,0);
-    // textAlign(CENTER);
 
   } else {
     background(255, 0, 0);
