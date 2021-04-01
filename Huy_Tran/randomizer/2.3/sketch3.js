@@ -38,7 +38,7 @@ function preload() {
 function setup() {
   createCanvas(350, 450);
   background(200);
-  frameRate(7);
+  frameRate(8);
   textFont('Arial Black');
 
   imageMode(CENTER);
