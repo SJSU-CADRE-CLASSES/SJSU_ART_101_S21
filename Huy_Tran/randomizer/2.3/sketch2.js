@@ -1,6 +1,7 @@
 // TODAY I WANT TO EAT CHOCOLATE
 let randomIndex;
 let animating = false;
+
 let mm = [{
   name: "ROD",
   color: "yummy red"
@@ -21,6 +22,7 @@ let mm = [{
   color: "energy orange"
 }];
 
+/////--------------------------/////
 function setup() {
   createCanvas(350, 450);
   background(200);
@@ -28,8 +30,8 @@ function setup() {
   textSize(30);
 
   text("PINCH ME NOW!", 50, 50);
-
 }
+/////--------------------------/////
 
 function draw() {
 
