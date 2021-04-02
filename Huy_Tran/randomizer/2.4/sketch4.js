@@ -4,9 +4,14 @@ let randomIndex;
 let animating = false;
 
 let imageCounter = 0;
-let button;
 let chocos = [];
+
+let startRandomizerButton;
+let addMoredButton;
+
 let cnv;
+
+let nameInputs = [];
 
 let mm = [{
   name: "ROD",
@@ -38,8 +43,10 @@ function preload() {
 
 function setup() {
   // createCanvas(350, 450);
+
   cnv = createCanvas(350, 450);
   cnv.parent("#canvasDiv");
+
   background(200);
   frameRate(8);
   textFont('Arial Black');
@@ -50,12 +57,17 @@ function setup() {
 
   text("PINCH ME NOW!", 50, 50);
 
-  // button = createButton('Click me');
-  button = select('#clickmeButton');
-  button.position(127, 510);
-  button.mousePressed(buttonPressed);
-  button.class("randomizerButton");
-  // console.log(chocos);
+  startRandomizerButton = select('#randButton');
+  startRandomizerButton.mousePressed(buttonPressed);
+
+  addMoredButton = select('#addMoredButton');
+  addMoredButton.mousePressed(addAnotherInput);
+  // button.class("randomizerButton");
+
+for (let i = 0; i < 3; i++) {
+  nameInputs.push(createInput());
+  nameInputs[nameInputs.length - 1].parent("#inputFields");
+  }
 }
 
 
@@ -63,7 +75,7 @@ function draw() {
   if (animating == true) {
     // ellipse(random(width), random(height),
     // random(50, 200))
-    clear();
+//    clear();
     // image(chocos[imageCounter], width/ 2, height/ 2);
     image(random(chocos), width/ 2, height/ 2);
 
@@ -78,9 +90,14 @@ function draw() {
   }
 }
 
+function addAnotherInput() {
+  nameInputs.push(createInput());
+  nameInputs[nameInputs.length - 1].parent("#inputFields");
+}
+
 function randomizer() {
   animating = false;
-  clear();
+//  clear();
   if (mm[0]) {
     background(random(55), random(155), random(255));
     randomIndex = int(random(mm.length));
