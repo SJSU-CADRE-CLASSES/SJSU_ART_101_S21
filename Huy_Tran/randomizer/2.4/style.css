@@ -9,3 +9,11 @@ canvas {
   padding: 10px;
   background-color: #ff5500;
 }
+.row {
+ display: flex;
+}
+
+.column {
+ flex: 50%;
+ margin: 10px;
+}
