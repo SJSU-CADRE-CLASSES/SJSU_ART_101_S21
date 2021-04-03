@@ -17,3 +17,9 @@ canvas {
  flex: 50%;
  margin: 10px;
 }
+.randButton{
+  margin: 5px;
+}
+.inputFields {
+  margin: 20px;
+}
