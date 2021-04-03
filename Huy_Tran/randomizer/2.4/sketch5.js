@@ -1,11 +1,11 @@
 // TODAY I WANT TO EAT CHOCOLATE
-//update 040221
+//update 040321
 
 let randomIndex;
 let animating = false;
 
 let imageCounter = 0;
-let chocos = [];
+let onions = [];
 
 let startRandomizerButton;
 let addMoredButton;
@@ -20,8 +20,8 @@ let onion = [];
 
 
 function preload() {
-  for (let i = 0; i <= 19; i++) {
-    chocos[i] = loadImage(`assets/onion_${i}.JPG`);
+  for (let i = 0; i <= 15; i++) {
+    onions[i] = loadImage(`assets/onion_${i}.JPG`);
   }
 }
 
@@ -32,7 +32,7 @@ function setup() {
   cnv.parent("#canvasDiv");
 
   background(200);
-  frameRate(20);
+  frameRate(8);
   textFont('Arial Black');
 
   imageMode(CENTER);
@@ -59,10 +59,10 @@ for (let i = 0; i < 3; i++) {
 function draw() {
   if (animating == true) {
    clear();
-    image(chocos[imageCounter], width/ 2, height/ 2);
-    image(random(chocos), width/ 2, height/ 2);
+    image(onions[imageCounter], width/ 2, height/ 2);
+    image(random(onions), width/ 2, height/ 2);
 
-    if (imageCounter < chocos.length - 1) {
+    if (imageCounter < onions.length - 1) {
       imageCounter++;
       console.log(imageCounter);
     } else {
