@@ -29,8 +29,8 @@ let mm = [{
 
 
 function preload() {
-  for (let i = 0; i <= 5; i++) {
-    chocos[i] = loadImage(`assets/mm_${i}.JPG`);
+  for (let i = 0; i <= 10; i++) {
+    chocos[i] = loadImage(`assets/mm/mm_${i}.JPG`);
   }
 }
 

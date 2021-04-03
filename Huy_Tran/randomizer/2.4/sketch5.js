@@ -23,7 +23,7 @@ let onion = []; //Empty variable for adding user's input.
 
 ///-------------------------< START LOADNG IMGS >-------------------------///
 function preload() {
-  for (let i = 0; i <= 15; i++) {
+  for (let i = 0; i <= 10; i++) {
     onions[i] = loadImage(`assets/onion_${i}.JPG`);
   }
 }
@@ -35,7 +35,7 @@ function setup() {
   cnv = createCanvas(350, 450);
   cnv.parent("#canvasDiv"); //Assign class to define in CSS
 
-  background(200);
+  background(100);
   frameRate(8);
   textFont('Arial Black');
 
@@ -50,8 +50,6 @@ function setup() {
 
   addMoredButton = select('#addMoredButton');
   addMoredButton.mousePressed(addAnotherInput);
-
-  // button.class("randomizerButton");
 
   for (let i = 0; i < 2; i++) {
     nameInputs.push(createInput());
@@ -98,7 +96,6 @@ function randomizer() {
   } else {
     background('#ff61e5');
     text("FIN", 120, 230);
-    textAlign(CENTER);
   }
 }
 //-------------------------------*<> X <>*----------------------------------//
@@ -111,8 +108,8 @@ function buttonPressed() {
     }
     firstTime = false;
   }
-
   setTimeout(randomizer, 2000);
+
   animating = true;
 
 }
