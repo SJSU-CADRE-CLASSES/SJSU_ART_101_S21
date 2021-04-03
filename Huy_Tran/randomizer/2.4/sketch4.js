@@ -9,29 +9,13 @@ let chocos = [];
 let startRandomizerButton;
 let addMoredButton;
 
+let firstTime = true;
+
 let cnv;
 
 let nameInputs = [];
 
-let mm = [{
-  name: "ROD",
-  color: "yummy red"
-}, {
-  name: "YOH",
-  color: "sweetie yellow"
-}, {
-  name: "GOH",
-  color: "hero green"
-}, {
-  name: "BOH",
-  color: "knight blue"
-}, {
-  name: "NOH",
-  color: "dragon brown"
-}, {
-  name: "ORH",
-  color: "energy orange"
-}];
+  let mm = [];
 
 
 function preload() {
@@ -53,7 +37,7 @@ function setup() {
 
   imageMode(CENTER);
 
-  textSize(27);
+  textSize(20);
 
   text("PINCH ME NOW!", 50, 50);
 
@@ -62,6 +46,7 @@ function setup() {
 
   addMoredButton = select('#addMoredButton');
   addMoredButton.mousePressed(addAnotherInput);
+
   // button.class("randomizerButton");
 
 for (let i = 0; i < 3; i++) {
@@ -97,18 +82,14 @@ function addAnotherInput() {
 
 function randomizer() {
   animating = false;
-//  clear();
+ clear();
   if (mm[0]) {
-    background(random(55), random(155), random(255));
+    // background(random(55), random(155), random(255));
     randomIndex = int(random(mm.length));
-    // text(mm[randomIndex].name, + "'s my fav color" + mm.[randomIndex].color, 50, 50);
-    // text(`${mm[randomIndex].name}'s my fav color is
-    // ${mm[randomIndex].color}`, 50, 50);
-    text(`${mm[randomIndex].name}'s my fav color is
-      ${mm[randomIndex].color}`, 20, 380);
 
+    image(random(mm), width/ 2, height/ 2);
+    text(mm[randomIndex], width/ 2, height - 55);
     mm.splice(randomIndex, 1);
-
   } else {
     background(255, 0, 0);
     text("HUHM! IT'S OVER!", 50, 50);
@@ -116,6 +97,13 @@ function randomizer() {
 }
 
 function buttonPressed() {
+  if (firstTime) {
+    for (var i = 0; i < nameInputs.length; i++) {
+      mm.push(nameInputs[i].value());
+    }
+    firstTime = false;
+  }
+
   setTimeout(randomizer, 2000);
   animating = true;
 
