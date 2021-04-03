@@ -5,21 +5,27 @@ html, body {
 canvas {
   display: block;
 }
-/* .randomizerButton{
-  padding: 10px;
-  background-color: #ff5500; */
+.randomizerButton{
+  padding: 4px;
+  background-color: #ff5500;
 }
 .row {
  display: flex;
 }
 
 .column {
- flex: 50%;
+ flex: 1/3;
  margin: 10px;
 }
-.randButton{
-  margin: 5px;
+#randButton{
+  margin: 4px;
 }
-.inputFields {
-  margin: 20px;
+#addMoredButton{
+  padding: 5px;
+}
+.items{
+  padding: 5px;
+}
+#inputFields{
+  padding: 4px;
 }
