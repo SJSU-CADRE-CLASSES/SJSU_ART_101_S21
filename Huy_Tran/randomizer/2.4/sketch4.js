@@ -1,5 +1,6 @@
 // TODAY I WANT TO EAT CHOCOLATE
 //update 040221
+
 let randomIndex;
 let animating = false;
 
@@ -15,7 +16,7 @@ let cnv;
 
 let nameInputs = [];
 
-  let mm = [];
+let mm = [];
 
 
 function preload() {
