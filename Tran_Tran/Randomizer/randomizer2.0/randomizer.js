@@ -1,32 +1,39 @@
 //animals going extinct in 2021
 let animals = [{
-  name: "Spix Macaw",
-  why: "The deforestation of habitat, only left 100 alive in captivity"
+  name: "Spix Macaws",
+  why: "Deforestation of habitat leaving only 100 alive, in captivity"
 }, {
-  name: "Scimatar Oryx",
-  why: "Are in rapid decline due to poaching, for it's long antlers."
+  name: "Scimatar Oryxs",
+  why: "Are in rapid decline due to poaching, for it's long antlers"
 }, {
-  name: "Rockhopper Penguin",
+  name: "Rockhopper Penguins",
   why: "Pollution and commercial fishing are killing these species"
 }, {
-  name: "Snow Leopard",
-  why: "Are being hunted and killed"
+  name: "Snow Leopards",
+  why: "Dying due to huntings and retalitated-killings"
 }, {
-  name: "Black Rhino",
-  why: "Are being poached for its horn"
+  name: "Black Rhinos",
+  why: "Are being poached for its horn and its medicinal properties"
 }]
+
+var colorArray = [
+  '#F30000',
+  '#A62121',
+  '#782626',
+  '#D50707'
+]
 
 let randomIndex;
 
-
+animating = false;
 
 function setup() {
 
 createCanvas(1500,1500);
-background(200);
-
-textSize(100);
-text("Click to kill", 100, height/2);
+background(10);
+fill(255);
+textSize(200);
+text("Click to Kill", width/6, height/2);
 
 // console.log(animals.length)
 // console.log(animals[randomIndex].name);
@@ -44,29 +51,69 @@ text("Click to kill", 100, height/2);
 }
 
 function draw() {
-
+if (animating == true){
+stroke(random(10, 50))
+strokeWeight(20);
+fill(random(colorArray));
+ellipse(random(width), random(height),random(80, 500));
+// color(random(#FFF9F7, #FFB69E, #FF5922));
 }
+}
+
+
 function changeBackground(){
   background(random(255), random(255), random(255));
+  // if(animals[name: "Spix Macaw"] == true){
+  // background((0, 0, 255));
+
 }
+
 function mousePressed(){
+  animating = true;
+  setTimeout(randomizer, 3000);
 
-if (animals[0]){
-  //displays random name and splices it out of array
-  background(random(200, 255));
-  randomIndex = int(random(animals.length));
-
-  textSize(100);
-
-  text(animals[randomIndex].name, 100, height/2);
-
-  textSize(50);
-  text(animals[randomIndex].why, 100, 1000);
-  animals.splice(randomIndex, 1);
-} else{
-  background(random(200, 255));
-
-  textSize(100);
-  text("All are going extinct in 2021", 100, height/2);
+// if (animals[0]){
+//   //displays random name and splices it out of array
+//   background(random(200, 255));
+//   randomIndex = int(random(animals.length));
+//
+//   textSize(100);
+//
+//   text(animals[randomIndex].name, 100, 1200);
+//
+//   textSize(50);
+//   text(animals[randomIndex].why, 100, 1300);
+//   animals.splice(randomIndex, 1);
+// } else{
+//   background(random(200, 255));
+//
+//   textSize(100);
+//   text("All are going extinct in 2021", 100, height/2);
+// }
 }
+
+function randomizer(){
+  animating = false;
+  if (animals[0]){
+    //displays random name and splices it out of array
+    background(random(200, 255));
+    randomIndex = int(random(animals.length));
+
+    fill(10);
+    stroke(255);
+    strokeWeight(5);
+    textSize(100);
+
+    text(animals[randomIndex].name, 100, 1200);
+
+    textSize(50);
+    text(animals[randomIndex].why, 100, 1300);
+    animals.splice(randomIndex, 1);
+  } else{
+    background(255, 50, 0);
+    stroke(250);
+    fill(255, 50, 0);
+    textSize(100);
+    text("All are going extinct in 2021", width/9, height/2);
+  }
 }
