@@ -1,0 +1,21 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+canvas {
+  display: block;
+}
+
+.randomizerButton{
+  padding: 20px;
+  background-color: #4287f5;
+}
+
+.row {
+  display: flex;
+}
+
+.column {
+  margin: 50px;
+  flex: 50%;
+}
