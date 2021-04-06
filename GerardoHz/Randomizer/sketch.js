@@ -25,10 +25,10 @@ cnv = createCanvas (800, 800);
 cnv.parent("#canvasDiv");
 
 background(200);
-textSize (28);
+textSize (23);
 imageMode(CENTER);
 frameRate (9);
-text("Click to find your new home",50,50);
+text("Have your passport ready! Everyone must travel to save mankind!",20,50);
 //button = createButton("Find your new home")
 
 button = select("#Button")
