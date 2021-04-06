@@ -1,8 +1,13 @@
 
-let dogs = [{name: "William", color: "red"}
-, {name:"Joe", color: "blue"},
-{name: "Andy", color: "green"},
-{name: "Eddie", color: "white"}];
+let dogs = [{name: "William", color: "loyal. (P)"}
+, {name:"Joe", color: "funny. (R)"},
+{name: "Andy", color: "cool. (O)"},
+{name: "Eddie", color: "funny (in a way). (T)"},
+{name: "Nolan", color: "radical to me. (E)"},
+{name: "David", color: "nice to me. (C)"},
+{name: "James", color: "shy. (T)"},
+{name: "Kenny", color: "very smart. (E)"},
+{name: "Jess", color: "very sweet. (D)"},];
 
 let randomIndex;
 let animating = false;
@@ -12,7 +17,7 @@ let button;
 
 function preload(){
 
-  for (let i = 1; i <= 4; i++){
+  for (let i = 1; i <= 11; i++){
     pic[i] = loadImage("assets/pic_" + i + ".png")
   }
 }
@@ -23,9 +28,9 @@ function setup() {
     background(255, 400, 30);
     textSize(30);
     imageMode(CENTER);
-    frameRate(0.5);
+    frameRate(.5);
 
-    text("click to randomize", 50, 50);
+    text("Friends are power", 50, 50);
 
     button = createButton("click to randomize");
     button.mousePressed(buttonPressed);
@@ -52,12 +57,12 @@ animating = false;
     background(random(200, 255));
     randomIndex = int(random(dogs.length));
 
-    text(`${dogs[randomIndex].name} 's favorite color is
+    text(`${dogs[randomIndex].name} is very
      ${dogs[randomIndex].color}`, 50, 50);
     dogs.splice(randomIndex, 1);
   } else {
     background(random(200, 255));
-    text("That's all folks!", 50, 50);
+    text("Can't live life without them", 50, 50);
   }
 }
 
