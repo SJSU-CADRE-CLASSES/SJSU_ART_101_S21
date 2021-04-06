@@ -107,8 +107,6 @@ function randomizer() {
       fill(145, 255, 251);
       text(songs[rando].song, 420, 50);
       image(cover[rando], 100, 70);
-      console.log("This " + rando + "is " + cover[rando]);
-      console.log(counter);
       counter++;
       randoHolder = rando;
     }
