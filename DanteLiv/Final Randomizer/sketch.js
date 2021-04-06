@@ -1,6 +1,6 @@
 let trees = [{
     names: "Oak",
-    region: "Asia, North America",
+    region: "Asia and North America",
   },
   {
     names: "Willow",
