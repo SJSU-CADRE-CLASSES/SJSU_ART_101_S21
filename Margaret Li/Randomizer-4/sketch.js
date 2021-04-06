@@ -191,7 +191,7 @@ function randomizer() {
     //random visible colors for the display text
     fill(random(100, 240), random(100, 180), random(100, 240));
     //add items from blanks to sentence
-    text(`The ${animals[randomIndexAnimals]} dislikes this.`, width * 0.15, height * 0.82);
+    text(`This plastic harms the ${animals[randomIndexAnimals]}.`, width * 0.15, height * 0.82);
     animals.splice(randomIndexAnimals, 1);
 
   } else {
