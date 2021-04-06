@@ -47,7 +47,7 @@ let owl = [{
     }
 
     function setup() {
-      cnv = createCanvas(600, 600);
+      cnv = createCanvas(1000, 600);
       song.loop();
       cnv.parent("#canvasDiv");
       c1 = color(144,166,160);
@@ -57,7 +57,7 @@ let owl = [{
       imageMode(CENTER);
       frameRate(12);
       textFont("'Cutive Mono', monospace;");
-      text("How to See Shapes Aesthetically", 80, 250);
+      text("How to See Shapes Aesthetically", 255, 260);
       button = select("#randButton");
       button.mousePressed(buttonPressed);
       button.class("randomizerButton");
