@@ -28,7 +28,8 @@ background(200);
 textSize (23);
 imageMode(CENTER);
 frameRate (9);
-text("Have your passport ready! Everyone must travel to save mankind!",20,50);
+text("Have your passport ready! Everyone must travel to save mankind!",10,50);
+
 //button = createButton("Find your new home")
 
 button = select("#Button")
