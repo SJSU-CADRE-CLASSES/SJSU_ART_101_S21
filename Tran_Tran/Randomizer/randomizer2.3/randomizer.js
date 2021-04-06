@@ -151,11 +151,11 @@ function randomizer(){
     textSize(40);
     image(species[randomIndex], 0, 0);
     console.log(randomIndex);
-    text(animals[randomIndex].name, 400, 660);
+    text(animals[randomIndex].name, 400, 700);
     console.log(randomIndex);
 
     textSize(20);
-    text(animals[randomIndex].why, 400, 700);
+    text(animals[randomIndex].why, 400, 740);
     animals.splice(randomIndex, 1);
     species.splice(randomIndex, 1);
   } else{
