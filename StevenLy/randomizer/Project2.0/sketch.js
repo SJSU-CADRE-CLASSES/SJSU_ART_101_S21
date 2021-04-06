@@ -38,8 +38,8 @@ function preload() {
 function setup() {
   cnv = createCanvas(1280, 780);
   cnv.parent("#canvasDiv");
-
   background(149,200,216);
+  
   textSize(40);
   textFont('Courier new');
   textAlign(CENTER);
