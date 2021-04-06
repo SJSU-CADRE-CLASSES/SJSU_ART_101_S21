@@ -56,7 +56,7 @@ function setup() {
 
 
   console.log(ronnie)
-  text("what should we get fr mcdonalds?", 50, 200);
+
 
 
 }
@@ -85,9 +85,15 @@ function randomizer() {
     clear();
     randomIndex = int(random(mcdonalds.length));
     image(random(ronnie), width / 2, height / 2);
+    stroke(255, 204,0)
+    strokeWeight(2);
     text(mcdonalds[randomIndex].qty, width / 3.5 , height - 200);
+    stroke(255, 204,0)
+    strokeWeight(2);
     text(mcdonalds[randomIndex].name,  width / 2.5 , height - 200);
+
     mcdonalds.splice(randomIndex, 1);
+
   } else {
     background(random(100, 245), random(120, 240), random(130, 245));
     text("too indecisive! no mcdonalds for you :/", 40, 200);
