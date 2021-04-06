@@ -34,7 +34,7 @@ let imageCounter = 0;
 function preload() {
 
   for (let i = 0; i <= 13; i++) {
-    ronnie[i] = loadImage(`assets/ronnie_${i}.JPG`)
+    ronnie[i] = loadImage(`assets/ronnie_${i}.jpg`)
   }
 }
 
@@ -55,7 +55,7 @@ function setup() {
 
 
 
-  console.log(ronnie);
+
   text("what should we get from mcdonalds?", 50, 200);
 
 
