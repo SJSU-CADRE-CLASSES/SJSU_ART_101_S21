@@ -39,7 +39,7 @@ function setup() {
   cnv = createCanvas(1280, 780);
   cnv.parent("#canvasDiv");
   background(149,200,216);
-  
+
   textSize(40);
   textFont('Courier new');
   textAlign(CENTER);
@@ -50,6 +50,7 @@ function setup() {
   imageMode(CENTER);
   frameRate(5);
 
+  text("FREE JAPANESE DEPORTED CARS!", 600, 400)
 
   // button = createButton("Click To Randomize");
   button = select('#randButton');
