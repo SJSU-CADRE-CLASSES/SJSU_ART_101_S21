@@ -27,6 +27,8 @@ let animating = false;
 let myPlants = [];
 let imageCounter = 0;
 let button;
+let cnv;
+let nameInputs;
 
 function preload() {
 
@@ -38,17 +40,25 @@ function preload() {
 
 
 function setup() {
-  createCanvas(600, 600);
-  background(200);
+  cnv = createCanvas(600, 600);
+  cnv.parent("#canvasDiv");
+  background("darkGreen");
   textSize(15);
+
   imageMode(CENTER);
   frameRate(8);
 
   text("click to randomize", 150, 300);
 
- button = createButton("click to randomize");
+ // button = createButton("click to randomize");
+ button = select("#randButton")
  button.mousePressed(buttonPressed);
+button.class("randomizerButton");
 
+for (let i = 0; i < 3; i++){
+nameInputs = createInput();
+nameInputs.parent("#inputFields");
+}
 }
 
 function draw() {
