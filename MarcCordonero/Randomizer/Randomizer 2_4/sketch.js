@@ -48,17 +48,14 @@ function setup() {
   imageMode(CENTER);
   frameRate(8);
 
-  text("click to randomize", 150, 300);
+  text("LOOK AT MY PLANTS", 150, 300);
 
  // button = createButton("click to randomize");
  button = select("#randButton")
  button.mousePressed(buttonPressed);
 button.class("randomizerButton");
 
-for (let i = 0; i < 3; i++){
-nameInputs = createInput();
-nameInputs.parent("#inputFields");
-}
+
 }
 
 function draw() {
