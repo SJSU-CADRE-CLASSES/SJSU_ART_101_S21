@@ -13,3 +13,14 @@ if (mouseIsPressed){
   }
 
 }
+
+function keyTyped(){
+
+  if (key == 's'){
+    // save this image
+    saveCanvas('fileName', 'png')
+  }
+
+  return false; 
+
+}
