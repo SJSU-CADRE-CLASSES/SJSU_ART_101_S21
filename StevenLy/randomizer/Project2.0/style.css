@@ -1,6 +1,7 @@
 html, body {
   margin: 0;
   padding: 0;
+  background-color: black
 }
 canvas {
   display: block;
@@ -16,6 +17,6 @@ canvas {
 }
 
 .column {
-  margin: 50px;
+  margin: 20px;
   flex: 50%;
 }
