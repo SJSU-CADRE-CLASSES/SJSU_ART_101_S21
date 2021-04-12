@@ -17,10 +17,10 @@ function draw() {
     strokeWeight(2);
     line(width-mouseX, height-mouseY, width-pmouseX, height-pmouseY);
     line(mouseX, mouseY, pmouseX, pmouseY);
-    fill(random(0, 255), random(0, 255), random(0, 255));
 
     //beads
     push();
+    fill(random(0, 255), random(0, 255), random(0, 255));
     noStroke();
     circle(width-mouseX, height-mouseY, 40);
     circle(mouseX, mouseY, 40);
