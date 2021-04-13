@@ -29,11 +29,11 @@ function keyTyped() {
     //display image
     background(220);
     beginShape();
-      for (var i = 0; i < array.length; i++) {
-        // line(array[i][0], array[i][1], array[i + 1][0], array[i + 1][1]);
-        curveVertex(array[i][0], array[i][1]);
-      }
-    endShape();
+    for (var i = 0; i < array.length - 1; i++) {
+      line(array[i][0], array[i][1], array[i + 1][0], array[i + 1][1]);
+      // curveVertex(array[i][0], array[i][1], array[i + 1][0], array[i + 1][1]);
+      // curveVertex(array[i][0], array[i][1]);
+    }
   }
   return false;
 }
