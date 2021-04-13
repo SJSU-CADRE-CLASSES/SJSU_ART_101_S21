@@ -1,0 +1,38 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Clicker Script', cursive;
+  background-image: url("asset/canvas.jpg");
+}
+
+body {
+  margin: 100px auto;
+  width: 80%;
+  text-align:center;
+
+
+
+}
+canvas {
+  margin: 0 auto 0 auto
+  display: block;
+  border: 1px double black;
+}
+
+h3.solid {border-style: 1px solid;}
+
+.restart {
+  border: none;
+  background-color: transparent;
+  padding: 10px;
+  transition: 0.3s;
+  margin: 0 auto;
+  display:block;
+
+
+
+}
+.restart:hover {
+  background-color: #D1C7D9;
+  color: white;
+}
