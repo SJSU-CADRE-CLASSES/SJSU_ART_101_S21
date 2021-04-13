@@ -1,21 +1,36 @@
-html, body {
+html{
+  margin: 0;
+  padding: 0;
+}
+body {
   margin: 10;
   padding: 10;
+  text-align: center;
 }
 
 canvas {
   display: block;
+  border: 10px dash black;
+  margin-left: 380px;
+  margin-right: 380px;
+  border: 5px solid orange;
 }
 
-title {
+.title{
   font-family: sans-serif;
-  font-variant-caps: all-small-caps;
-  margin-left: : 10px;
-  padding-left: 10px;
+  font-kerning: auto;
+
 }
 
-.instruct {
+.CTA_italic{
+  font-style: italic;
+}
+
+.instruct{
+  font-style: normal;
   font-family: sans-serif;
-  margin-left: : 10px;
-  padding-left: 10px;
+}
+
+.content_text {
+  font-family: sans-serif;
 }

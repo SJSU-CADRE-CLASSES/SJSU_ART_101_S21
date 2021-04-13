@@ -1,8 +1,9 @@
 let array = [];
+let backgroundColor = 200;
 
 function setup() {
   createCanvas(640, 480);
-  background(230);
+  background(backgroundColor);
 
   strokeWeight(7);
   noFill();
@@ -13,7 +14,8 @@ function draw() {
     // stroke(map(mouseX, 0, 600, 0, 255, true));
     // line(width - mouseX, height - mouseY, width - pmouseX, height - pmouseY, );
     // line(mouseX, mouseY, pmouseX, pmouseY);
-    background(55);
+    background(backgroundColor);
+    backgroundColor--;
     array.push([mouseX, mouseY]);
 
   }
