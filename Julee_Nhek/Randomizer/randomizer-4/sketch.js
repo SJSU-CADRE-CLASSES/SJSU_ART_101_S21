@@ -1,23 +1,32 @@
 //wish you were here with me
 
 let owl = [{
-    name: "rectangle",
-    color: "iridescent"
+    name: "a rectangle?",
+    color: "do you see"
     }, {
-    name: "cube",
-    color: "pink"
+    name: "a cube?",
+    color: "do you see"
     }, {
-    name: "pointed oval",
-    color: "clear"
+    name: "a pointed oval?",
+    color: "do you see"
     }, {
-    name: "sphere",
-    color: "violet"
+    name: "a sphere?",
+    color: "do you see"
     }, {
-    name: "hearts",
-    color: "transparent pink"
+    name: "hearts?",
+    color: "do you see"
     }, {
-    name: "triangles",
-    color: "pastel"
+    name: "triangles?",
+    color: "do you see"
+    }, {
+    name: "cylinders?",
+    color: "do you see"
+    }, {
+    name: "hexagons?",
+    color: "do you see"
+    }, {
+    name: "a polygon?",
+    color: "do you see"
     }];
 
     let randomIndex;
@@ -30,7 +39,7 @@ let owl = [{
 
 
     function preload(){
-      for (let i = 0; i <=6; i++){
+      for (let i = 0; i <=9; i++){
         avo[i] = loadImage(`assets/avo_${i}.jpg`);
       }
       song = loadSound('assets/whoosh.mp3');
@@ -38,7 +47,7 @@ let owl = [{
     }
 
     function setup() {
-      cnv = createCanvas(600, 600);
+      cnv = createCanvas(1000, 600);
       song.loop();
       cnv.parent("#canvasDiv");
       c1 = color(144,166,160);
@@ -46,9 +55,9 @@ let owl = [{
       setGradient(c1, c2);
       textSize(32);
       imageMode(CENTER);
-      frameRate(8);
+      frameRate(12);
       textFont("'Cutive Mono', monospace;");
-      text("How to See Shapes Aesthetically", 80, 250);
+      text("How to See Shapes Aesthetically", 255, 260);
       button = select("#randButton");
       button.mousePressed(buttonPressed);
       button.class("randomizerButton");
@@ -104,6 +113,8 @@ let owl = [{
         c2 = color(144,166,160);
         setGradient(c1, c2);
         text("End of Lesson!", 80, 250)
+        text("How many did you see correct?", 80, 290)
+
       }
     }
 

@@ -1,7 +1,10 @@
 html, body {
   margin: 0;
   padding: 0;
+  text-decoration-color: white;
 }
 canvas {
   display: block;
+  text-decoration-color: white;
+
 }

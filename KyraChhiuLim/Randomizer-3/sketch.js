@@ -55,8 +55,8 @@ function setup() {
 
 
 
-
-  text("what should we get from mcdonalds?", 50, 200);
+  console.log(ronnie)
+  text("what should we get fr mcdonalds?", 50, 200);
 
 
 }
