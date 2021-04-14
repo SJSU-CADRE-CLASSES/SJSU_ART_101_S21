@@ -9,7 +9,9 @@ body{
   font-family: "futura" sans-serif;
 }
 canvas {
-  margin: 0 auto 0 auto;
-  display: block;
-  border: 5px sold black:
+  margin: auto;
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: -1;
 }

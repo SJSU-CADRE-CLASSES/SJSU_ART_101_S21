@@ -4,7 +4,7 @@
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  background(0);
+  background(15);
   stroke(250);
   noFill();
 }
