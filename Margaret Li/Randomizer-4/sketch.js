@@ -90,8 +90,8 @@ function draw() {
     textSize(28);
     textStyle(BOLD);
     fill(0);
-    text("Plastics harm animals!", 100, 100);
-    text("Click to see.", 100, 150);
+    text("Enter animals names.", 100, 150);
+    text("Click the randomizer.", 100, 200);
   }
   pop();
 
@@ -172,7 +172,7 @@ function addInput() {
 //remove the animals from the collection after animation
 //after all animals are removed, flag the animation is done
 function randomizer() {
-  
+
   animating = false;
 
   //for randomizing items from blanks and images
@@ -187,11 +187,11 @@ function randomizer() {
 
     //images of plastics
     image(plastics[randomIndexPlastics], width * 0.5, height * 0.5);
-    
+
     //random visible colors for the display text
     fill(random(100, 240), random(100, 180), random(100, 240));
     //add items from blanks to sentence
-    text(`The ${animals[randomIndexAnimals]} dislikes this.`, width * 0.15, height * 0.82);
+    text(`This plastic harms the ${animals[randomIndexAnimals]}.`, width * 0.15, height * 0.82);
     animals.splice(randomIndexAnimals, 1);
 
   } else {

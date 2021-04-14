@@ -5,3 +5,19 @@ html, body {
 canvas {
   display: block;
 }
+
+
+.ScifiButton {
+  padding: 20px;
+background-color: #00FF00;
+
+}
+.row {
+display: flex;
+
+
+}.clumn {
+  
+flex: 50%;
+
+}

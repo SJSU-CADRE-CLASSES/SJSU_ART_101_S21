@@ -105,7 +105,7 @@ function randomizer() {
     pandas.splice(randomIndex, 1);
   } else {
     background(random(200, 255));
-    text("No more cars left to giveaway!", 800, 450);
+    text("No more cars left to giveaway!", 600, 400);
   }
 }
 
