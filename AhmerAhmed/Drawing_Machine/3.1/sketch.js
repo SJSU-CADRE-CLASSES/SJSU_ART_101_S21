@@ -3,7 +3,7 @@
   //eraser is just stroke colored white and stroke size increased
 
 function setup() {
-  createCanvas(800, 800);
+  createCanvas(windowWidth, windowHeight);
   background(0);
   stroke(250);
   noFill();
@@ -19,7 +19,7 @@ function draw() {
 function keyTyped(){
   //saves the canvas
   if (key == 's'){
-    saveCanvas('fileName', 'png');
+    saveCanvas('Name_This_File_Something_-__-', 'png');
   }
   //creates an eraser
   if (key == 'e'){
