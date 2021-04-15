@@ -6,6 +6,8 @@ let randomIndex;
 let animating = false;
 let img;
 let imageCounter = 0;
+let strokeWidth = 0;
+let noiseOffset = 0;
 
 function preload() {
   for (let i = 0; i <= 10; i++) {
@@ -15,7 +17,7 @@ function preload() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight*0.85);
-  background(80, 130, 80);
+  background(80, 180, 80);
   strokeWeight(3);
   noFill();
 
@@ -68,7 +70,6 @@ function draw() {
     textStyle(BOLD);
     text("Protect the animals.", width * 0.4, height * 0.6);
   }
-
 }
 
 function randomizer() {
@@ -76,6 +77,7 @@ function randomizer() {
   if (endangered[0]) {
     clear();
     background(80, 180, 80);
+
     randomIndexEndangered = int(random(endangered.length));
     image(endangered[randomIndexEndangered], width * 0.5, height * 0.5);
 
@@ -102,8 +104,8 @@ function keyTyped() {
 
 function drawAnimal() {
   beginShape(); //draw image in curvilinear lines
-  //fill(150);
-  stroke(0, 0, 255);
+  stroke(random(80), random(80), random(255));
+
   for (let i = 0; i < array.length; i++) {
     curveVertex(array[i][0], array[i][1]);
   }
@@ -111,9 +113,9 @@ function drawAnimal() {
 
   //draw the same image at a smaller scale
   push();
-  translate(0.5 * width, 0.5 * height);
+  translate(0.6 * width, 0.4 * height);
   beginShape();
-  stroke(255, 0, 0);
+  stroke(random(255), random(80), random(80));
   scale(0.5);
   for (let i = 0; i < array.length; i++) {
     curveVertex(array[i][0], array[i][1]);
@@ -125,4 +127,9 @@ function drawAnimal() {
 
 function mousePressed() {
   array = [];
+
+  //increase stroke width
+  strokeWeight(strokeWidth);
+  noiseOffset += 0.15;
+  strokeWidth = noise(noiseOffset)*20;
 }
