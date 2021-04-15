@@ -104,7 +104,7 @@ function keyTyped() {
 
 function drawAnimal() {
   beginShape(); //draw image in curvilinear lines
-  stroke(random(80), random(80), random(255));
+  stroke(0, 0, 255);
 
   for (let i = 0; i < array.length; i++) {
     curveVertex(array[i][0], array[i][1]);
@@ -115,7 +115,7 @@ function drawAnimal() {
   push();
   translate(0.6 * width, 0.4 * height);
   beginShape();
-  stroke(random(255), random(80), random(80));
+  stroke(255, 0, 0);
   scale(0.5);
   for (let i = 0; i < array.length; i++) {
     curveVertex(array[i][0], array[i][1]);
@@ -128,8 +128,4 @@ function drawAnimal() {
 function mousePressed() {
   array = [];
 
-  //increase stroke width
-  strokeWeight(strokeWidth);
-  noiseOffset += 0.15;
-  strokeWidth = noise(noiseOffset)*20;
 }
