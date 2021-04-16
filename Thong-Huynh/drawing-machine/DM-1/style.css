@@ -1,0 +1,20 @@
+body {
+  width:100vw;
+  margin: 0;
+  /* display: flex;
+  justify-content: center; */
+}
+canvas {
+  display: block;
+  width: 800px;
+  margin: 0 auto;
+}
+
+.title {
+  width: 600px;
+  margin: 0 auto;
+}
+
+.reLoadButton {
+  margin-bottom: 1rem;
+}
