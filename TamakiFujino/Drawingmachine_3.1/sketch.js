@@ -1,10 +1,11 @@
 let array = [];
 
 function setup(){
-  createCanvas(600,600);
-  background(220);
+  createCanvas(windowWidth,windowHeight);
+background(255);
 
   strokeWeight(20);
+  noFill();
 }
 
 function draw() {
@@ -25,13 +26,12 @@ function keyTyped(){
     saveCanvas('fileName', 'png');
 
   } else if (key === 'd'){
-    //display image
-    // console.log(array[0]);
-    // console.log(array[0][1]);
+
+    beginShape();
     for(let i = 0; i < array.length - 1; i++){
-      console.log(i);
       curveVertex(array[i][0], array[i][1]);
     }
+    endShape();
   }
   return false;
 }
