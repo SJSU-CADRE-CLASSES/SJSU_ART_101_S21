@@ -36,7 +36,7 @@ function keyTyped() {
     endShape();
 
   }
-  if (key == 'c'){
+  if (key == 'c') {
     clear();
   }
   return false;
