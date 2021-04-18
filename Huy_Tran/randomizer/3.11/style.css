@@ -24,7 +24,7 @@ h4 {
 
 .sidebar {
 	background-color: #333;
-	box-shadow: 0px 0px 10px rgba(30, 30, 30, 0.7);
+	box-shadow: 0px 0px 10px rgba(30, 30, 30, 10);
 	color: #fff;
 	position: absolute;
 	left: 0;
