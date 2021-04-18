@@ -39,6 +39,9 @@ function keyTyped() {
       curveVertex(array[i][0], array[i][1]);
     }
     endShape();
+  } else if (key === 'c') {
+    clear();
+    // drawGrid();
   }
   return false;
 }
