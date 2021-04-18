@@ -1,44 +1,39 @@
-const colorInput = document.getElementById('color');
-const weight = document.getElementById('weight');
-const clear = document.getElementById('clear');
-const paths = [];
-let currentPath = [];
+let array = [];
 
 function setup() {
-  	createCanvas(window.innerWidth, window.innerHeight);
-  	background(255);
+  createCanvas(640, 480);
+  background(230);
+
+  strokeWeight(7);
+  noFill();
 }
 
 function draw() {
-	noFill();
+  if (mouseIsPressed) {
+    // stroke(map(mouseX, 0, 600, 0, 255, true));
+    // line(width - mouseX, height - mouseY, width - pmouseX, height - pmouseY, );
+    // line(mouseX, mouseY, pmouseX, pmouseY);
+    background(55);
+    array.push([mouseX, mouseY]);
 
-	if(mouseIsPressed){
-		const point = {
-			x: mouseX,
-			y: mouseY,
-			color: colorInput.value,
-			weight: weight.value,
-		};
-		currentPath.push(point);
-	}
-
-	paths.forEach(path => {
-		beginShape();
-		path.forEach(point => {
-			stroke(point.color);
-			strokeWeight(point.weight);
-			vertex(point.x, point.y);
-		});
-		endShape();
-	});
+  }
 }
 
-function mousePressed() {
-	currentPath = [];
-	paths.push(currentPath);
-}
+function keyTyped() {
+  //Save canvas to file name
+  if (key === 's') {
+    //save current drawing
+    saveCanvas('drawSomething', 'png');
 
-clear.addEventListener('click', () => {
-	paths.splice(0);
-	background(255);
-});
+  } else if (key === 'd') {
+    //display image
+    background(220);
+    beginShape();
+    for (var i = 0; i < array.length - 1; i++) {
+      line(array[i][0], array[i][1], array[i + 1][0], array[i + 1][1]);
+      // curveVertex(array[i][0], array[i][1], array[i + 1][0], array[i + 1][1]);
+      // curveVertex(array[i][0], array[i][1]);
+    }
+  }
+  return false;
+}
