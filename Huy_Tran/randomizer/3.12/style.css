@@ -9,14 +9,9 @@ body {
 }
 
 canvas {
-  margin: auto;
   z-index: -1;
-  display: flow-root;
-  border: 10px dash black;
-  border: 3px solid orange;
-  border-radius: 15px;
-  border-style: so;
-  position: absolute;
+  border: solid orange;
+  position: center;
 }
 
 .title{
@@ -36,7 +31,4 @@ canvas {
 
 .content_text {
   font-family: sans-serif;
-}
-.bg_content {
-  background: #fbfcbc;
 }
