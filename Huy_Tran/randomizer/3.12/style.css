@@ -1,0 +1,42 @@
+html{
+  margin: 0;
+  padding: 0;
+}
+body {
+  margin: auto;
+  padding: 0;
+  text-align: center;
+}
+
+canvas {
+  margin: auto;
+  z-index: -1;
+  display: flow-root;
+  border: 10px dash black;
+  border: 3px solid orange;
+  border-radius: 15px;
+  border-style: so;
+  position: absolute;
+}
+
+.title{
+  font-family: sans-serif;
+  font-kerning: auto;
+
+}
+
+.CTA_italic{
+  font-style: italic;
+}
+
+.instruct{
+  font-style: normal;
+  font-family: sans-serif;
+}
+
+.content_text {
+  font-family: sans-serif;
+}
+.bg_content {
+  background: #fbfcbc;
+}
