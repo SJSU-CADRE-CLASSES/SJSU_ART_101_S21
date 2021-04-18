@@ -3,7 +3,7 @@ html{
   padding: 0;
 }
 body {
-  margin: 0;
+  margin: auto;
   padding: 0;
   text-align: center;
 }
@@ -15,7 +15,7 @@ canvas {
   border: 10px dash black;
   border: 3px solid orange;
   border-radius: 15px;
-  border-style: dashed;
+  border-style: so;
   position: absolute;
 }
 
@@ -36,4 +36,7 @@ canvas {
 
 .content_text {
   font-family: sans-serif;
+}
+.bg_content {
+  background: #fbfcbc;
 }
