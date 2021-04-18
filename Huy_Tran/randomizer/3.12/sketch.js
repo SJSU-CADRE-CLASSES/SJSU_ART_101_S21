@@ -1,5 +1,5 @@
 let array = [];
-let backgroundColor = 200;
+let backgroundColor = 100;
 
 function setup() {
   createCanvas(450, 450);
@@ -7,7 +7,7 @@ function setup() {
 
 
   drawGrid();
-  // noFill();
+  noFill();
 }
 
 
@@ -31,15 +31,21 @@ function keyTyped() {
 
   } else if (key === 'd') {
     //display image
-    background(220);
+    background(200);
+
     beginShape();
-      for (var i = 0; i < array.length; i++) {
-        // line(array[i][0], array[i][1], array[i + 1][0], array[i + 1][1]);
-        curveVertex(array[i][0], array[i][1]);
-      }
+    for (var i = 0; i < array.length; i++) {
+      // line(array[i][0], array[i][1], array[i + 1][0], array[i + 1][1]);
+      curveVertex(array[i][0], array[i][1]);
+    }
     endShape();
   }
   return false;
+}
+
+function mousePressed() {
+  array = [];
+  backgroundColor = 200;
 }
 
 function drawGrid() {
@@ -47,17 +53,16 @@ function drawGrid() {
   fillColor = 255;
   strokeWeight(0);
 
-  for (let i = 0; i <= width; i += width/ numCells) {
-    for (let j = 0; j <= width; j += height/ numCells) {
+  for (let i = 0; i <= width; i += width / numCells) {
+    for (let j = 0; j <= width; j += height / numCells) {
       if (fillColor === 255) {
-        fillColor = 200;
+        fillColor = 210;
       } else {
         fillColor = 255;
       }
       fill(fillColor);
-      rect(i, j, width/ numCells, height/ numCells);
+      rect(i, j, width / numCells, height / numCells);
     }
   }
-
-  strokeWeight(10);
+  strokeWeight(5);
 }

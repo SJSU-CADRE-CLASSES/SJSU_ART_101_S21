@@ -12,6 +12,7 @@ canvas {
   z-index: -1;
   border: solid orange;
   position: center;
+  border-width: thick;
 }
 
 .title{
