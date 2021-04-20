@@ -5,7 +5,6 @@ function setup() {
   // background(0, 255, 255);
 
   drawGrid();
-  strokeWeight(5);
   noFill();
 }
 
@@ -47,7 +46,7 @@ function keyTyped() {
 function drawGrid() {
   numCells = 20;
   fillColor = 255;
-  noStroke();
+  strokeWeight(0);
 
   for (let i = 0; i <= width; i += width / numCells) {
     for (let j = 0; j <= height; j += height / numCells) {
