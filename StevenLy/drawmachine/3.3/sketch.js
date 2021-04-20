@@ -59,6 +59,5 @@ function drawGrid() {
       rect(i, j, width / numCells, height / numCells);
     }
   }
-
   strokeWeight(5);
 }
