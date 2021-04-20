@@ -1,0 +1,25 @@
+html {
+  margin: 10px;
+  padding: 30px;;
+}
+
+body {
+ margin:0 auto 0 auto;
+ text-align: center;
+ font-family: monospace;
+  }
+
+canvas {
+  display: block;
+  border: 5px solid black;
+  margin: auto;
+  text-align: center;
+}
+
+h1 {
+}
+
+h3 {
+}
+p{
+}

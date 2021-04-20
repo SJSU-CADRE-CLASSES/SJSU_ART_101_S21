@@ -2,6 +2,16 @@ html, body {
   margin: 0;
   padding: 0;
 }
+
 canvas {
   display: block;
+}
+
+title {
+  font-family: sans-serif;
+  font-variant-caps: all-small-caps;
+}
+
+.instruct {
+  font-family: sans-serif;
 }
