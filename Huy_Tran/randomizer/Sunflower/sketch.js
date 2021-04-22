@@ -50,7 +50,7 @@ function draw() {
     const clr = color(hue, sat, light);
     fill(clr);
 
-    ellipse(x, y, r);
+    rect(x, y, r);
 
   }
 }
