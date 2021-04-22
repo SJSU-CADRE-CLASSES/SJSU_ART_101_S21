@@ -5,8 +5,8 @@ let noiseOffset = 0.0;
 // let array = [];
 
 function setup() {
-  createCanvas(windowWidth*0.625, windowHeight*0.625);
-  // createCanvas(600, 600);
+  // createCanvas(windowWidth*0.625, windowHeight*0.625);
+  createCanvas(800, 800);
   // background(200,200,200);
   background(bkg);
 
