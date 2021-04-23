@@ -2,11 +2,12 @@ html{
   margin: 0;
   padding: 0;
 }
-body {
+
+body{
   margin: 100px auto 0 auto;
   width: 80%;
   text-align: center;
-  font-family: "Courier", monoface;
+  font-family: fantasy;
 }
 canvas {
   margin: 0 auto 0 auto;
