@@ -1,0 +1,32 @@
+body {
+  width:100vw;
+  margin: 0;
+  font-family: monospace;
+  /* display: flex;
+  justify-content: center; */
+}
+canvas {
+  display: block;
+  /* position: absolute; */
+  width: 800px;
+  margin: 0 auto;
+  border: 5px solid rgb(191, 46, 17);
+  /* border-radius: 20px; */
+}
+
+.title {
+  width: 600px;
+  margin: 0 auto;
+}
+
+.reLoadButton {
+  margin-bottom: 1rem;
+}
+
+p {
+  font-size: 1rem;
+}
+
+.del {
+  text-decoration: none;
+}

@@ -20,6 +20,7 @@ let noiseOffset = 0;
 
 let textArray;
 let newYork;
+let currentEndangered;
 
 function preload() {
   for (let i = 0; i <= 10; i++) {
@@ -83,21 +84,17 @@ function draw() {
     fill(0);
     noStroke();
     textSize(24);
-    text("Drag to trace. Hit 's' to save.", 0.15 * width, 0.6 * height);
+    text("Drag to trace. Hit 's' to save. Hit 'c' to redraw.", 0.15 * width, 0.6 * height);
   }
 
   if (animating == true && endangered.length > 0) {
     clear();
-    drawPixels();
+    drawPixels();  //multicolored background
 
     //upload images of endangered species
+    imageCounter +=1
     imageCounter %= endangered.length;
     image(endangered[imageCounter], width / 2, height / 2);
-    if (imageCounter < endangered.length - 1) {
-      imageCounter++;
-    } else {
-      imageCounter = 0;
-    }
   }
 
   if (mouseIsPressed) {
@@ -113,7 +110,7 @@ function draw() {
     drawAnimal();
   }
 
-  if (final) {
+  if (final) {    //last frame
     drawPixels();
 
     for (i = 0; i < turtles.length; i++) {
@@ -133,13 +130,14 @@ function draw() {
   }
 }
 
-function randomizer() {
+function randomizer() {   //randomize preloaded images
   animating = false;
   if (endangered[0]) {
     clear();
     drawPixels();
 
     randomIndexEndangered = int(random(endangered.length));
+    currentEndangered = endangered[randomIndexEndangered];
     image(endangered[randomIndexEndangered], width * 0.5, height * 0.5);
 
     endangered.splice([randomIndexEndangered], 1);
@@ -158,7 +156,13 @@ function buttonPressed() {
 function keyTyped() {
   if (key === 's') { //save image
     saveCanvas('drawing', 'png');
+  } else if (key==='c'){
+    clear();
+    array = [];
+    drawPixels();
+    image(currentEndangered, width / 2, height / 2);
   }
+
 }
 
 function drawAnimal() {
@@ -193,6 +197,20 @@ function drawAnimal() {
   //lines with different shades of green
   stroke(random(40, 90), 170, random(40, 90));
   scale(0.5);
+  for (let i = 0; i < array.length; i++) {
+    curveVertex(array[i][0], array[i][1]);
+  }
+
+  endShape();
+  pop();
+
+  //draw another image at a smaller scale
+  push();
+  translate(-0.2 * width, 0.15 * height);
+  beginShape();
+  //lines with different shades of green
+  stroke(170, 100, random(0, 50));
+  scale(0.85);
   for (let i = 0; i < array.length; i++) {
     curveVertex(array[i][0], array[i][1]);
   }
