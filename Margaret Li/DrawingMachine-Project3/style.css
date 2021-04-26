@@ -1,0 +1,15 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+canvas {
+  display: block;
+  border: 5px solid lightgreen;
+}
+
+.randomizerButton {
+  padding: 10px;
+  background-color: #88b6eb;
+}

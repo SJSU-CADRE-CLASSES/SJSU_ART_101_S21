@@ -26,14 +26,7 @@ function setup() {
   noteCC = loadSound('assets/CC.mp3');
 
   noFill();
-   a = height / 2;
 
-  // Create an Audio input
- mic = new p5.AudioIn();
-
- // start the Audio Input.
- // By default, it does not .connect() (to the computer speakers)
- mic.start();
 }
 
 function draw() {
@@ -57,8 +50,7 @@ background(245,245,220, 0.5);
 
 function keyTyped() {
 
-let vol = mic.getLevel();
-let h = map(vol, 0, 0.5, 0, 30);
+
 
   if (key === 's') {
     //save this image
