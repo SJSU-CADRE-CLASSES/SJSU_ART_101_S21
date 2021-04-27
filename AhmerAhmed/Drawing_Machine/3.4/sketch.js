@@ -293,6 +293,7 @@ function keyTyped(){
   if (key == 'f'){
     clear();
     background(15,15,15);
+    musicStop();
   }
 }
 
