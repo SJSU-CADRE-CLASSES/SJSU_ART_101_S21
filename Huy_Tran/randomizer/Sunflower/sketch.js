@@ -1,14 +1,15 @@
 //------LET DRAW SUNFLOWER TO SHINE MY LIFE-------//
 
 let t;
-const frames = 5000;
+const frames = 5000; // define frame as a constant and give it the value 5000
 
 function setup() {
   const size = min(window.innerWidth, window.innerHeight);
   // createCanvas(size, size);
-  createCanvas(width * 5, height * 5);
+  createCanvas(width * 5,  height * 5);
   noStroke();
   colorMode(RGB, 1);
+  // blendMode(MULTIPLY);
 }
 
 function cosn(v) {
@@ -20,7 +21,7 @@ function invCosn(v) {
 }
 //Refeferen site: https://www.invisionapp.com/inside-design/golden-ratio-designers/
 const radius = Math.sqrt(0.5); //--Draw the length of radius from center to edge of canvas.
-const dotSize = 0.2; //--Set the initial circle size.
+const dotSize = 0.1; //--Set the initial circle size.
 const PHI = (1 + Math.sqrt(5)) / 2; //--Draw the golden ratio formula ( PHI = 1+squareroot(5) /2 ).
 
 function draw() {
@@ -28,7 +29,7 @@ function draw() {
   t = mouseX / width;
   t = mouseY / height;
 
-  // t = fract(frameCount / frames);
+  // t = fract(frameCount / frames);//----Inactive autorun spriral
   background(0);
 
   const count = 1000 * invCosn(t); //--ZOOM OUT and inverse the animation
@@ -50,29 +51,28 @@ function draw() {
     const clr = color(hue, sat, light);
     fill(clr);
 
-    rect(x, y, r);
-
+    circle(x, y, r);
   }
 }
 
-////---------------------------CAPTURE FAV PATTERN--------------------------///
+////---------------------------SNAP FAV PATTERN--------------------------///
 function keyTyped() {
   //Save canvas to file name
   if (key === 's') {
     //save current drawing
     saveCanvas('WOOHOO, NICE PATTERN', 'png');
 
-  } else if (key === 'd') {
-    //display image
-    background(200);
-
-    beginShape();
-    for (var i = 0; i < array.length; i++) {
-      // line(array[i][0], array[i][1], array[i + 1][0], array[i + 1][1]);
-      curveVertex(array[i][0], array[i][1]);
-    }
-    endShape();
-  } else if (key === 'c') {
+  // } else if (key === 'd') {
+  //   //display image
+  //   background(0);
+  //
+  //   beginShape();
+  //   for (var i = 0; i < array.length; i++) {
+  //     // line(array[i][0], array[i][1], array[i + 1][0], array[i + 1][1]);
+  //     curveVertex(array[i][0], array[i][1]);
+  //   }
+  //   endShape();
+} else if (key === 'c') {
     clear();
     // drawGrid();
   }
