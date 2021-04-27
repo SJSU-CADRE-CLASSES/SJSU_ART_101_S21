@@ -6,11 +6,16 @@ var song;
 let edm = [];
 let lofi = [];
 let rando;
+let randoSong;
 var counter = 0;
 
 function preload(){
   //edm songs preloaded
-  edmSong = loadSound(`edm/edmbeat.mp3`);
+  fears = loadSound(`edm/Fears.mp3`);
+  lion = loadSound(`edm/Lionhearted.mp3`);
+  mother = loadSound(`edm/Mother.mp3`);
+  prince = loadSound(`edm/Prince.mp3`);
+  shelter = loadSound(`edm/Shelter.mp3`);
 
   //edm images
   for(let i = 1; i<=3; i++){
@@ -18,7 +23,11 @@ function preload(){
   }
 
   //lofi songs preloaded
-  lofiSong = loadSound(`lofi/lofibeat.mp3`);
+  bunny = loadSound(`lofi/BunnyGirl.mp3`);
+  cafe = loadSound(`lofi/Cafe.mp3`);
+  fukashigi = loadSound(`lofi/Fu.mp3`);
+  kairi = loadSound(`lofi/Kairi.mp3`);
+  kingdom = loadSound(`lofi/Kingdom.mp3`);
 
   //lofi images
   for(let i = 1; i<=3; i++){
@@ -37,6 +46,7 @@ function setup() {
   textSize(40);
   text("Click 'l' to load the lofi selection.", width/3, height/3);
   text("Click 'm' to load the edm selection.", width/3.15, height/2);
+  text("Click 'f' to load the free draw.", width/2.85, height/1.5);
   pop();
 }
 
@@ -100,15 +110,189 @@ function keyTyped(){
   if (key == 'l'){
     clear();
     background(15,15,15);
-    lofiSong.play();
+    musicStop();
+    randoSong = int(random(1,6));
+    if(randoSong == 1){
+      push();
+      fill(255, 128, 234);
+      textSize(20);
+      text("Now playing: a simple bunny girl.", width/100, height/20);
+      pop();
+      bunny.play();
+    }if(randoSong == 2){
+      push();
+      fill(255, 128, 234);
+      textSize(18);
+      text("Now playing: Walking in the Rain to a Cafe to Write Down Private Thoughts in Public.", width/100, height/20);
+      pop();
+      cafe.play();
+    }if(randoSong == 3){
+      push();
+      fill(255, 128, 234);
+      textSize(20);
+      text("Now playing: Fukashigi no Carte but is it okay if it's lofi?.", width/100, height/20);
+      pop();
+      fukashigi.play();
+    }if(randoSong == 4){
+      push();
+      fill(255, 128, 234);
+      textSize(20);
+      text("Now playing: Kairi.", width/100, height/20);
+      pop();
+      kairi.play();
+    }if(randoSong == 5){
+      push();
+      fill(255, 128, 234);
+      textSize(20);
+      text("Now playing: Kingdom.", width/100, height/20);
+      pop();
+      kingdom.play();
+    }
     lofiSelection();
   }
   //calls the edm stuff
   if (key == 'm'){
     clear();
     background(15,15,15);
-    edmSong.play();
+    musicStop();
+    randoSong = int(random(1,6));
+    if(randoSong == 1){
+      push();
+      fill(255, 128, 234);
+      textSize(18);
+      text("Now playing: Face my Fears.", width/100, height/20);
+      pop();
+      fears.play();
+    }if(randoSong == 2){
+      push();
+      fill(255, 128, 234);
+      textSize(20);
+      text("Now playing: Lionhearted.", width/100, height/20);
+      pop();
+      lion.play();
+    }if(randoSong == 3){
+      push();
+      fill(255, 128, 234);
+      textSize(20);
+      text("Now playing: Mother.", width/100, height/20);
+      pop();
+      mother.play();
+    }if(randoSong == 4){
+      push();
+      fill(255, 128, 234);
+      textSize(20);
+      text("Now playing: The Prince.", width/100, height/20);
+      pop();
+      prince.play();
+    }if(randoSong == 5){
+      push();
+      fill(255, 128, 234);
+      textSize(20);
+      text("Now playing: Shelter.", width/100, height/20);
+      pop();
+      shelter.play();
+    }/*
+    if(fears.isPlaying()){
+      lion.stop();
+      mother.stop();
+      prince.stop();
+      shelter.stop();
+    }else{
+      randoSong = int(random(2,6));
+      }if(randoSong == 2){
+        lion.play();
+      }if(randoSong == 3){
+        mother.play();
+      }if(randoSong == 4){
+        prince.play();
+      }if(randoSong == 5){
+        shelter.play();
+      }
+    if(lion.isPlaying()){
+      fears.stop();
+      mother.stop();
+      prince.stop();
+      shelter.stop();
+    }else{
+      randoSong = int(random(1,6));
+      if(randoSong == 2){
+        randoSong = int(random(1,6));
+      }
+      if(randoSong == 1){
+        fears.play();
+      }if(randoSong == 3){
+        mother.play();
+      }if(randoSong == 4){
+        prince.play();
+      }if(randoSong == 5){
+        shelter.play();
+      }
+    }
+    if(mother.isPlaying()){
+      fears.stop();
+      lion.stop();
+      prince.stop();
+      shelter.stop();
+    }else{
+      randoSong = int(random(1,6));
+      if(randoSong == 3){
+        randoSong = int(random(1,6));
+      }
+      if(randoSong == 1){
+        fears.play();
+      }if(randoSong == 2){
+        lion.play();
+      }if(randoSong == 4){
+        prince.play();
+      }if(randoSong == 5){
+        shelter.play();
+      }
+    }
+    if(prince.isPlaying()){
+      fears.stop();
+      lion.stop();
+      mother.stop();
+      shelter.stop();
+    }else{
+      randoSong = int(random(1,6));
+      if(randoSong == 4){
+        randoSong = int(random(1,6));
+      }
+      if(randoSong == 1){
+        fears.play();
+      }if(randoSong == 2){
+        lion.play();
+      }if(randoSong == 3){
+        mother.play();
+      }if(randoSong == 5){
+        shelter.play();
+      }
+    }
+    if(shelter.isPlaying()){
+      fears.stop();
+      lion.stop();
+      mother.stop();
+      prince.stop();
+    }else{
+      randoSong = int(random(1,6));
+      if(randoSong == 5){
+        randoSong = int(random(1,6));
+      }
+      if(randoSong == 1){
+        fears.play();
+      }if(randoSong == 2){
+        lion.play();
+      }if(randoSong == 3){
+        mother.play();
+      }if(randoSong == 4){
+        prince.play();
+      }
+    }*/
     edmSelection();
+  }
+  if (key == 'f'){
+    clear();
+    background(15,15,15);
   }
 }
 
@@ -130,4 +314,17 @@ function lofiSelection(){
 function edmSelection(){
   rando = int(random(1,4));
   image(edm[rando], width/1.4, height/15)
+}
+
+function musicStop(){
+  fears.stop();
+  lion.stop();
+  mother.stop();
+  prince.stop();
+  shelter.stop();
+  bunny.stop();
+  cafe.stop();
+  fukashigi.stop();
+  kairi.stop();
+  kingdom.stop();
 }
