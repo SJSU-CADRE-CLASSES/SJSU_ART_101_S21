@@ -115,7 +115,7 @@ function keyTyped(){
     if(randoSong == 1){
       push();
       fill(255, 128, 234);
-      textSize(20);
+      textSize(18);
       text("Now playing: a simple bunny girl.", width/100, height/20);
       pop();
       bunny.play();
@@ -129,21 +129,21 @@ function keyTyped(){
     }if(randoSong == 3){
       push();
       fill(255, 128, 234);
-      textSize(20);
+      textSize(18);
       text("Now playing: Fukashigi no Carte but is it okay if it's lofi?.", width/100, height/20);
       pop();
       fukashigi.play();
     }if(randoSong == 4){
       push();
       fill(255, 128, 234);
-      textSize(20);
+      textSize(18);
       text("Now playing: Kairi.", width/100, height/20);
       pop();
       kairi.play();
     }if(randoSong == 5){
       push();
       fill(255, 128, 234);
-      textSize(20);
+      textSize(18);
       text("Now playing: Kingdom.", width/100, height/20);
       pop();
       kingdom.play();
@@ -166,28 +166,28 @@ function keyTyped(){
     }if(randoSong == 2){
       push();
       fill(255, 128, 234);
-      textSize(20);
+      textSize(18);
       text("Now playing: Lionhearted.", width/100, height/20);
       pop();
       lion.play();
     }if(randoSong == 3){
       push();
       fill(255, 128, 234);
-      textSize(20);
+      textSize(18);
       text("Now playing: Mother.", width/100, height/20);
       pop();
       mother.play();
     }if(randoSong == 4){
       push();
       fill(255, 128, 234);
-      textSize(20);
+      textSize(18);
       text("Now playing: The Prince.", width/100, height/20);
       pop();
       prince.play();
     }if(randoSong == 5){
       push();
       fill(255, 128, 234);
-      textSize(20);
+      textSize(18);
       text("Now playing: Shelter.", width/100, height/20);
       pop();
       shelter.play();
