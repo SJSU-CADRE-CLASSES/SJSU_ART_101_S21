@@ -69,7 +69,7 @@ function drawGrid(){
   for(let i = 0; i <= width; i += width/numCells){
     for(let j = 0; j <= height; j += height/numCells){
       if(fillColor == 15){
-        fillColor = 40;
+        fillColor = 50;
       }else{
         fillColor = 15;
       }
