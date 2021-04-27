@@ -28,8 +28,8 @@ const PHI = (1 + Math.sqrt(5)) / 2; //--Draw the golden ratio formula ( PHI = 1+
 //-----------------DEFINE THE xPOS, yPOS TO GENERATE PATTERN------------------//
 function draw() {
   scale(width, height);
-  // t = mouseX / width;
-  // t = mouseY / height;
+  t = mouseX / width;
+  t = mouseY / height;
 
   // t = fract(frameCount / frames);//----Inactive autorun spriral
   background(0);
