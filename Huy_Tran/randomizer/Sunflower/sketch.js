@@ -9,7 +9,7 @@ function setup() {
   createCanvas(width * 5,  height * 5);
   noStroke();
   colorMode(RGB, 1);
-  // blendMode(MULTIPLY);
+  blendMode(MULTIPLY);
 }
 
 function cosn(v) {
@@ -78,3 +78,4 @@ function keyTyped() {
   }
   return false;
 }
+////-------------------------------------------------------------------------///
