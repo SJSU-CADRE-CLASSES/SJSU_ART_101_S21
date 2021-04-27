@@ -12,7 +12,7 @@ function Bee(x, y) {
   }
 
   this.show = function() {
-    stroke(255, 255);
+    stroke(0,255,0, 10);
     strokeWeight(2);
     line(this.pos.x, this.pos.y, this.prev.x, this.prev.y);
 
@@ -24,7 +24,7 @@ function Bee(x, y) {
     var force = p5.Vector.sub(target, this.pos);
     var dsquared = force.magSq();
     dsquared = constrain(dsquared, 5, 200);
-    var G = 15;
+    var G = 50;
     var strength = G / dsquared;
     force.setMag(strength);
     this.acc.add(force);

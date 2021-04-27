@@ -4,32 +4,34 @@ var bees = [];
 function setup() {
 
   createCanvas(windowWidth, windowHeight);
-
-
-  for (var i = 0; i < 100; i++) {
+  background(10);
+  for (var i = 0; i < 50; i++) {
     bees.push(new Bee(random(width), random(height)));
 
-  }
   // for (var i = 0; i < 10; i++) {
   // attractors.push(createVector(random(width), random(height)));
 
 // }
-background(51);
+
 
 
 }
 
+}
+
+
+
 function mousePressed() {
-  attractors.push(createVector(mouseX, mouseY))
+  attractors.push(createVector(mouseX, mouseY, 10, 10))
 }
 
 function draw() {
-  background(51);
+  // background(51);
   stroke(255);
   strokeWeight(4);
 
   for (var j = 0; j < attractors.length; j++) {
-    stroke(0, 255, 0)
+    stroke(255)
   point(attractors[j].x, attractors[j].y);
 }
   for (var i = 0; i < bees.length; i++) {
@@ -40,4 +42,21 @@ function draw() {
     bee.update();
     bee.show();
   }
+}
+
+function keyTyped(){
+if (key === 's'){
+  saveCanvas('fileName', 'png');
+
+}else if (key === 'c'){
+  clear();
+  setup();
+}
+
+document.addEventListener('keyup', function(e){
+  if(e.keyCode == 13)
+    window.location.reload();
+})
+
+
 }
