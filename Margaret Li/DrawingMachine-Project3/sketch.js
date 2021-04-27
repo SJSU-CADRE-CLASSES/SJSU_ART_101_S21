@@ -206,7 +206,7 @@ function drawAnimal() {
 
   //draw another image at a smaller scale
   push();
-  translate(-0.15 * width, 0.15 * height);
+  translate(-0.12 * width, 0.15 * height);
   beginShape();
   //lines with different shades of dark brown
   stroke(random(40, 170), random(20, 100), random(0, 50));
@@ -219,11 +219,11 @@ function drawAnimal() {
 
   //draw another image at a smaller scale
   push();
-  translate(-0.25 * width, 0.25 * height);
+  translate(-0.18 * width, 0.25 * height);
   beginShape();
   //lines with different shades of tan
-  stroke(random(90, 200), random(100, 220), random(50, 100));
-  scale(0.7);
+  stroke(random(120, 240), random(110, 230), random(70, 100));
+  scale(0.65);
   for (let i = 0; i < array.length; i++) {
     curveVertex(array[i][0], array[i][1]);
   }
