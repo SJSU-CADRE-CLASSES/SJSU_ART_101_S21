@@ -13,13 +13,8 @@ function setup() {
 
 // }
 
-
-
 }
-
 }
-
-
 
 function mousePressed() {
   attractors.push(createVector(mouseX, mouseY, 10, 10))
