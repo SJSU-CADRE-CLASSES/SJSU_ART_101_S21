@@ -17,12 +17,12 @@ Cell.prototype.show = function() {
   rect(this.x, this.y, this.w, this.w);
 if (this.revealed){
   if(this.colorIn) {
-  // var r = random(0, 255);
-  // var g = random(0, 255);
-  // var b = random(0, 255);
-  //
-  //   fill(r, g, b)
-  fill(0)
+  var r = random(0, 255);
+  var g = random(0, 255);
+  var b = random(0, 255);
+
+    fill(r, g, b)
+  // fill(0)
     rect(this.x, this.y, this. w, this. w);
 
   }
