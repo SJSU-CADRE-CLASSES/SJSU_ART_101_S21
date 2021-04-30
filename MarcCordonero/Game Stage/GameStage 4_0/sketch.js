@@ -33,12 +33,12 @@ function draw() {
 
 function title() {
   background(0);
-  textSize(80);
+  textSize(40);
   fill(255);
   textAlign(CENTER);
   text('For My Friend Martin', w/2, h/5);
-  textSize(30);
-  text('He gets sad when he looses in LoL', w/2, h/2);
+  textSize(18);
+  text('He gets sad when he looses in League of Legends', w/2, h/4);
   textSize(30);
   text('click anywhere to start', w/2, h/2);
 }
