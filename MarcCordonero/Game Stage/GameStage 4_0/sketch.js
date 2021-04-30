@@ -36,8 +36,9 @@ function title() {
   textSize(80);
   fill(255);
   textAlign(CENTER);
-  text('MY GAME', w/2, h/5);
-
+  text('For My Friend Martin', w/2, h/5);
+  textSize(30);
+  text('He gets sad when he looses in LoL', w/2, h/2);
   textSize(30);
   text('click anywhere to start', w/2, h/2);
 }
