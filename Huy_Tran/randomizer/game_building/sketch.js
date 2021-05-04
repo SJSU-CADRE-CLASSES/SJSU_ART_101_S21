@@ -3,13 +3,15 @@
 
 'use strict';
 
+let state = 'title';
+let cnv;
 
 function setup() {
-  createCanvas(600, 600);
+  createCanvas(450, 600);
+  background(100);
 }
 
 function draw() {
-
   if (state === 'title') {
     title();
   } else if (state === 'level 1') {
@@ -17,15 +19,19 @@ function draw() {
   }
 }
 
+function mousePressed() {
+  state = 'level1';
+}
+
 function title() {
-  background(200);
+  background(100);
   textSize(50);
   text('VIRUS SHOOTING', 100, 100);
   stroke(255);
 }
 
 function level1() {
-  background(100);
+  background(50 150 200);
   textSize(50);
   text('VIRUS SHOOTING', 100, 100);
   stroke(255);
