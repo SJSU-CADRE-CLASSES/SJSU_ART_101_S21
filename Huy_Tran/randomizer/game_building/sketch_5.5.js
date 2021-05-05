@@ -67,6 +67,7 @@ function level1MouseClicked() {
   points++;
   console.log('points = ' + points);
 
+//counting clicks to win
   if (points>=10) {
     state = 'You Win';
   }
