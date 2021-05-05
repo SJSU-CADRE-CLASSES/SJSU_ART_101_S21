@@ -1,0 +1,21 @@
+html {
+  margin: 0;
+  paddin: 0;
+  background-color: black;
+
+}
+
+body {
+margin: 20px auto 0 auto;
+/* width: 80%:auto; */
+text-align: center;
+font-family: "Verdana", sans-serif;
+/* background-color: solid black; */
+color: white;
+}
+
+canvas {
+margin: auto;
+position: absolute;
+z-index: -1;
+}

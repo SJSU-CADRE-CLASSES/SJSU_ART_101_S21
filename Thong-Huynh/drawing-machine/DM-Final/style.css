@@ -1,0 +1,53 @@
+body {
+  width:100vw;
+  margin: 0;
+  font-family: monospace;
+  /* display: flex;
+  justify-content: center; */
+}
+canvas {
+  display: block;
+  /* position: absolute; */
+  width: 800px;
+  margin: 0 auto;
+  border: 5px solid rgb(191, 46, 17);
+  /* border-radius: 20px; */
+}
+
+.title {
+  width: 600px;
+  margin: 0 auto;
+  background: rgba(255, 212, 191, 0.8);
+  border-radius: 10px;
+  padding: 0 1rem;
+}
+
+.note {
+  font-size: 1rem;
+}
+
+.reLoadButton {
+  margin-bottom: 1rem;
+  padding: 5px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background: black;
+  /* border-style: none; */
+}
+u {
+  font-weight: 700;
+}
+
+p {
+  font-size: 1.25rem;
+}
+
+h1 {
+  font-size: 2rem;
+  letter-spacing: 2px;
+}
+
+.del {
+  text-decoration: none;
+}
