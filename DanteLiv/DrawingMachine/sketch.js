@@ -1,81 +1,65 @@
-let array = [];
-let backgroundColor = 200;
-let noiseOffset = 0.0;
-let strokeVal = 5;
-
+//Creating variables.
+let xCnv;
+let cloudColor;
+let prevClouds = [];
+let backgroundColor = '#5EA1FF';
+//Intial setup.
 function setup() {
-  createCanvas(windowWidth, windowHeight)
-  //background(backgroundColor);
-  background(220, 50, 133);
-
-  drawGrid();
-  noFill();
+  let cnv = createCanvas(windowWidth - windowWidth * .1, windowHeight - windowHeight * .1);
+  let xCnv = (windowWidth - width) / 2;
+  cnv.position(xCnv, 0 + windowHeight * .01);
+  background(backgroundColor);
 }
 
+//Basic cloud drawing function.
 function draw() {
-  background(220, 50, 133, 20);
-  strokeWeight(strokeVal);
-
-  noiseOffset += 0.01;
-  strokeVal = noise(noiseOffset) * 30;
-
-
-  stroke(map(mouseX, 0, 600, 0, 255, true))
-  line(width - mouseX, height - mouseY, width - pmouseX, height - pmouseY);
-  line(mouseX, mouseY, pmouseX, pmouseY);
-
-
-
-  //if (mouseIsPressed) {
-  //  backgroundColor -= 2;
-  //  background(backgroundColor);
-  //  beginShape();
-  //  for (let i = 0; i < array.length; i++) {
-  //      curveVertex(array[i][0], array[i][1]);
-  //   }
-  //  endShape();
-  //    array.push([mouseX, mouseY]);
-  //}
-}
-
-function keyTyped() {
-  console.log(`key ${key} is being typed`)
-  if (key == "s") {
-    saveCanvas('fileName', 'png')
-  } else if (key == 'c') {
+  //Timer code.
+  textSize(24);
+  text(`${round(millis()/1000)} seconds`, width / 36, height / 8);
+  if (round(millis() / 1000) >= 13) {
     clear();
+    background(0);
   }
-  // } else if (key == "d") {
-  //   background(255);
-  //   beginShape();
-  //   for (let i = 0; i < array.length; i++) {
-  //     //line(array[i][0], array[i][1], array[i+1][0], array[i+1][1])
-  //     curveVertex(array[i][0], array[i][1]);
-  //   }
-  //   endShape();
-  // }
-  return false;
-}
-
-function mousePressed() {
-  console.log("mouse pressed function");
-  array = [];
-  backgroundColor = 255;
-}
-
-function drawGrid() {
-  numCells = 20;
-  fillColor = 255;
-
-  for (let i = 0; i <= width; i += width / numCells) {
-    for (let j = 0; j <= height; j += height / numCells) {
-      if(fillColor === 255) {
-       fillColor = 200;
-     } else {
-       fillColor = 255;
-     }
-     fill(fillColor)
-        rect(i, j, width / numCells, height / numCells);
+  push();
+  translate(p5.Vector.fromAngle(millis() / 2000, 80));
+  //Sun timer icon code.
+  fill(225, 140, 51);
+  let sun = circle(100, 100, 40);
+  if (round(millis() / 1000) >= 13) {
+    clear();
+    background(0);
+  }
+  pop();
+  if (mouseIsPressed) {
+    //Drawing Clouds.
+    if (mouseButton === LEFT) {
+      cloudColor = color(map(mouseX, 0, width, 0, 255, true))
+      beginShape();
+      circle(mouseX, mouseY, random(20, 30));
+      circle(mouseX + random(10, 20), mouseY + random(15, 30), random(10, 20));
+      circle(mouseX - random(10, 20), mouseY - random(20, 40), random(30, 50));
+      circle(mouseX + random(5, 20), mouseY - random(10, 40), random(20, 50));
+      circle(mouseX - random(15, 25), mouseY + random(5, 50), random(40, 80));
+      noStroke();
+      fill(cloudColor);
+      endShape(CLOSE);
+      prevClouds.push([mouseX, mouseY]);
+      //Redrawing an old cloud.
+    } else if (mouseButton === CENTER) {
+      for (let i = 0; i < prevClouds.length - 1; i++) {
+        circle(prevClouds[i][0], prevClouds[i][i + 1], random(10, 50));
+        circle(prevClouds[1][i], prevClouds[i][1], random(10, 50));
+        translate(mouseX, mouseY);
+      }
     }
+  }
+}
+
+//Saving function.
+function keyTyped() {
+  if (key === "s") {
+    saveCanvas('fileName', 'png')
+  } else if (key === "c") {
+    background(200);
   }
 }

@@ -1,0 +1,69 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Clicker Script', cursive;
+  background-image: url("asset/canvas.jpg");
+}
+
+body {
+  margin: 100px auto;
+  width: 80%;
+  text-align: center;
+
+
+
+}
+canvas {
+  margin: 0 auto 0 auto
+  display: block;
+  border: 1px double black;
+}
+
+h3.solid {border-style: 1px solid;}
+
+.restart {
+  border: none;
+  background-color: transparent;
+  padding: 10px;
+  transition: 0.3s;
+  margin: 0 auto;
+  display:block;
+
+
+
+}
+.restart:hover {
+  background-color: #D1C7D9;
+  color: white;
+}
+
+#btn1{
+  border: none;
+  background-color: transparent;
+  padding: 10px;
+  transition: 0.3s;
+  margin: 0 auto;
+  display:block;
+}
+#btn1:hover {
+  background-color: #D1C7D9;
+  color: white;
+}
+
+img{
+border: 1px solid #ddd;
+border-radius: 4px;
+padding: 5px;
+width: 200px;
+}
+
+.zoom {
+  transition: transform .2s;
+  margin: 0 auto;
+}
+
+.zoom:hover {
+  -ms-transform: scale(1.5); /* IE 9 */
+  -webkit-transform: scale(1.5); /* Safari 3-8 */
+  transform: scale(1.5);
+}

@@ -1,0 +1,35 @@
+html {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 100px auto 0 auto;
+  width: 80%;
+  text-align: center;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  letter-spacing: 1.8px;
+  word-spacing: 2px;
+  color: #000000;
+  font-weight: normal;
+  text-decoration: none solid rgb(68, 68, 68);
+  font-style: italic;
+  
+
+
+}
+
+canvas {
+  margin: auto;
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: -1;
+
+}
+h1 {
+  display: table; /* keep the background color wrapped tight */
+
+  margin: 0px auto 0px auto; /* keep the table centered */
+  padding:1px;font-size:50px;background-color:lightgreen;color:black;
+}
