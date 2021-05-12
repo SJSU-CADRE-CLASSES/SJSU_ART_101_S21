@@ -20,7 +20,3 @@ function gotData(giphy){
   createImg(giphy.data[i].images.original.url);
 }
 }
-
-function draw() {
-
-}
