@@ -13,10 +13,10 @@ function setup() {
   loadJSON(url, gotData);
 }
 
-function gotData(giphy){
+function gotData(giphy) {
   //randomizing which gifs appear
-  for (var i = 0; i < giphy.data.length; i++){
+  for (var i = 0; i < giphy.data.length; i++) {
   //loading gif
   createImg(giphy.data[i].images.original.url);
-}
+  }
 }
