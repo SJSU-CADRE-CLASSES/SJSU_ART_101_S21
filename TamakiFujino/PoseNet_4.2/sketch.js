@@ -41,8 +41,8 @@ function draw() {
     // imageMode(CENTER);
 
 
-    ellipse(pose.rightWrist.x, pose.rightWrist.y, 32,32);
-    ellipse(pose.leftWrist.x, pose.leftWrist.y, 32,32);
+//     ellipse(pose.rightWrist.x, pose.rightWrist.y, 32,32);
+//     ellipse(pose.leftWrist.x, pose.leftWrist.y, 32,32);
 
     for (let i = 0; i < pose.keypoints.length; i++) {
       let x = pose.keypoints[i].position.x;
