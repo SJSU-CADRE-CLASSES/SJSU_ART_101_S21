@@ -37,12 +37,12 @@ function draw() {
     let eyeL = pose.leftEye;
     let d = dist(eyeR.x, eyeR.y, eyeL.x, eyeL.y);
 
-    fill('rgba(255, 255, 255, 0.8)');
+    
     // imageMode(CENTER);
     image(pearl, pose.nose.x-20, pose.nose.y-20, d);
 
-    ellipse(pose.rightWrist.x, pose.rightWrist.y, 32,32);
-    ellipse(pose.leftWrist.x, pose.leftWrist.y, 32,32);
+//     ellipse(pose.rightWrist.x, pose.rightWrist.y, 32,32);
+//     ellipse(pose.leftWrist.x, pose.leftWrist.y, 32,32);
 
     for (let i = 0; i < pose.keypoints.length; i++) {
       let x = pose.keypoints[i].position.x;
