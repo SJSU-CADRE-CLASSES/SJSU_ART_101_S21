@@ -2,6 +2,8 @@ let video;
 let poseNet;
 let pose;
 let skeleton;
+var img;
+var pearl;
 
 function setup() {
   createCanvas(600, 500);
@@ -9,6 +11,8 @@ function setup() {
   video.hide();
   poseNet = ml5.poseNet(video, modelReady);
   poseNet.on('pose', gotPoses);
+
+  pearl = loadImage('/images/pearl.gif');
 }
 
 function gotPoses(poses) {
@@ -34,7 +38,8 @@ function draw() {
     let d = dist(eyeR.x, eyeR.y, eyeL.x, eyeL.y);
 
     fill('rgba(255, 255, 255, 0.8)');
-    rect(pose.nose.x, pose.nose.y, d);
+    // imageMode(CENTER);
+    image(pearl, pose.nose.x, pose.nose.y, d);
 
     ellipse(pose.rightWrist.x, pose.rightWrist.y, 32,32);
     ellipse(pose.leftWrist.x, pose.leftWrist.y, 32,32);
