@@ -12,7 +12,7 @@ function setup() {
   poseNet = ml5.poseNet(video, modelReady);
   poseNet.on('pose', gotPoses);
 
-  pearl = loadImage('/images/pearl.gif');
+  pearl = loadImage('pearl.gif');
 }
 
 function gotPoses(poses) {
@@ -39,7 +39,7 @@ function draw() {
 
     fill('rgba(255, 255, 255, 0.8)');
     // imageMode(CENTER);
-    image(pearl, pose.nose.x, pose.nose.y, d);
+    image(pearl, pose.nose.x-20, pose.nose.y-20, d);
 
     ellipse(pose.rightWrist.x, pose.rightWrist.y, 32,32);
     ellipse(pose.leftWrist.x, pose.leftWrist.y, 32,32);
