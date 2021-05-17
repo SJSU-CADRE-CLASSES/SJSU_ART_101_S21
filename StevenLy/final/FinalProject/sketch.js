@@ -21,6 +21,7 @@ let playerImg;
 let coinImg;
 let backgroundImg;
 let winImg;
+let instructImg;
 let loseImg;
 let startImg;
 let enemyImg;
@@ -33,6 +34,7 @@ function preload() {
   coinImg = loadImage('assets/coin.png');
   backgroundImg = loadImage('assets/background.png');
   winImg = loadImage('assets/win.png');
+  instructImg = loadImage('assets/instruction.png');
   loseImg = loadImage('assets/lose.png');
   startImg = loadImage('assets/start.png');
   enemyImg = loadImage('assets/enemy.png');
@@ -48,6 +50,7 @@ function setup() {
 
 
   textFont('monospace');
+  textStyle(BOLD);
 
   player = new Player();
 
@@ -63,6 +66,10 @@ function draw() {
     case 'title':
       title();
       cnv.mouseClicked(titleMouseClicked);
+      break;
+    case 'instruct':
+      instruct();
+      cnv.mouseClicked(instructMouseClicked);
       break;
     case 'level 1':
       level1();
@@ -142,6 +149,14 @@ function title() {
 
 function titleMouseClicked() {
   console.log('canvas is clicked on title page');
+  state = 'instruct'
+}
+
+function instruct(){
+  background(instructImg);
+}
+
+function instructMouseClicked(){
   state = 'level 1'
 }
 
@@ -152,7 +167,7 @@ function level1() {
     coin.push(new Coin());
   }
 
-  if (random(1) <= 0.02) {
+  if (random(1) <= 0.04) {
     enemies.push(new Enemy());
   }
 
