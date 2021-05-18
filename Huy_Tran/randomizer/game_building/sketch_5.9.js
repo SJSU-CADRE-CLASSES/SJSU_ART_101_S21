@@ -9,7 +9,7 @@ let w = 800;
 let h = 600;
 
 let player;
-let cov;
+let covs = [];
 
 function setup() {
   cnv = createCanvas(w, h);
@@ -18,7 +18,8 @@ function setup() {
 
   player = new Player();
 
-  cov = new Cov();
+  // covs[0] = new Cov();
+  covs.push(new Cov());
 }
 
 //************************** FUNCTION DRAW LOOP **************************//
@@ -84,19 +85,44 @@ function level1() {
   // textFont('Serif');
   // text('Click for points', w/2, h/2.5);
 
+  if (random(1) <= .01) {
+    covs.push(new Cov());
+  }
+
   player.display();
   player.move();
 
-  cov.display();
-  cov.move();
 
-  //Check collision
-  if (dist(player.x, player.y, cov.x, cov.y) <= (player.r + cov.r) / 2){
-    points++;
-    console.log(points);
+  //iterating thru covs array to display and mov them
 
-  text(`points: ${points}`, w/10, h - 30);
+  //using for loop
+  // for (let i = 0; i < covs.length; i++) {
+  //   covs[i].display();
+  //   covs[i].move();
+  // }
+
+  //using forEach
+  // covs.forEach(function(cov) {
+  //   cov.display();
+  //   cov.move();
+  // })
+
+  //using for of LOOP
+  for (let cov of covs) {
+    cov.display();
+    cov.move();
+}
+  //Check collision, if there is a collision increase pts by 1 & splice that covs out of the array
+  //need to iterate backward through array
+
+  for (let i = covs.length -1 ; i >= 0; i--) {
+    if (dist(player.x, player.y, covs[i].x, covs[i].y) <= (player.r + covs[i].r) / 2){
+      points++;
+      console.log(points);
+      covs.splice(i, 1);
+    }
   }
+  text(`points: ${points}`, w/10, h - 30);
 }
 
 function level1MouseClicked() {
