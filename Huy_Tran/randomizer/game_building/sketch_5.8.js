@@ -89,7 +89,12 @@ function level1() {
 
   cov.display();
   cov.move();
-}
+
+  //Check collision
+  if (dist(player.x, player.y, cov.x, cov.y) <= (player.r + cov.r) / 2){
+    points++;
+    console.log(points);
+  }
 
 function level1MouseClicked() {
   points++;
