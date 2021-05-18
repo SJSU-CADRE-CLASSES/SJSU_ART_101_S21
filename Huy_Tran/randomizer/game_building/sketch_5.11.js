@@ -12,15 +12,26 @@ let player;
 let covs = [];
 
 let playerImg;
-let covImg;
+// let covImg1;
+// let covImg2;
+// let covImg3;
+let covImg4;
 
+//************************** FUNCTION **************************//
 function preload() {
-  playerImg = loadImage('assets/germs.png')
-}
-
+  playerImg = loadImage('assets/SC.gif')
+  // covImg1 = loadImage('assets/200x200/c1.gif')
+  // covImg2 = loadImage('assets/200x200/c2.gif')
+  // covImg3 = loadImage('assets/200x200/c3.gif')
+  covImg4 = loadImage('assets/200x200/c4.gif')
+}//load img lib
 
 function setup() {
   cnv = createCanvas(w, h);
+  frameRate();
+
+  imageMode(CENTER);
+  rectMode(CENTER);
 
   textFont('Raleway, Oswald');
 
@@ -30,7 +41,6 @@ function setup() {
   covs.push(new Cov());
 }
 
-//************************** FUNCTION DRAW LOOP **************************//
 function draw() {
 
   switch (state) {
@@ -54,23 +64,6 @@ function draw() {
   }
 }
 
-function keyPressed() {
-  if (keyCode == LEFT_ARROW) {
-    player.direction = 'left'
-  } else if (keyCode == RIGHT_ARROW) {
-    player.direction = 'right'
-  } else if (keyCode == UP_ARROW) {
-    player.direction = 'up'
-  } else if (keyCode == DOWN_ARROW) {
-    player.direction = 'down'
-  } else if (key = ' ') {
-    player.direction = 'still';
-  }
-}
-
-//******************************** END *************************************//
-
-//***********************FUNCTION SETUP FOR CALL***********************//
 function title() {
   background(220);
   textSize(40); //Should be setup size on top of text.
@@ -82,7 +75,7 @@ function title() {
 }
 
 function titleMouseClicked() {
-  console.log('Canvas is clicked on the title page');
+  // console.log('Canvas is clicked on the title page');
   state = 'level 1'
 }
 
@@ -126,11 +119,62 @@ function level1() {
   for (let i = covs.length - 1; i >= 0; i--) {
     if (dist(player.x, player.y, covs[i].x, covs[i].y) <= (player.r + covs[i].r) / 2) {
       points++;
-      console.log(points);
+      // console.log(points);
+      covs.splice(i, 1);
+    } else if (covs[i].y > h) {
       covs.splice(i, 1);
     }
   }
   text(`points: ${points}`, w / 10, h - 30);
+}
+
+function youWin() {
+  background(230, 130, 50);
+  textSize(40); //Should be setup size on top of text.
+  text('WOOHOO! YOU WIN', w / 2, h / 2);
+
+
+  textSize(20); //Should be setup size on top of text.
+  text('click to restart', w / 2, h / 1.8);
+}
+//************************** BEHAVIORS **************************//
+
+function keyPressed() {
+  if (keyCode == LEFT_ARROW) {
+    player.direction = 'left'
+  } else if (keyCode == RIGHT_ARROW) {
+    player.direction = 'right'
+  } else if (keyCode == UP_ARROW) {
+    player.direction = 'up'
+  } else if (keyCode == DOWN_ARROW) {
+    player.direction = 'down'
+  } else if (key = ' ') {
+    player.direction = 'still';
+  }
+}
+
+function keyReleased() {
+  let numberKeysPressed = 0;
+
+  if (keyIsDown(LEFT_ARROW)) {
+    numberKeysPressed++;
+  }
+
+  if (keyIsDown(RIGHT_ARROW)) {
+    numberKeysPressed++;
+  }
+
+  if (keyIsDown(UP_ARROW)) {
+    numberKeysPressed++;
+  }
+
+  if (keyIsDown(DOWN_ARROW)) {
+    numberKeysPressed++;
+  }
+  if (numberKeysPressed ==0) {
+    player.direction = 'still';
+  }
+
 }
 
 function level1MouseClicked() {
@@ -142,16 +186,6 @@ function level1MouseClicked() {
     state = 'You Win';
   }
 
-}
-
-function youWin() {
-  background(230, 130, 50);
-  textSize(40); //Should be setup size on top of text.
-  text('WOOHOO! YOU WIN', w / 2, h / 2);
-
-
-  textSize(20); //Should be setup size on top of text.
-  text('click to restart', w / 2, h / 1.8);
 }
 
 function youWinMouseClicked() {
