@@ -54,6 +54,7 @@ function setup() {
     randomIndex1 = int(random(prompts.length));
     randomIndex2 = int(random(prompts.length));
     randomIndex3 = int(random(prompts.length));
+    // randomIndex3 = int(random(0,5));
     // console.log(prompts[randomIndex].noun);
 
     textSize(20);
