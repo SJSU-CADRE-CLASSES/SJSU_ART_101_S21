@@ -8,8 +8,6 @@ let points = 0;
 let w = 800;
 let h = 600;
 
-let lives = 3;
-
 let player;
 let covs = [];
 
@@ -28,7 +26,7 @@ function preload() {
 
   enemyImg = loadImage('assets/200x200/c3.gif')
 
-} //load img lib
+}//load img lib
 
 function setup() {
   cnv = createCanvas(w, h);
@@ -59,12 +57,12 @@ function draw() {
       cnv.mouseClicked(level1MouseClicked);
       break;
 
-    case 'You Win':
+    case 'you win':
       youWin();
       cnv.mouseClicked(youWinMouseClicked);
       break;
 
-    case 'Ooopss, game over!':
+    case 'game over':
       gameOver();
       cnv.mouseClicked(gameOverMouseClicked);
       break;
@@ -77,6 +75,7 @@ function draw() {
 function title() {
   background(220);
   textSize(40); //Should be setup size on top of text.
+  // text('SHOOTING GERMS', w / 3, h / 3);
   text('SHOOTING GERMS', w / 3, h / 3);
 
   textSize(20); //Should be setup size on top of text.
@@ -96,11 +95,11 @@ function level1() {
   // textFont('Serif');
   // text('Click for points', w/2, h/2.5);
 
-  if (random(1) <= .01) {
+  if (random(1) <= .04) {
     covs.push(new Cov());
   }
 
-  if (random(1) <= .01) {
+  if (random(1) <= .08) {
     enemies.push(new Enemy());
   }
 
@@ -152,7 +151,7 @@ function level1() {
   //Check collision enemies, if there is a collision increase pts by 1 & splice that enemies out of the array
   //need to iterate backward through array
 
-  for (let i = enemies.length - 1; i >= 0; i--) {
+  for(let i = enemies.length - 1; i >= 0; i--) {
     if (dist(player.x, player.y, enemies[i].x, enemies[i].y) <= (player.r + enemies[i].r) / 2) {
       points--;
       // console.log(points);
@@ -163,18 +162,18 @@ function level1() {
   }
   text(`points: ${points}`, w / 10, h - 30);
 
-  //---check value +/- to pop the msg
-  if (points >= 5) {
-    state = 'youWin';
-  } else if (points <= -1) {
-    state = 'gameOver';
+//---check value +/- to pop the msg
+  if (points >= 2) {
+    state = 'you win';
+  } else if (points <= -1){
+    state = 'game over';
   }
 }
 
 function youWin() {
   background(230, 130, 50);
   textSize(40); //Should be setup size on top of text.
-  text('WOOHOO! YOU WIN', w / 2, h / 2);
+  text('YOU WIN', w / 2, h / 2);
 
 
   textSize(20); //Should be setup size on top of text.
@@ -182,20 +181,10 @@ function youWin() {
 }
 
 function gameOver() {
-  background(230, 130, 50);
+  background('#0909D9');
   textSize(40); //Should be setup size on top of text.
+  text('GAME OVER', w / 2, h / 2);
 
-  if (lives >= 0) {
-    lives--;
-    text(`${lives} lives left`, w / 2, h / 2);
-
-    textSize(20); //Should be setup size on top of text.
-    text('try again', w / 2, h / 1.8);
-
-  } else {
-    //gameover
-    text('GAME OVER', w / 2, h / 2);
-  }
 
   textSize(20); //Should be setup size on top of text.
   text('click to restart', w / 2, h / 1.8);
@@ -257,13 +246,7 @@ function youWinMouseClicked() {
 }
 
 function gameOverMouseClicked() {
-  if (lives >= 0) {
-    lives--;
-    state = 'level1';
-
-  } else {
-    state = 'level1'
-  }
-    points = 1;
+  state = 'title';
+  points = 0;
 }
 //******************************** END} *************************************//

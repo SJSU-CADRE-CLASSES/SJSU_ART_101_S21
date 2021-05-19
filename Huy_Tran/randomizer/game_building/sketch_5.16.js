@@ -57,12 +57,12 @@ function draw() {
       cnv.mouseClicked(level1MouseClicked);
       break;
 
-    case 'You Win':
+    case 'you win':
       youWin();
       cnv.mouseClicked(youWinMouseClicked);
       break;
 
-    case 'Ooopss, game over!':
+    case 'game over':
       gameOver();
       cnv.mouseClicked(gameOverMouseClicked);
       break;
@@ -75,6 +75,7 @@ function draw() {
 function title() {
   background(220);
   textSize(40); //Should be setup size on top of text.
+  // text('SHOOTING GERMS', w / 3, h / 3);
   text('SHOOTING GERMS', w / 3, h / 3);
 
   textSize(20); //Should be setup size on top of text.
@@ -94,11 +95,11 @@ function level1() {
   // textFont('Serif');
   // text('Click for points', w/2, h/2.5);
 
-  if (random(1) <= .01) {
+  if (random(1) <= .04) {
     covs.push(new Cov());
   }
 
-  if (random(1) <= .01) {
+  if (random(1) <= .08) {
     enemies.push(new Enemy());
   }
 
@@ -150,7 +151,7 @@ function level1() {
   //Check collision enemies, if there is a collision increase pts by 1 & splice that enemies out of the array
   //need to iterate backward through array
 
-  for (let i = enemies.length - 1; i >= 0; i--) {
+  for(let i = enemies.length - 1; i >= 0; i--) {
     if (dist(player.x, player.y, enemies[i].x, enemies[i].y) <= (player.r + enemies[i].r) / 2) {
       points--;
       // console.log(points);
@@ -162,17 +163,17 @@ function level1() {
   text(`points: ${points}`, w / 10, h - 30);
 
 //---check value +/- to pop the msg
-  if (points >= 5) {
-    state = 'youWin';
+  if (points >= 2) {
+    state = 'you win';
   } else if (points <= -1){
-    state = 'gameOver';
+    state = 'game over';
   }
 }
 
 function youWin() {
   background(230, 130, 50);
   textSize(40); //Should be setup size on top of text.
-  text('WOOHOO! YOU WIN', w / 2, h / 2);
+  text('YOU WIN', w / 2, h / 2);
 
 
   textSize(20); //Should be setup size on top of text.
@@ -180,9 +181,9 @@ function youWin() {
 }
 
 function gameOver() {
-  background(230, 130, 50);
+  background('#0909D9');
   textSize(40); //Should be setup size on top of text.
-  text('WHOOPSSS! GAME OVER', w / 2, h / 2);
+  text('GAME OVER', w / 2, h / 2);
 
 
   textSize(20); //Should be setup size on top of text.
@@ -222,7 +223,7 @@ function keyReleased() {
   if (keyIsDown(DOWN_ARROW)) {
     numberKeysPressed++;
   }
-  if (numberKeysPressed ==0) {
+  if (numberKeysPressed == 0) {
     player.direction = 'still';
   }
 
