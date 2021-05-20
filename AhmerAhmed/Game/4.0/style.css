@@ -3,12 +3,8 @@ html{
   padding: 0;
 }
 body{
-  margin: 1px auto 50 auto;
-  width 80%;
-  text-align: left;
 }
 canvas {
-  margin: 1px auto 50 auto;
   display: block;
-  border: 5px sold black:
+  margin: 50px auto;
 }
