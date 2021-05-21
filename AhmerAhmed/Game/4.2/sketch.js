@@ -1,4 +1,3 @@
-//use remove() to exit the code
 var plvl = 1;
 var php = 95 + (plvl * 5);
 var pexp = 0;
@@ -21,10 +20,8 @@ var speed = 5;
 var counter;
 var runchance;
 
-let state = 'fight6';
+let state = 'title';
 let cnv;
-let titleImage;
-let basicSong;
 
 let mob;
 
@@ -35,10 +32,21 @@ let merchantleave;
 //preload the background images
 function preload() {
   titleImage = loadImage(`bgs/Title.jpg`);
+  die = loadImage(`bgs/Die.jpg`);
+  live = loadImage(`bgs/Live.jpg`);
+  intro = loadImage(`bgs/Intro.jpg`);
+  search = loadImage(`bgs/Search.jpg`);
+  blood = loadImage(`bgs/Blood.jpg`);
+  shop = loadImage(`bgs/Shop.jpg`);
+  found = loadImage(`bgs/Found.jpg`);
+  fight = loadImage(`bgs/Fight.jpg`);
 
   basicSong = loadSound(`base.mp3`);
   sephiroth = loadSound(`Sephiroth.mp3`);
   bleach = loadSound(`Bleach.mp3`);
+
+  bleach.setVolume(.5);
+  sephiroth.setVolume(.25);
 }
 
 //create the canvas with cnv variable
@@ -71,7 +79,7 @@ function setup() {
     dmg = 10;
   }
 
-  //basicSong.play();
+  basicSong.play();
   basicSong.setVolume(.25);
 }
 
@@ -99,7 +107,7 @@ function draw() {
       cnv.mouseClicked(noClick);
       basicSong.stop();
       if (!bleach.isPlaying()) {
-        //bleach.play();
+        bleach.play();
       }
       if (bleach.isPlaying()) {}
       break;
@@ -120,7 +128,7 @@ function draw() {
       cnv.mouseClicked(noClick);
       basicSong.stop();
       if (!sephiroth.isPlaying()) {
-        //sephiroth.play();
+        sephiroth.play();
         sephiroth.setVolume(.35);
       }
       if (sephiroth.isPlaying()) {}
@@ -161,6 +169,14 @@ function draw() {
       magic();
       cnv.mouseClicked(noClick);
       break;
+    case 'thunder':
+      thunder();
+      cnv.mouseClicked(noClick);
+      break;
+    case 'fire':
+      fire();
+      cnv.mouseClicked(noClick);
+      break;
     case 'block':
       block();
       cnv.mouseClicked(noClick);
@@ -177,9 +193,6 @@ function draw() {
       fightLose();
       cnv.mouseClicked(noClick);
       break;
-
-
-
     case 'the end':
       credits();
       noClick();
@@ -188,6 +201,7 @@ function draw() {
   }
 }
 
+//makes it so no chanes happen to the canvas, on some stages, when clicked
 function noClick() {}
 
 //shows the title
@@ -208,7 +222,7 @@ function titleClick() {
 //shows introscene
 function introScene() {
   clear();
-  background(0);
+  image(intro, 0, 0);
 
   textSize(30);
   fill(255);
@@ -236,7 +250,7 @@ function introClick() {
 //creates player(circle) and allows movement inside the canvas
 function areaOne() {
   clear();
-  background(77, 48, 11);
+  image(search,0,0);
 
   //player movement
   if (keyIsDown(UP_ARROW)) {
@@ -268,27 +282,9 @@ function areaOne() {
   if (y >= 790) {
     y = 790;
   }
-
-  //rectangles to move to different locations
-  //left rectangle
-  push();
-  fill(25, 25, 25, 90);
-  rect(0, 440, 80, 120)
-  pop();
-
-  //right rectangle
-  push();
-  fill(25, 25, 25, 90);
-  rect(720, 305, 80, 120)
-  pop();
-
-  //top triangle
-  push();
-  fill(25, 25, 25, 90);
-  rect(320, 0, 120, 80)
-  pop();
 }
 
+//changes stage
 function moveToAreaTwo() {
   //top move
   if (y >= 0 && y <= 30 && x >= 350 && x <= 415) {
@@ -312,9 +308,10 @@ function moveToAreaTwo() {
   }
 }
 
+//buttons to use the merchant
 function merchant() {
   clear();
-  background(153, 109, 54);
+  image(shop,0,0);
 
   merchantbuy = createButton("BUY");
   merchantbuy.position(0, 0);
@@ -332,7 +329,7 @@ function merchant() {
 
   if (checker == 4) {
     clear();
-    background(153, 109, 54);
+    image(shop,0,0);
     merchantbuy.remove();
     merchantsell.remove();
     merchantleave.remove();
@@ -361,25 +358,30 @@ function merchant() {
   }
 }
 
+//buy from the merchant
 function merchBuy() {
   checker = 2;
 }
 
+//sell to the merchant
 function merchSell() {
   checker = 3;
 }
 
+//leave the merchant
 function merchLeave() {
   checker = 4;
 }
 
+//chanes stage back to area 1
 function waitLeaveMerch() {
   state = 'area 1';
 }
 
+//dead if go to right
 function deadOne() {
   clear();
-  background(0);
+  image(blood,0,0);
 
   push();
   fill(112, 0, 0);
@@ -390,13 +392,15 @@ function deadOne() {
   pop();
 }
 
+//changes stage
 function moveWoods() {
   state = 'dead2'
 }
 
+//changes text on stage for right area
 function middleWoods() {
   clear();
-  background(10);
+  image(blood,0,0);
 
   push();
   fill(112, 0, 0);
@@ -407,13 +411,15 @@ function middleWoods() {
   pop();
 }
 
+//changes stage
 function moveDead() {
   state = 'dead3';
 }
 
+//changes text on stage for right area
 function deadEnd() {
   clear();
-  background(5);
+  image(blood,0,0);
 
   push();
   fill(112, 0, 0);
@@ -424,13 +430,15 @@ function deadEnd() {
   pop();
 }
 
+//changes stage
 function moveDie() {
   state = 'dead4';
 }
 
+//changes text on stage for right area
 function youDie() {
   clear();
-  background(0);
+  image(blood,0,0);
 
   push();
   fill(112, 0, 0);
@@ -443,9 +451,10 @@ function youDie() {
   setTimeout(moveCredit, 10000);
 }
 
+//begins fight scene at the top
 function fightOne() {
   clear();
-  background(0);
+  image(found,0,0);
 
   textSize(25);
   fill(255);
@@ -455,13 +464,15 @@ function fightOne() {
   setTimeout(fightOneTwo, 7000);
 }
 
+//changes stage
 function fightOneTwo() {
   state = 'fight2'
 }
 
+//changes text on stage for the fight area
 function fightTwo() {
   clear();
-  background(0);
+  image(found,0,0);
 
   textSize(25);
   fill(255);
@@ -471,13 +482,15 @@ function fightTwo() {
   setTimeout(fightTwoThree, 7000);
 }
 
+//changes stage
 function fightTwoThree() {
   state = 'fight3';
 }
 
+//changes text on stage for the fight area
 function fightThree() {
   clear();
-  background(0);
+  image(found,0,0);
 
   textSize(25);
   fill(255);
@@ -487,13 +500,15 @@ function fightThree() {
   setTimeout(fightThreeFour, 7000);
 }
 
+//changes stage
 function fightThreeFour() {
   state = 'fight4';
 }
 
+//changes text on stage for the fight area
 function fightFour() {
   clear();
-  background(0);
+  image(found,0,0);
 
   textSize(25);
   fill(255);
@@ -503,13 +518,15 @@ function fightFour() {
   setTimeout(fightFourFive, 7000);
 }
 
+//changes stage
 function fightFourFive() {
   state = 'fight5'
 }
 
+//changes text on stage for the fight area
 function fightFive() {
   clear();
-  background(0);
+  image(found,0,0);
 
   textSize(25);
   fill(255);
@@ -519,13 +536,15 @@ function fightFive() {
   setTimeout(fightFiveReal, 7000);
 }
 
+//changes stage
 function fightFiveReal() {
   state = 'fight6';
 }
 
+//begins the button functions for the fight to take place
 function fightSix() {
   clear();
-  background(0);
+  image(fight,0,0);
 
   counter = 0;
 
@@ -533,11 +552,12 @@ function fightSix() {
     actionChoice();
   } else if (php <= 0) {
     state = 'lose';
-  }else if(ehp <= 0){
+  } else if (ehp <= 0) {
     state = 'win';
   }
 }
 
+//creates the different choices and let's you pick
 function actionChoice() {
   fill(64, 0, 0, 80);
   beginShape();
@@ -599,9 +619,10 @@ function actionChoice() {
   }
 }
 
+//creates the 2 types of attacks
 function attack() {
   clear();
-  background(0);
+  image(fight,0,0);
   fill(64, 0, 0, 80);
   beginShape();
   vertex(0, 750);
@@ -628,8 +649,9 @@ function attack() {
     if (mouseIsPressed) {
       state = 'slash';
     }
-  }if(mouseX<=800 && mouseX>=400 && mouseY <= 800 && mouseY >= 750){
-    if(mouseIsPressed){
+  }
+  if (mouseX <= 800 && mouseX >= 400 && mouseY <= 800 && mouseY >= 750) {
+    if (mouseIsPressed) {
       state = 'stab';
     }
   }
@@ -638,13 +660,13 @@ function attack() {
 function slash() {
   if (counter == 0) {
     clear();
-    background(0);
+    image(fight,0,0);
     ehp = ehp - 15;
     php = php - dmg
     textSize(25);
     fill(255);
     text("You have dealt 15 damage to the beast. It now has " + ehp + " hp left.", 40, 700);
-    text("You have taken " + dmg + " damage from the beast. You now have " + php + " left.", 40, 750);
+    text("You have taken " + dmg + " damage from the beast. You now have " + php + " hp left.", 40, 750);
     counter = 1;
     setTimeout(stateFight, 5000);
   }
@@ -653,57 +675,111 @@ function slash() {
 function stab() {
   if (counter == 0) {
     clear();
-    background(0);
+    image(fight,0,0);
     ehp = ehp - 10;
     php = php - dmg
     textSize(25);
     fill(255);
     text("You have dealt 10 damage to the beast. It now has " + ehp + " hp left.", 40, 700);
-    text("You have taken " + dmg + " damage from the beast. You now have " + php + " left.", 40, 750);
+    text("You have taken " + dmg + " damage from the beast. You now have " + php + " hp left.", 40, 750);
     counter = 1;
     setTimeout(stateFight, 5000);
   }
 }
 
+//creates the 2 types of magic attack
 function magic() {
   clear();
-  background(0);
+  image(fight,0,0);
   fill(64, 0, 0, 80);
   beginShape();
-  vertex(0, 700);
+  vertex(0, 750);
   vertex(0, 800);
   vertex(400, 800);
-  vertex(400, 700);
+  vertex(400, 750);
   endShape(CLOSE);
 
   beginShape();
-  vertex(800, 700);
+  vertex(800, 750);
   vertex(800, 800);
   vertex(400, 800);
-  vertex(400, 700);
+  vertex(400, 750);
   endShape(CLOSE);
-
   push();
-  textSize(70);
+  textSize(30);
   fill(181, 0, 0);
-  text("THUNDER", 40, 770);
-  text("FIRE", 520, 770);
+  text("THUNDER", 130, 785);
+  text("FIRE", 590, 785);
   pop();
+
+  if (mouseX <= 400 && mouseX >= 0 && mouseY <= 800 && mouseY >= 750) {
+    if (mouseIsPressed) {
+      state = 'thunder';
+    }
+  }
+  if (mouseX <= 800 && mouseX >= 400 && mouseY <= 800 && mouseY >= 750) {
+    if (mouseIsPressed) {
+      state = 'fire';
+    }
+  }
+}
+
+function thunder() {
+  if (counter == 0) {
+    if (mana >= 25) {
+      clear();
+      image(fight,0,0);
+      ehp = ehp - 25;
+      php = php - dmg;
+      mana = mana - 25;
+      textSize(25);
+      fill(255);
+      text("You have dealt 25 damage to the beast. It now has " + ehp + " hp left.", 40, 700);
+      text("You took " + dmg + " damage while casting. You now have " + php + " hp left.", 40, 750);
+      text("You used 25 mana. You now have " + mana + " mana left.", 40, 795);
+      counter = 1;
+      setTimeout(stateFight, 5000);
+    } else if (mana < 25) {
+      text("You don't have enough mana (25 needed) to use this spell anymore.", 40, 700);
+    }
+  }
+}
+
+function fire() {
+  if (counter == 0) {
+    if (mana >= 20) {
+      clear();
+      image(fight,0,0);
+      ehp = ehp - 20;
+      php = php - dmg;
+      mana = mana - 20;
+      textSize(25);
+      fill(255);
+      text("You have dealt 20 damage to the beast. It now has " + ehp + " hp left.", 40, 700);
+      text("You have taken " + dmg + " damage from the beast. You now have " + php + " hp left.", 40, 750);
+      text("You used 20 mana. You now have " + mana + " mana left.", 40, 795);
+      counter = 1;
+      setTimeout(stateFight, 5000);
+    } else if (mana < 20) {
+      text("You don't have enough mana (20 needed) to use this spell anymore.", 40, 700);
+    }
+  }
 }
 
 function block() {
   clear();
-  background(0);
+  image(fight,0,0);
   if (counter == 0) {
     php = php - (dmg / 2);
+    mana = mana + 15;
     counter = 1;
   }
-  console.log(php);
 
   textSize(25);
   fill(255);
   text("You quickly pull up your sword as the beast rushes you managing", 40, 700);
   text("to block its attack. ' You take " + dmg / 2 + " damage, you now have " + php + " hp.'", 40, 750);
+  text("Waiting has allowed you to gain 15 mana.", 40, 795);
 
   setTimeout(stateFight, 7000);
 }
@@ -721,18 +797,37 @@ function run() {
   }
 }
 
-function fightWin() {
-  clear();
-  background(50);
-  console.log("You have won this version of the game");
+//changes stage back to choices
+function stateFight() {
+  state = 'fight6';
 }
 
+//scene if you win the fight
+function fightWin() {
+  clear();
+  image(live, -400, -400);
+  textSize(40);
+  fill(0);
+  text("You have bested the " + mob + " and killed it.", 22, 300);
+
+  setTimeout(moveCredit, 10000);
+}
+
+//scene if you lose the fight
 function fightLose() {
-  console.log("You have died");
+  clear();
+  image(die, -400, -400)
+  textSize(40);
+  fill(255);
+  text("Even being careful you could not", 110, 200);
+  text("best the " + mob + " and have succumbed", 40, 300);
+  text("to the wounds of battle.", 200, 400);
+  text("On this day you DIED.", 210, 500);
 
   setTimeout(moveCredit, 10000)
 }
 
+//changes stage to credits
 function moveCredit() {
   state = 'the end';
 }
@@ -743,11 +838,7 @@ function credits() {
   fill(140, 255, 251);
   textSize(30);
   text("First song is by my brother :)", 220, 100);
-  text("Death song is Soundscape to Ardor from Bleach.", 80, 200);
-  text("Fight song is Advent: 'One-Winged Angel'", 150, 300);
-  text("Art is by me, Ahmer Ahmed", 240, 400);
-}
-
-function stateFight() {
-  state = 'fight6';
+  text("Death song is Soundscape to Ardor from Bleach.", 80, 250);
+  text("Fight song is Advent: 'One-Winged Angel'", 150, 400);
+  text("Art is by me, 'Ahmer Ahmed'", 240, 550);
 }
