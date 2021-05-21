@@ -1,65 +1,64 @@
-body
-    {
-        background-color: black;
-        font-family: arial;
+body {
+  background-color: black;
+  font-family: arial;
 }
 
 h1 {
-    color: rgb(255, 8, 0);
-    font-family: times new roman;
-    font-size: 84px;
-    float: right;
-    text-align: center;
-    stroke: black;
-    stroke-width: 15px;
-    -webkit-text-stroke:2px  black;
-    }
+  color: rgb(255, 8, 0);
+  font-family: times new roman;
+  font-size: 84px;
+  float: right;
+  text-align: center;
+  stroke: black;
+  stroke-width: 15px;
+  -webkit-text-stroke: 2px black;
+}
+
 li {
-	color: green;
+  color: green;
 }
 
 h2 {
-    color: red;
-    font-family: comic sans;
-    float: right;
-    margin: 30px;
+  color: red;
+  font-family: comic sans;
+  float: right;
+  margin: 30px;
 }
 
 p {
-    background: #7FFF00;
-    color: black;
-    padding: 30px 100px;
-    margin-left: 380px;
-    margin-right: 380px;
-    font-size: 14px
+  background: #7FFF00;
+  color: black;
+  padding: 30px 100px;
+  margin-left: 380px;
+  margin-right: 380px;
+  font-size: 14px
 }
 
 h3 {
-    color: red;
+  color: red;
 }
 
 h4 {
-	color: white;
-	font-style: italic;
-	float: left;
+  color: white;
+  font-style: italic;
+  float: left;
 }
 
-body{
-background-image:url('https://i.giphy.com/media/EO9j0o6pHdYmk/giphy.webp');
-background-position: center;
-background-size: cover;
+body {
+  background-image: url('https://i.giphy.com/media/EO9j0o6pHdYmk/giphy.webp');
+  background-position: center;
+  background-size: cover;
 }
 
 audio {
-   display:none;
+  display: none;
 }
 
-img.gif
-{
-    max-width: 640px;
+img.gif {
+  max-width: 640px;
 }
-#mute
-{
-    max-height: 25px;
-    max-width: 25px;
+
+#mute {
+  max-height: 25px;
+  max-width: 25px;
 }

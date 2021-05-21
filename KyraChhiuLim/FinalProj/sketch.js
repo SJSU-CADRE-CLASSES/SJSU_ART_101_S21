@@ -2,14 +2,13 @@
 var video;
 let whitenoise;
 
-function preload()
-{
+function preload() {
   whitenoise = loadSound('media/whitenoise.mp3');
-  
+
 }
 
 function setup() {
-  canvas = createCanvas(600, 350,WEBGL);
+  canvas = createCanvas(600, 350, WEBGL);
   background(51);
   canvas.id('p5canvas');
   video = createCapture(VIDEO);
@@ -17,7 +16,7 @@ function setup() {
   video.size(600, 350);
   video.id('p5video');
 
-  whitenoise.loop();
+  //whitenoise.loop();
 
   let seriously = new Seriously();
   var src = seriously.source('#p5video');
