@@ -39,6 +39,7 @@ function preload() {
   coinImg = loadImage('assets/seaweed.png');
   plasticImg = loadImage('assets/can_rings.png');
 
+  music = loadSound('assets/music.mp3')
 
   //spritesheets attempt #2
   playerSS = loadImage('assets/turtle_sprite_sheet.png');
@@ -50,6 +51,8 @@ function preload() {
 
 
 function setup() {
+  music.play();
+  music.setVolume(0.5);
   cnv = createCanvas(w, h);
   textFont('monospace');
 
@@ -126,6 +129,13 @@ function draw() {
       cnv.mouseClicked(youWinMouseClicked);
 
       break;
+
+    case 'you lose':
+        youLose();
+        cnv.mouseClicked(youWinMouseClicked);
+
+        break;
+
     default:
       break;
   }
@@ -166,7 +176,7 @@ function title() {
   noStroke();
   // stroke(255);
   textAlign(CENTER);
-  text('The Seas Sons', w / 2, h / 2);
+  text('The SeaSons', w / 2, h / 2);
   fill(255);
   textSize(30);
   text('click anywhere to start', w / 2, h - 200);
@@ -232,10 +242,14 @@ function level1() {
     }
   }
 
-  text(`points: ${points}`, w / 9, h - 20);
+  text(`health: ${points}`, w / 9, h - 1000);
+  text(`heading out to the open sea`, w / 2, h - 1000);
 
   if (points >= 10) {
     state = 'level 2'
+  }
+  if (points < 0) {
+    state = 'you lose'
   }
 }
 
@@ -279,7 +293,7 @@ function level2() {
 
   for (let i = plastics.length - 1; i >= 0; i--) {
     if (dist(player.x, player.y, plastics[i].x, plastics[i].y) <= (player.r + plastics[i].r) / 2) {
-      points--;
+      points -= 5;
       // console.log(points);
       plastics.splice(i, 1);
     } else if (plastics[i].y > h) {
@@ -287,8 +301,8 @@ function level2() {
       // console.log('plastic is out of town')
     }
 
-  text(`points: ${points}`, w / 9, h - 20);
-  text(`level 2`, w / 2, 20);
+  text(`health: ${points}`, w / 9, h - 1000);
+  text(`the open seas`, w / 2, h - 1000);
 
 
   if (points >= 7) {
@@ -301,6 +315,9 @@ function level2() {
 
   if (points >= 25) {
     state = 'level 3'
+  }
+  if (points < 0) {
+    state = 'you lose'
   }
 
 }
@@ -317,7 +334,7 @@ function level1MouseClicked() {
 }
 
 function youWin() {
-  background(148,175,219);
+  background(255, 226, 163);
   textSize(80);
   stroke(255);
   textAlign(CENTER);
@@ -329,6 +346,10 @@ function youWin() {
 }
 
 function youWinMouseClicked() {
+  state = 'level 1';
+  points = 0;
+}
+function youLoseMouseClicked() {
   state = 'level 1';
   points = 0;
 }
@@ -387,16 +408,30 @@ for (let i = plastics.length - 1; i >= 0; i--) {
   }
 
 
-  text(`points: ${points}`, w / 9, h - 20);
-  text(`level 3`, w / 2, 20);
+  text(`health: ${points}`, w / 9, h - 1000);
+  text(`arriving at shoreline`, w / 2, h - 1000);
 
   if (points >= 30) {
-    players[i] = new Player(animation, (w / 2) + 200, 2)
+    players[i] = new Player(animation, (w / 2) + 200, 4)
     console.log(player.speed)
   }
 
   if (points >= 40) {
     state = 'you win'
   }
+  if (points < 0) {
+    state = 'you lose'
+  }
 }
+}
+function youLose() {
+  background(200,50,60);
+  textSize(80);
+  stroke(255);
+  textAlign(CENTER);
+  text('You Did Not Survive This Season', w / 2, h / 2);
+
+  textSize(30);
+  fill(255);
+  text('click anywhere to restart', w / 2, h - 200);
 }
