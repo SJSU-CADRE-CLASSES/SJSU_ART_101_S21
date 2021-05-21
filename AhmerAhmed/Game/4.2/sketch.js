@@ -10,15 +10,18 @@ var life;
 var money;
 var enemy;
 var php_pnt;
+var sound = 1;
+var dmg;
 
 var checker = 1;
+var r = 60;
+var x = 800 / 2;
+var y = 800 - r;
+var speed = 5;
+var counter;
+var runchance;
 
-r = 60;
-x = 800 / 2;
-y = 800 - r;
-speed = 5;
-
-let state = 'title';
+let state = 'fight6';
 let cnv;
 let titleImage;
 let basicSong;
@@ -32,7 +35,10 @@ let merchantleave;
 //preload the background images
 function preload() {
   titleImage = loadImage(`bgs/Title.jpg`);
+
   basicSong = loadSound(`base.mp3`);
+  sephiroth = loadSound(`Sephiroth.mp3`);
+  bleach = loadSound(`Bleach.mp3`);
 }
 
 //create the canvas with cnv variable
@@ -44,21 +50,29 @@ function setup() {
   enemy = int(random(1, 6));
 
   if (enemy == 1) {
-    move = "Giant Bear";
+    mob = "Giant Bear";
     ehp = 90;
+    dmg = 2;
   } else if (enemy == 2) {
     mob = "Dark Wolf";
     ehp = 115;
+    dmg = 4;
   } else if (enemy == 3) {
     mob = "Goblin";
     ehp = 175;
+    dmg = 8;
   } else if (enemy == 4) {
     mob = "Zombie";
     ehp = 140;
+    dmg = 5;
   } else if (enemy == 5) {
     mob = "Skeleton";
     ehp = 200;
+    dmg = 10;
   }
+
+  //basicSong.play();
+  basicSong.setVolume(.25);
 }
 
 //changes the states of the game to different stages
@@ -83,6 +97,11 @@ function draw() {
     case 'dead1':
       deadOne();
       cnv.mouseClicked(noClick);
+      basicSong.stop();
+      if (!bleach.isPlaying()) {
+        //bleach.play();
+      }
+      if (bleach.isPlaying()) {}
       break;
     case 'dead2':
       middleWoods();
@@ -97,9 +116,73 @@ function draw() {
       cnv.mouseClicked(noClick);
       break;
     case 'fight':
-      fightLead();
+      fightOne();
+      cnv.mouseClicked(noClick);
+      basicSong.stop();
+      if (!sephiroth.isPlaying()) {
+        //sephiroth.play();
+        sephiroth.setVolume(.35);
+      }
+      if (sephiroth.isPlaying()) {}
+      break;
+    case 'fight2':
+      fightTwo();
       cnv.mouseClicked(noClick);
       break;
+    case 'fight3':
+      fightThree();
+      cnv.mouseClicked(noClick);
+      break;
+    case 'fight4':
+      fightFour();
+      cnv.mouseClicked(noClick);
+      break;
+    case 'fight5':
+      fightFive();
+      cnv.mouseClicked(noClick);
+      break;
+    case 'fight6':
+      fightSix();
+      cnv.mouseClicked(noClick);
+      break;
+    case 'attack':
+      attack();
+      cnv.mouseClicked(noClick);
+      break;
+    case 'slash':
+      slash();
+      cnv.mouseClicked(noClick);
+      break;
+    case 'stab':
+      stab();
+      cnv.mouseClicked(noClick);
+      break;
+    case 'magic':
+      magic();
+      cnv.mouseClicked(noClick);
+      break;
+    case 'block':
+      block();
+      cnv.mouseClicked(noClick);
+      break;
+    case 'run':
+      run();
+      cnv.mouseClicked(noClick);
+      break;
+    case 'win':
+      fightWin();
+      cnv.mouseClicked(noClick);
+      break;
+    case 'lose':
+      fightLose();
+      cnv.mouseClicked(noClick);
+      break;
+
+
+
+    case 'the end':
+      credits();
+      noClick();
     default:
       break;
   }
@@ -109,7 +192,6 @@ function noClick() {}
 
 //shows the title
 function title() {
-  //basicSong.play();
   image(titleImage, 0, 0);
   fill(225);
   textSize(150);
@@ -210,7 +292,7 @@ function areaOne() {
 function moveToAreaTwo() {
   //top move
   if (y >= 0 && y <= 30 && x >= 350 && x <= 415) {
-    state = 'title';
+    state = 'fight';
     x = 800 / 2;
     y = 800 - r;
   }
@@ -357,8 +439,315 @@ function youDie() {
   text("Are", 100, 500);
   text("Dead", 50, 800)
   pop();
+
+  setTimeout(moveCredit, 10000);
 }
 
-function fightLead() {
+function fightOne() {
+  clear();
+  background(0);
 
+  textSize(25);
+  fill(255);
+  text("Walking forward you come across a mass of bodies and a broken", 40, 700);
+  text("carriage", 40, 750)
+
+  setTimeout(fightOneTwo, 7000);
+}
+
+function fightOneTwo() {
+  state = 'fight2'
+}
+
+function fightTwo() {
+  clear();
+  background(0);
+
+  textSize(25);
+  fill(255);
+  text("Going around the carriage you witness the site of a(n) " + mob, 40, 700);
+  text("consuming the spralled bodies.", 40, 750);
+
+  setTimeout(fightTwoThree, 7000);
+}
+
+function fightTwoThree() {
+  state = 'fight3';
+}
+
+function fightThree() {
+  clear();
+  background(0);
+
+  textSize(25);
+  fill(255);
+  text("Stepping backwards to avoid a confrontation with the beast you", 40, 700);
+  text("accidently kick a piece of broken off wood.", 40, 750);
+
+  setTimeout(fightThreeFour, 7000);
+}
+
+function fightThreeFour() {
+  state = 'fight4';
+}
+
+function fightFour() {
+  clear();
+  background(0);
+
+  textSize(25);
+  fill(255);
+  text("Looking up from what you just stepped on, you notice the beast", 40, 700);
+  text("looking at you. Before you know it, the " + mob + " is rushing you.", 40, 750);
+
+  setTimeout(fightFourFive, 7000);
+}
+
+function fightFourFive() {
+  state = 'fight5'
+}
+
+function fightFive() {
+  clear();
+  background(0);
+
+  textSize(25);
+  fill(255);
+  text("You rush to pull out your sword and block its first attack. Now", 40, 700);
+  text("the real fight begins.", 40, 750);
+
+  setTimeout(fightFiveReal, 7000);
+}
+
+function fightFiveReal() {
+  state = 'fight6';
+}
+
+function fightSix() {
+  clear();
+  background(0);
+
+  counter = 0;
+
+  if (php > 1) {
+    actionChoice();
+  } else if (php <= 0) {
+    state = 'lose';
+  }else if(ehp <= 0){
+    state = 'win';
+  }
+}
+
+function actionChoice() {
+  fill(64, 0, 0, 80);
+  beginShape();
+  vertex(0, 700);
+  vertex(0, 750);
+  vertex(400, 750);
+  vertex(400, 700);
+  endShape(CLOSE);
+
+  beginShape();
+  vertex(0, 750);
+  vertex(0, 800);
+  vertex(400, 800);
+  vertex(400, 750);
+  endShape(CLOSE);
+
+  beginShape();
+  vertex(400, 800);
+  vertex(800, 800);
+  vertex(800, 750);
+  vertex(400, 750);
+  endShape(CLOSE);
+
+  beginShape();
+  vertex(400, 750);
+  vertex(400, 700);
+  vertex(800, 700);
+  vertex(800, 750);
+  endShape(CLOSE);
+
+  push();
+  textSize(30);
+  fill(181, 0, 0);
+  text("ATTACK", 150, 735);
+  text("BLOCK", 155, 785);
+  text("MAGIC", 550, 735);
+  text("RUN", 570, 785);
+  pop();
+
+  if (mouseX <= 400 && mouseX >= 0 && mouseY <= 750 && mouseY >= 700) {
+    if (mouseIsPressed) {
+      state = 'attack';
+    }
+  }
+  if (mouseX <= 800 && mouseX >= 400 && mouseY <= 750 && mouseY >= 700) {
+    if (mouseIsPressed) {
+      state = 'magic';
+    }
+  }
+  if (mouseX <= 400 && mouseX >= 0 && mouseY <= 800 && mouseY >= 750) {
+    if (mouseIsPressed) {
+      state = 'block';
+    }
+  }
+  if (mouseX <= 800 && mouseX >= 400 && mouseY <= 800 && mouseY >= 750) {
+    if (mouseIsPressed) {
+      state = 'run';
+    }
+  }
+}
+
+function attack() {
+  clear();
+  background(0);
+  fill(64, 0, 0, 80);
+  beginShape();
+  vertex(0, 750);
+  vertex(0, 800);
+  vertex(400, 800);
+  vertex(400, 750);
+  endShape(CLOSE);
+
+  beginShape();
+  vertex(800, 750);
+  vertex(800, 800);
+  vertex(400, 800);
+  vertex(400, 750);
+  endShape(CLOSE);
+
+  push();
+  textSize(30);
+  fill(181, 0, 0);
+  text("SLASH", 150, 785);
+  text("STAB", 590, 785);
+  pop();
+
+  if (mouseX <= 400 && mouseX >= 0 && mouseY <= 800 && mouseY >= 750) {
+    if (mouseIsPressed) {
+      state = 'slash';
+    }
+  }if(mouseX<=800 && mouseX>=400 && mouseY <= 800 && mouseY >= 750){
+    if(mouseIsPressed){
+      state = 'stab';
+    }
+  }
+}
+
+function slash() {
+  if (counter == 0) {
+    clear();
+    background(0);
+    ehp = ehp - 15;
+    php = php - dmg
+    textSize(25);
+    fill(255);
+    text("You have dealt 15 damage to the beast. It now has " + ehp + " hp left.", 40, 700);
+    text("You have taken " + dmg + " damage from the beast. You now have " + php + " left.", 40, 750);
+    counter = 1;
+    setTimeout(stateFight, 5000);
+  }
+}
+
+function stab() {
+  if (counter == 0) {
+    clear();
+    background(0);
+    ehp = ehp - 10;
+    php = php - dmg
+    textSize(25);
+    fill(255);
+    text("You have dealt 10 damage to the beast. It now has " + ehp + " hp left.", 40, 700);
+    text("You have taken " + dmg + " damage from the beast. You now have " + php + " left.", 40, 750);
+    counter = 1;
+    setTimeout(stateFight, 5000);
+  }
+}
+
+function magic() {
+  clear();
+  background(0);
+  fill(64, 0, 0, 80);
+  beginShape();
+  vertex(0, 700);
+  vertex(0, 800);
+  vertex(400, 800);
+  vertex(400, 700);
+  endShape(CLOSE);
+
+  beginShape();
+  vertex(800, 700);
+  vertex(800, 800);
+  vertex(400, 800);
+  vertex(400, 700);
+  endShape(CLOSE);
+
+  push();
+  textSize(70);
+  fill(181, 0, 0);
+  text("THUNDER", 40, 770);
+  text("FIRE", 520, 770);
+  pop();
+}
+
+function block() {
+  clear();
+  background(0);
+  if (counter == 0) {
+    php = php - (dmg / 2);
+    counter = 1;
+  }
+  console.log(php);
+
+  textSize(25);
+  fill(255);
+  text("You quickly pull up your sword as the beast rushes you managing", 40, 700);
+  text("to block its attack. ' You take " + dmg / 2 + " damage, you now have " + php + " hp.'", 40, 750);
+
+  setTimeout(stateFight, 7000);
+}
+
+function run() {
+  runchance = int(random(1, 5));
+  if (counter == 0) {
+    if (runchance <= 3) {
+      setTimeout(fightWin, 0);
+      counter = 1;
+    } else if (runchance > 3) {
+      setTimeout(stateFight, 0);
+      counter = 1;
+    }
+  }
+}
+
+function fightWin() {
+  clear();
+  background(50);
+  console.log("You have won this version of the game");
+}
+
+function fightLose() {
+  console.log("You have died");
+
+  setTimeout(moveCredit, 10000)
+}
+
+function moveCredit() {
+  state = 'the end';
+}
+
+function credits() {
+  clear();
+  background(0);
+  fill(140, 255, 251);
+  textSize(30);
+  text("First song is by my brother :)", 220, 100);
+  text("Death song is Soundscape to Ardor from Bleach.", 80, 200);
+  text("Fight song is Advent: 'One-Winged Angel'", 150, 300);
+  text("Art is by me, Ahmer Ahmed", 240, 400);
+}
+
+function stateFight() {
+  state = 'fight6';
 }
