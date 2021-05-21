@@ -2,25 +2,29 @@ var video;
 var song;
 var spart;
 var vScale = 12;
-
+var randomColor;
+var city;
 function preload() {
-    song = loadSound("LetsGoUp.mp3");
+    song = loadSound('LetsGoUp.mp3');
+    city = loadImage('pixelcity.jpg');
 }
 
 function setup() {
   createCanvas(1260, 720);
   song.play();
+  song.setVolume(0.1);
 pixelDensity(1);
   video = createCapture(VIDEO);
-  // spart = loadImage(`assets/spartan.jpg`);
   video.size(width/vScale, height/vScale);
   video.hide();
 }
 
 function draw() {
-
+    background(city);
+  randomColor = color(random(255),random(255),random(255));
   image(video, 0, 0);
-  background(0);
+
+
   // noStroke();
 
   video.loadPixels();
@@ -38,12 +42,12 @@ for(var y = 0; y < video.height; y++){
 
     var bright = (r+g+b)/3
 
-    var threshold = 100;
+    var threshold = 70;
+if (bright > threshold){
+          fill(0);
 
-    if (bright > threshold){
-      fill(255);
     }else {
-      fill(0);
+      fill(randomColor);
     }
     // fill(bright);
     rect(x*vScale, y*vScale, vScale, vScale);
