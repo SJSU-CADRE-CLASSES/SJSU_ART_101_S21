@@ -35,7 +35,7 @@ function setup() {
 function mousePressed() {
   if (whitenoise.isPlaying()) {
     // .isPlaying() returns a boolean
-    whitenoise.pause(); // .play() will resume from .pause() position
+    whitenoise.stop(); // .play() will resume from .pause() position
   } else {
     whitenoise.play();
   }
