@@ -1,0 +1,49 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Fredericka the Great', cursive;
+  overflow: hidden; /* Hide scrollbars */
+  border: 5px solid #E5C3AC;
+  background-color: #354639;
+
+
+}
+
+canvas {
+  display: block;
+  margin: 95px auto;
+
+
+
+
+
+
+}
+
+
+
+  a:hover{
+ color: white;
+
+
+
+}
+
+.container {
+  position: relative;
+  width: 5%;
+}
+/* replay */
+.box {
+  background-color: transparent;
+  position: fixed;
+  bottom: 37%;
+  left: 47%;
+  padding: 20px;
+  margin: 10px;
+
+}
+
+p {
+  color: transparent;
+}

@@ -1,0 +1,59 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Fredericka the Great', cursive;
+  overflow: hidden; /* Hide scrollbars */
+  border: 5px solid #E5C3AC;
+  background-color: #354639;
+
+
+}
+
+canvas {
+  display: block;
+  margin: 95px auto;
+  border-bottom: 3px dashed white;
+
+
+
+
+
+}
+
+
+
+  a:hover{
+ color: white;
+
+
+
+}
+
+.container {
+  position: relative;
+  width: 5%;
+}
+/* date */
+.box {
+  background-color: transparent;
+  position: fixed;
+  bottom: 40%;
+  left: 30%;
+  padding: 20px;
+  margin: 10px;
+
+}
+/* sunset cruise */
+.box2 {
+  background-color: transparent;
+  position: fixed;
+  bottom: 40%;
+  right: 29%;
+  padding: 20px;
+  margin: 10px;
+
+}
+
+p {
+  color: transparent;
+}
