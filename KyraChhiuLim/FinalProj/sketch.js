@@ -32,6 +32,11 @@ function setup() {
   seriously.go();
 }
 
-function touchStarted() {
-  getAudioContext().resume()
+function mousePressed() {
+  if (whitenoise.isPlaying()) {
+    // .isPlaying() returns a boolean
+    whitenoise.pause(); // .play() will resume from .pause() position
+  } else {
+    whitenoise.play();
+  }
 }
