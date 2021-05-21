@@ -3,7 +3,11 @@
 
 html {
   margin: 10px;
-  padding: 30px;;
+  padding: 30px;
+  background-color: #fff;
+ background-image: radial-gradient(circle, #000 10%, transparent 10%), radial-gradient(circle, #000 10%, transparent 10%);
+ background-size: 100px 100px;
+ background-position: 0 0, 50px 50px;
 }
 
 body {
@@ -16,23 +20,45 @@ canvas {
   display:block;
   margin: auto;
   position: absolute;
-  top: 60%;
+  top: 57%;
   left: 50%;
   transform: translateY(-50%) translateX(-50%);
   -webkit- transform: translateY(-50%) translateX(-50%);
-
+border: 10px solid black;
+border-radius: 30px;
 }
 
 h1 {
   font-size: 40px;
+  background:white;
+  padding-top:15px;
+  padding-bottom:15px;
+  margin:5px;
 }
 
 
 a {
   text-decoration: none;
-  padding-bottom:30px;
+  padding:10px;
   font-size:20px;
   color:white;
   background-color:black;
   border-radius:50px;
+}
+
+li {
+  list-style-type: none; /* Remove bullets */
+}
+ul {
+  color:white;
+}
+
+.about-content {
+  position: absolute;
+  top: 43%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  -webkit- transform: translateY(-50%) translateX(-50%);
+border: 10px solid black;
+border-radius: 30px;
 }

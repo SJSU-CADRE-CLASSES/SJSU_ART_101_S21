@@ -69,35 +69,35 @@ function draw() {
       bubbles[i].fall();
 
       if (bubbleNose.intersects(bubbles[i])) {
-        background('rgba( 214,12,2 , 0.3 )');
+        background('rgba( 44,159,234 , 0.1 )');
         monoSynth.play('Eb4', 1, 0, 1 / 8);
 
       } else if (bubbleRArm.intersects(bubbles[i])) {
-        background('rgba( 239,165,28 , 0.3 )');
+        background('rgba( 44,159,234 , 0.1 )');
         monoSynth.play('F4', 1, 0, 1 / 8);
 
       } else if (bubbleLArm.intersects(bubbles[i])) {
-        background('rgba( 255,217,0 , 0.3)');
+        background('rgba( 44,159,234 , 0.1 )');
         monoSynth.play('G4', 1, 0, 1 / 8);
 
       } else if (bubbleREye.intersects(bubbles[i])) {
-        background('rgba( 0,122,16 , 0.3 )');
+        background('rgba( 44,159,234 , 0.1 )');
         monoSynth.play('Ab4', 1, 0, 1 / 8);
 
       } else if (bubbleLEye.intersects(bubbles[i])) {
-        background('rgba( 3,46,198 , 0.3)');
+        background('rgba( 44,159,234 , 0.1 )');
         monoSynth.play('Bb4', 1, 0, 1 / 8);
 
       } else if (bubbleREar.intersects(bubbles[i])) {
-        background('rgba( 115,14,204 , 0.3)');
+        background('rgba( 44,159,234 , 0.1 )');
         monoSynth.play('C5', 1, 0, 1 / 8);
 
       } else if (bubbleLEar.intersects(bubbles[i])) {
-        background('rgba( 115,14,204 , 0.3 )');
+        background('rgba( 44,159,234 , 0.1 )');
         monoSynth.play('D5', 1, 0, 1 / 8);
 
       } else if (bubbleRShoulder.intersects(bubbles[i])) {
-        background('rgba( 28,21,27 , 0.3)');
+        background('rgba( 44,159,234 , 0.1 )');
         monoSynth.play('Eb5', 1, 0, 1 / 8);
       }
     }
