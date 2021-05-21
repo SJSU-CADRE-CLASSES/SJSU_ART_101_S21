@@ -1,0 +1,15 @@
+html, body {
+  /* margin: 0;
+  padding: 0; */
+  font-family: "Verdana", sans-serif;
+  font-weight: bold;
+
+}
+
+canvas {
+margin: auto;
+  top: 0;
+  left: 0;
+  position: absolute;  /* margin: 50px auto 50px auto; */
+
+}
