@@ -66,5 +66,5 @@ function keyTyped() {
 
 function mousePressed(){
   song.play();
-  song.setVolume(0.1);
+  song.setVolume(0.3);
 }
