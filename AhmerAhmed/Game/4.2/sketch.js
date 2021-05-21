@@ -4,8 +4,6 @@ var pexp = 0;
 var ehp;
 var hpotion;
 var mana = 100;
-var stamina = 100;
-var life;
 var money;
 var enemy;
 var php_pnt;
@@ -24,10 +22,6 @@ let state = 'title';
 let cnv;
 
 let mob;
-
-let merchantbuy;
-let merchantsell;
-let merchantleave;
 
 //preload the background images
 function preload() {
