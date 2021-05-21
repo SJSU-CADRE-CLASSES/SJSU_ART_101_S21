@@ -183,7 +183,7 @@ function gameOver() {
 
 
     textSize(20); //Should be setup size on top of text.
-    text('Click to restart', w / 2.30, h / 2.5);
+    text('Click to restart', w / 2.32, h / 2.5);
   }
 
 }
