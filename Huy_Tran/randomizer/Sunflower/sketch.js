@@ -6,11 +6,11 @@ const frames = 5000; // define frame as a constant and give it the value 5000
 
 function setup() {
   const size = min(window.innerWidth, window.innerHeight);
-  // createCanvas(size, size);
-  createCanvas(width * 5,  height * 5);
+  createCanvas(size, size);
+  // createCanvas(width * 5,  height * 5);
   noStroke();
   colorMode(RGB, 1);
-  blendMode(MULTIPLY);
+  // blendMode(MULTIPLY);
 }
 
 function cosn(v) {
@@ -39,6 +39,7 @@ function draw() {
   //-------------------------FOR LOOP FLOWER ANIMATION------------------------//
   const count = 1000 * invCosn(t); //--ZOOM OUT and inverse the animation
 
+//Draw a formula for golden ratio, then manipulate to create pattern
   for (let i = 1; i < count; i++) {
     // circle manipulated the spiral outward
     const f = i / count; //fraction
@@ -51,15 +52,15 @@ function draw() {
     const sig = pow(cosn(f - t * 6), 2);
     const r = f * sig * dotSize;
 
-    const hue = fract(t + f * 0.5);
+    const hue = fract(t + f * 0.7);
     const sat = 1;
-    const light = 0.6 * sig + 0.25;
+    const light = 0.8 * sig + 0.55;
     const clr = color(hue, sat, light);
 
     fill(clr);
 
-    circle(x, y, r);
-  }
+    square(x, y, r);
+    }
   }
 ///---------------------------------END------------------------------------///
 
@@ -70,9 +71,6 @@ function keyTyped() {
   if (key === 's') {
     //save current drawing
     saveCanvas('WOOHOO, NICE PATTERN', 'png');
-  } else if (key === 'c') {
-    clear();
-    // drawGrid();
   }
   return false;
 }

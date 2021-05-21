@@ -1,0 +1,22 @@
+var api = "http://api.giphy.com/v1/gifs/search?";
+
+var apiKey = "&api_key=LkzEHbCg2n0Zm9bvZcJE6ThXZdOc6F6q";
+
+var query = "&q=rainbow";
+
+
+function setup() {
+  noCanvas();
+  var url = api + apiKey + query;
+  loadJSON(url, gotData);
+}
+
+function gotData(giphy) {
+  for (var i = 0; i < giphy.data.lenghth; i++){
+    createImg(giphy.data[i].images.original.url);// create a image source among data to display
+  }
+}
+
+function draw(){
+
+}
