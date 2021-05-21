@@ -1,5 +1,5 @@
 //giphy search path
-var api = "HTTPS://api.giphy.com/v1/gifs/search?";
+var api = "http://api.giphy.com/v1/gifs/search?";
 //api key from dashboard
 var apiKey = "&api_key=i411tUfDR0kdyw5vBUXHeki3NmAKbdrU";
 //what gifs i want to find; search query term/phrase

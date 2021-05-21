@@ -16,15 +16,22 @@ var points = 0;
 
 let state = 'title';
 let cnv;
+let titleImage;
+let video;
+let poseNet;
+
+function preload(){
+  titleImage = loadImage(`bgs/Title.jpg`);
+}
 
 function setup() {
   cnv = createCanvas(800, 800);
-
-  background(0);
-  fill(255);
+  video = createCapture(VIDEO);
+  video.hide();
 }
 
 function draw() {
+  image(video, 0, 0);
   switch (state) {
     case 'title':
       title();
@@ -44,13 +51,12 @@ function draw() {
 
 function keyPressed() {
   if (keyCode === SHIFT) {
-    clear();
-    background(0);
-    console.log("shift has been clicked")
+
   }
 }
 
 function title() {
+  //image(titleImage,0,0);
   fill(225);
   textSize(100);
   text("This is the TITLE", 10, 300);
@@ -86,7 +92,7 @@ function introClick() {
 
 function winYou(){
   clear();
-  background(0);
+  background(255,53,127);
   textSize(100);
   text("YOU HAVE WON!!", 10, 300);
   text("Click to restart.", 50, 400);
