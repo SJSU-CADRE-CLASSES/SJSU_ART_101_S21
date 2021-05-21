@@ -1,10 +1,11 @@
 'use strict'
 var video;
 let whitenoise;
+let combined;
 
 function preload() {
   whitenoise = loadSound('media/whitenoise.mp3');
-
+  combined = loadSound('media/combined.mp3');
 }
 
 function setup() {
@@ -16,7 +17,8 @@ function setup() {
   video.size(600, 350);
   video.id('p5video');
 
-  //whitenoise.loop();
+  whitenoise.loop();
+  combined.loop();
 
   let seriously = new Seriously();
   var src = seriously.source('#p5video');
