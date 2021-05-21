@@ -1,12 +1,13 @@
 class Player {
-  constructor(animation, x, y, speed) {
+  constructor(animation, x, speed) {
     this.r = 100;
     // this.h = 600;
-    this.x = w / 2;
+    this.x = x;
+
     this.y = h - this.r;
     // this.animation = playerAnimation;
-    this.speed = 2;
-    // this.speed = speed;
+    // this.speed = 2;
+    this.speed = speed;
     // this.len = playerAnimation.length;
     this.direction = 'still';
     // this.index = 0;
@@ -19,6 +20,7 @@ class Player {
      //     image(playerAnimation[index], this.x, this.y)
      this.frame = frameCount
      image(playerAnimation[this.frame % playerAnimation.length], this.x, this.y, this.r, this.r);
+     // console.log(this.x)
   }
 
     // animate() {
@@ -31,6 +33,8 @@ class Player {
     // }
 
   move() {
+    if (this.speed > 4)
+     {this.speed = 4}
     switch (this.direction) {
       case 'still':
         // dont move

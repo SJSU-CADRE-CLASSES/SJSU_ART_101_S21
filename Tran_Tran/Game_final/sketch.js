@@ -5,7 +5,7 @@ let cnv;
 let points = 0;
 let w = window.innerWidth;
 let h = window.innerHeight;
-let player;
+let players = [];
 let coins = [];
 let plastics = [];
 let playerImg;
@@ -27,6 +27,7 @@ let coinJSON;
 let playerAnimation = [];
 let coinAnimation = [];
 
+// let y = h - 100;
 
 function preload() {
   //spritesheets
@@ -53,7 +54,8 @@ function setup() {
   textFont('monospace');
 
   for (let i = 0; i < 5; i++) {
-    player = new Player(animation, 100, i * 200, random(0, 0.1));
+    player = new Player(animation, w / 2, 2);
+    console.log(player.speed)
   }
   // coins[0] = new Coin();
   coins.push(new Coin());
@@ -95,33 +97,7 @@ function setup() {
 
 
 function draw() {
-  background(40, 140, 150);
-
-
-  // let frames = spritedata.frames;
-  // for (let i = 0; i < frames.length; i++) {
-  //   let pos = frames[i].position;
-  //   let img = spritesheet.get(pos.x, pos.y, pos.w, pos.h);
-  //   animation.push(img);
-  //   console.log('it');
-  // if (frames.length == 1){
-  //   frames.length = 0;
-  // }
-  // }
-  // for (let i = 0; i < 5; i++) {
-  //   turtles[i] = new Sprite(animation, 100, i * 100, random(0.1, 0.2));
-  // console.log('animation');
-  // }
-  //
-  // for (let turtle of turtles) {
-  //   turtle.show();
-  //   turtle.animate();
-  // }
-
-  // image(animation[frameCount % animation.length], 0, 0);
-
-  // sprite.show();
-  // sprite.animate();
+  background(60, 140, 150);
 
   // levels
   switch (state) {
@@ -184,13 +160,13 @@ function keyPressed() {
 }
 
 function title() {
-  background(50, 150, 200);
+  background(25,45,77);
   textSize(80);
   fill(255);
   noStroke();
   // stroke(255);
   textAlign(CENTER);
-  text('My Game', w / 2, h / 2);
+  text('The Seas Sons', w / 2, h / 2);
   fill(255);
   textSize(30);
   text('click anywhere to start', w / 2, h - 200);
@@ -201,8 +177,16 @@ function titleMouseClicked() {
   state = 'level 1'
 }
 
+function morePlayers(){
+  var players = new Player(n)
+  for (var i = 0; i < n; ++i) {
+    players[i] = new Player()
+  }
+  return players
+}
+
 function level1() {
-  background(50, 150, 200);
+  background(25,45,77);
   fill(255);
 
   if (random(1) <= 0.01) {
@@ -248,31 +232,26 @@ function level1() {
     }
   }
 
-  text(`points: ${points}`, w / 8, h - 20);
+  text(`points: ${points}`, w / 9, h - 20);
 
-  if (points >= 5) {
+  if (points >= 10) {
     state = 'level 2'
   }
 }
 
 function level2() {
-  background(50, 150, 200);
+  background(46,81,138);
   fill(255);
 
   if (random(1) <= 0.01) {
     coins.push(new Coin());
-    // coins.push(new Coin());
+    coins.push(new Coin());
   }
 
   if (random(1) <= 0.01) {
     plastics.push(new Plastic());
 
   }
-
-  player.show();
-  player.move();
-
-
 
   //using for of loop
   for (let coin of coins) {
@@ -284,7 +263,6 @@ function level2() {
     plastic.display();
     plastic.move();
   }
-
 
   //check for collision, if collide, increase points by 1 and splice out coin
   //of array
@@ -309,20 +287,24 @@ function level2() {
       // console.log('plastic is out of town')
     }
 
-  text(`points: ${points}`, w / 8, h - 20);
+  text(`points: ${points}`, w / 9, h - 20);
   text(`level 2`, w / 2, 20);
 
-  if (points >= 15) {
+
+  if (points >= 7) {
+    players[i] = new Player(animation, (w / 2) + 200, 2)
+    console.log(player.speed)
+  }
+
+  player.show();
+  player.move();
+
+  if (points >= 25) {
     state = 'level 3'
   }
-  if (points >= 7) {
-    new Player(animation, 100, 100, 2);
 
-  }
 }
-
-
-
+}
 
 function level1MouseClicked() {
   points++;
@@ -335,11 +317,11 @@ function level1MouseClicked() {
 }
 
 function youWin() {
-  background(255, 50, 80);
+  background(148,175,219);
   textSize(80);
   stroke(255);
   textAlign(CENTER);
-  text('You Win', w / 2, h / 2);
+  text('You Survived This Season', w / 2, h / 2);
 
   textSize(30);
   fill(255);
@@ -349,14 +331,19 @@ function youWin() {
 function youWinMouseClicked() {
   state = 'level 1';
   points = 0;
-}}
+}
 function level3() {
-  background(50, 150, 200);
+  background(148,175,219);
   fill(255);
 
   if (random(1) <= 0.01) {
     coins.push(new Coin());
 
+  }
+
+  if (random(1) <= 0.01) {
+    plastics.push(new Plastic());
+    plastics.push(new Plastic());
   }
 
   player.show();
@@ -370,6 +357,10 @@ function level3() {
     coin.move();
   }
 
+  for (let plastic of plastics) {
+    plastic.display();
+    plastic.move();
+  }
 
   //check for collision, if collide, increase points by 1 and splice out coin
   //of array
@@ -385,10 +376,27 @@ function level3() {
   }
 }
 
-  text(`points: ${points}`, w / 8, h - 20);
+for (let i = plastics.length - 1; i >= 0; i--) {
+  if (dist(player.x, player.y, plastics[i].x, plastics[i].y) <= (player.r + plastics[i].r) / 2) {
+    points--;
+    // console.log(points);
+    plastics.splice(i, 1);
+  } else if (plastics[i].y > h) {
+    plastics.splice(i, 1);
+    // console.log('plastic is out of town')
+  }
+
+
+  text(`points: ${points}`, w / 9, h - 20);
   text(`level 3`, w / 2, 20);
 
-  if (points >= 50) {
+  if (points >= 30) {
+    players[i] = new Player(animation, (w / 2) + 200, 2)
+    console.log(player.speed)
+  }
+
+  if (points >= 40) {
     state = 'you win'
   }
+}
 }
