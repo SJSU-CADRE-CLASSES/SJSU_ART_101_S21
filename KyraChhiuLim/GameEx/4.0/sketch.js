@@ -6,6 +6,12 @@ let cnv;
 let points = 0;
 let w = 600;
 let h = 600;
+let STARTtitle;
+
+
+function preload() {
+STARTtitle = loadImage('media/STARTtitle.png');
+}
 
 function setup() {
   cnv = createCanvas(w, h);
@@ -34,14 +40,15 @@ function draw() {
 }
 
 function title() {
-  background(200,175,250);
-  textSize(80);
-  stroke(150,10,255);
+  background(STARTtitle);
+  textSize(25);
+  stroke(0);
+  fill(255,255, 153);
   textAlign(CENTER);
-  text('MY GAME', w/2, h/5);
+  text('Sensory Overload at the Grocery Store', w/2, h/1.2);
 
-  textSize(30);
-  text('click anywhere to start', w/2, h/2);
+  textSize(18);
+  text('click anywhere to start', w/2, h/1.1);
 }
 
 function titleMouseClicked() {
@@ -68,6 +75,7 @@ function youWin() {
   background(150, 250, 180);
   textSize(80);
   stroke(150,210,190);
+
   text('YOU WIN', w/2, h/2);
 
   textSize(30);
