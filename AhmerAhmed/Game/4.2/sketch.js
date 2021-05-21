@@ -102,6 +102,18 @@ function draw() {
       merchant();
       cnv.mouseClicked(noClick);
       break;
+    case 'buy':
+      merchBuy();
+      cnv.mouseClicked(noClick);
+      break;
+    case 'leave':
+      merchLeave();
+      cnv.mouseClicked(noClick);
+      break;
+    case 'sell':
+      merchSell();
+      cnv.mouseClicked(noClick);
+      break;
     case 'dead1':
       deadOne();
       cnv.mouseClicked(noClick);
@@ -250,7 +262,7 @@ function introClick() {
 //creates player(circle) and allows movement inside the canvas
 function areaOne() {
   clear();
-  image(search,0,0);
+  image(search, 0, 0);
 
   //player movement
   if (keyIsDown(UP_ARROW)) {
@@ -311,66 +323,100 @@ function moveToAreaTwo() {
 //buttons to use the merchant
 function merchant() {
   clear();
-  image(shop,0,0);
+  image(shop, 0, 0);
 
-  merchantbuy = createButton("BUY");
-  merchantbuy.position(0, 0);
-  merchantbuy.mousePressed(merchBuy);
+  textSize(50);
+  text("What would you like to do today?", 50, 700);
 
-  merchantsell = createButton("SELL");
-  merchantsell.position(400, 0);
-  merchantsell.mousePressed(merchSell);
+  //buy
+  push();
+  fill(255, 255, 255, 20)
+  beginShape;
+  vertex(0, 650);
+  vertex(0, 600);
+  vertex(267, 600);
+  vertex(267, 650);
+  endShape(CLOSE);
+  pop();
 
-  merchantleave = createButton("LEAVE");
-  merchantleave.position(0, 400);
-  merchantleave.mousePressed(merchLeave);
+  //leave
+  push();
+  fill(255, 255, 255, 20)
+  beginShape;
+  vertex(267, 650);
+  vertex(267, 600);
+  vertex(534, 600);
+  vertex(534, 650);
+  endShape(CLOSE);
+  pop();
 
-  text("What would you like to do today?", 50, 50);
+  //sell
+  push();
+  fill(255, 255, 255, 20)
+  beginShape;
+  vertex(534, 650);
+  vertex(534, 600);
+  vertex(800, 600);
+  vertex(800, 650);
+  endShape(CLOSE);
+  pop();
 
-  if (checker == 4) {
-    clear();
-    image(shop,0,0);
-    merchantbuy.remove();
-    merchantsell.remove();
-    merchantleave.remove();
-    text("Thank you for visiting the store. Come again.", 100, 100)
-    setTimeout(waitLeaveMerch, 5000);
-    x = 120;
-    y = 495;
-  } else if (checker == 3) {
-    hpotion = 0;
-    money = 31;
-    text("Thank you for your patronage. You now have " + hpotion + " health potions left.", 100, 100);
-    text("You now have " + money + " coins left.", 110, 150);
-    text("Please have safe travels and come again.", 100, 200);
-    setTimeout(waitLeaveMerch, 5000);
-    x = 120;
-    y = 495;
-  } else if (checker == 2) {
-    hpotion = 4;
-    money = 22;
-    text("Thank you for your patronage. You now have " + hpotion + " health potions left.", 100, 100);
-    text("You now have " + money + " coins left.", 110, 150);
-    text("Please have safe travels and come again.", 100, 200);
-    setTimeout(waitLeaveMerch, 5000);
-    x = 120;
-    y = 495;
+  text("BUY", 80, 642);
+  text("LEAVE", 320, 642)
+  text("SELL", 620, 642);
+
+  if (mouseX <= 267 && mouseX >= 0 && mouseY <= 650 && mouseY >= 600) {
+    if (mouseIsPressed) {
+      state = 'buy'
+    }
+  }
+  if (mouseX <= 534 && mouseX >= 267 && mouseY <= 650 && mouseY >= 600) {
+    if (mouseIsPressed) {
+      state = 'leave'
+    }
+  }
+  if (mouseX <= 800 && mouseX >= 534 && mouseY <= 650 && mouseY >= 600) {
+    if (mouseIsPressed) {
+      state = 'sell';
+    }
   }
 }
 
 //buy from the merchant
 function merchBuy() {
-  checker = 2;
+  hpotion = 4;
+  money = 22;
+  textSize(26);
+  text("Thank you for your patronage. You now have " + hpotion + " health potions left.", 10, 100);
+  text("You now have " + money + " coins left.", 10, 150);
+  text("Please have safe travels and come again.", 10, 200);
+  setTimeout(waitLeaveMerch, 5000);
+  x = 120;
+  y = 495;
 }
 
 //sell to the merchant
 function merchSell() {
-  checker = 3;
+  hpotion = 0;
+  money = 31;
+  textSize(26);
+  text("Thank you for your patronage. You now have " + hpotion + " health potions left.", 10, 100);
+  text("You now have " + money + " coins left.", 10, 150);
+  text("Please have safe travels and come again.", 10, 200);
+  setTimeout(waitLeaveMerch, 5000);
+  x = 120;
+  y = 495;
 }
 
 //leave the merchant
 function merchLeave() {
-  checker = 4;
+  clear();
+  image(shop, 0, 0);
+  textSize(26);
+  text("Thank you for visiting the store. Come again.", 10, 100)
+  setTimeout(waitLeaveMerch, 5000);
+  x = 120;
+  y = 495;
 }
 
 //chanes stage back to area 1
@@ -381,7 +427,7 @@ function waitLeaveMerch() {
 //dead if go to right
 function deadOne() {
   clear();
-  image(blood,0,0);
+  image(blood, 0, 0);
 
   push();
   fill(112, 0, 0);
@@ -400,7 +446,7 @@ function moveWoods() {
 //changes text on stage for right area
 function middleWoods() {
   clear();
-  image(blood,0,0);
+  image(blood, 0, 0);
 
   push();
   fill(112, 0, 0);
@@ -419,7 +465,7 @@ function moveDead() {
 //changes text on stage for right area
 function deadEnd() {
   clear();
-  image(blood,0,0);
+  image(blood, 0, 0);
 
   push();
   fill(112, 0, 0);
@@ -438,7 +484,7 @@ function moveDie() {
 //changes text on stage for right area
 function youDie() {
   clear();
-  image(blood,0,0);
+  image(blood, 0, 0);
 
   push();
   fill(112, 0, 0);
@@ -454,7 +500,7 @@ function youDie() {
 //begins fight scene at the top
 function fightOne() {
   clear();
-  image(found,0,0);
+  image(found, 0, 0);
 
   textSize(25);
   fill(255);
@@ -472,7 +518,7 @@ function fightOneTwo() {
 //changes text on stage for the fight area
 function fightTwo() {
   clear();
-  image(found,0,0);
+  image(found, 0, 0);
 
   textSize(25);
   fill(255);
@@ -490,7 +536,7 @@ function fightTwoThree() {
 //changes text on stage for the fight area
 function fightThree() {
   clear();
-  image(found,0,0);
+  image(found, 0, 0);
 
   textSize(25);
   fill(255);
@@ -508,7 +554,7 @@ function fightThreeFour() {
 //changes text on stage for the fight area
 function fightFour() {
   clear();
-  image(found,0,0);
+  image(found, 0, 0);
 
   textSize(25);
   fill(255);
@@ -526,7 +572,7 @@ function fightFourFive() {
 //changes text on stage for the fight area
 function fightFive() {
   clear();
-  image(found,0,0);
+  image(found, 0, 0);
 
   textSize(25);
   fill(255);
@@ -544,7 +590,7 @@ function fightFiveReal() {
 //begins the button functions for the fight to take place
 function fightSix() {
   clear();
-  image(fight,0,0);
+  image(fight, 0, 0);
 
   counter = 0;
 
@@ -622,7 +668,7 @@ function actionChoice() {
 //creates the 2 types of attacks
 function attack() {
   clear();
-  image(fight,0,0);
+  image(fight, 0, 0);
   fill(64, 0, 0, 80);
   beginShape();
   vertex(0, 750);
@@ -660,7 +706,7 @@ function attack() {
 function slash() {
   if (counter == 0) {
     clear();
-    image(fight,0,0);
+    image(fight, 0, 0);
     ehp = ehp - 15;
     php = php - dmg
     textSize(25);
@@ -675,7 +721,7 @@ function slash() {
 function stab() {
   if (counter == 0) {
     clear();
-    image(fight,0,0);
+    image(fight, 0, 0);
     ehp = ehp - 10;
     php = php - dmg
     textSize(25);
@@ -690,7 +736,7 @@ function stab() {
 //creates the 2 types of magic attack
 function magic() {
   clear();
-  image(fight,0,0);
+  image(fight, 0, 0);
   fill(64, 0, 0, 80);
   beginShape();
   vertex(0, 750);
@@ -728,7 +774,7 @@ function thunder() {
   if (counter == 0) {
     if (mana >= 25) {
       clear();
-      image(fight,0,0);
+      image(fight, 0, 0);
       ehp = ehp - 25;
       php = php - dmg;
       mana = mana - 25;
@@ -749,7 +795,7 @@ function fire() {
   if (counter == 0) {
     if (mana >= 20) {
       clear();
-      image(fight,0,0);
+      image(fight, 0, 0);
       ehp = ehp - 20;
       php = php - dmg;
       mana = mana - 20;
@@ -768,7 +814,7 @@ function fire() {
 
 function block() {
   clear();
-  image(fight,0,0);
+  image(fight, 0, 0);
   if (counter == 0) {
     php = php - (dmg / 2);
     mana = mana + 15;
