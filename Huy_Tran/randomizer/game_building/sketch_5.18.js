@@ -4,7 +4,7 @@
 
 let state = 'title';
 let cnv;
-let points = 0;
+let score = 0;
 let w = 800;
 let h = 600;
 
@@ -81,7 +81,7 @@ function title() {
   text('SHOOTING GERMS', w / 3, h / 3);
 
   textSize(20); //Should be setup size on top of text.
-  text('click to start', w / 2.3, h / 2.5);
+  text('Click to start', w / 2.3, h / 2.5);
 
 }
 
@@ -91,8 +91,8 @@ function titleMouseClicked() {
 
 function level1() {
   background('#A702F7');
-  textSize(18);
-  textAlign(CENTER);
+  // textSize(18);
+  // textAlign(CENTER);
 
   if (random(1) <= .04) {
     covs.push(new Cov());
@@ -115,32 +115,19 @@ function level1() {
   }
 
   //iterating thru enemies array to display and mov them
-
   //using for loop
   for (let i = 0; i < enemies.length; i++) {
     enemies[i].display();
     enemies[i].move();
   }
 
-  //using forEach
-  // covs.forEach(function(cov) {
-  //   cov.display();
-  //   cov.move();
-  // })
-
-  //using for of LOOP
-  // for (let cov of covs) {
-  //   cov.display();
-  //   cov.move();
-  // }
-
   //Check collision with covs, if there is a collision increase pts by 1 & splice that covs out of the array
   //need to iterate backward through array
 
   for (let i = covs.length - 1; i >= 0; i--) {
     if (dist(player.x, player.y, covs[i].x, covs[i].y) <= (player.r + covs[i].r) / 2) {
-      points++;
-      // console.log(points);
+      score++;
+      // console.log(score);
       covs.splice(i, 1);
     } else if (covs[i].y > h) {
       covs.splice(i, 1);
@@ -152,19 +139,19 @@ function level1() {
 
   for (let i = enemies.length - 1; i >= 0; i--) {
     if (dist(player.x, player.y, enemies[i].x, enemies[i].y) <= (player.r + enemies[i].r) / 2) {
-      points--;
-      // console.log(points);
+      score--;
+      // console.log(score);
       enemies.splice(i, 1);
     } else if (enemies[i].y > h) {
       enemies.splice(i, 1);
     }
   }
-  text(`Points: ${points}`, w / 10, h - 30);
+  text(`Score: ${score}`, w / 10, h - 30);
 
   //---check value +/- to pop the msg
-  if (points >= 5) {
+  if (score >= 5) {
     state = 'you win';
-  } else if (points <= -1) {
+  } else if (score <= -1) {
     state = 'game over';
   }
 }
@@ -189,14 +176,14 @@ function gameOver() {
 
 
     textSize(20); //Should be setup size on top of text.
-    text('click to try again', w / 2, h / 1.8);
+    text('Click to try again', w / 2, h / 1.8);
   } else {
     //game over
     text('GAME OVER', w / 2, h / 2);
 
 
     textSize(20); //Should be setup size on top of text.
-    text('click to restart', w / 2, h / 1.8);
+    text('Click to restart', w / 2, h / 1.8);
   }
 
 }
@@ -240,18 +227,18 @@ function keyReleased() {
 }
 
 function level1MouseClicked() {
-  points++;
-  console.log('points = ' + points);
+  score++;
+  console.log('score = ' + score);
 
   //counting clicks to win
-  if (points >= 5) {
+  if (score >= 5) {
     state = 'You Win';
   }
 }
 
 function youWinMouseClicked() {
   state = 'title';
-  points = 0;
+  score = 0;
 }
 
 function gameOverMouseClicked() {
@@ -262,6 +249,6 @@ function gameOverMouseClicked() {
   } else {
     state = 'title';
   }
-  points = 1;
+  score = 1;
 }
 //******************************** END} *************************************//

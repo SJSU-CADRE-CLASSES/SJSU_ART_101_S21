@@ -8,7 +8,7 @@ let points = 0;
 let w = 800;
 let h = 600;
 
-let player;
+let player = 1;
 let covs = [];
 
 let enemies = [];
@@ -84,7 +84,6 @@ function title() {
 }
 
 function titleMouseClicked() {
-  // console.log('Canvas is clicked on the title page');
   state = 'level 1'
 }
 
@@ -92,10 +91,8 @@ function level1() {
   background('#A702F7');
   textSize(18);
   textAlign(CENTER);
-  // textFont('Serif');
-  // text('Click for points', w/2, h/2.5);
 
-  if (random(1) <= .04) {
+  if (random(1) <= .1) {
     covs.push(new Cov());
   }
 
@@ -160,10 +157,10 @@ function level1() {
       enemies.splice(i, 1);
     }
   }
-  text(`points: ${points}`, w / 10, h - 30);
+  text(`Points: ${points}`, w / 10, h - 30);
 
 //---check value +/- to pop the msg
-  if (points >= 2) {
+  if (points >= 5) {
     state = 'you win';
   } else if (points <= -1){
     state = 'game over';
@@ -226,7 +223,6 @@ function keyReleased() {
   if (numberKeysPressed == 0) {
     player.direction = 'still';
   }
-
 }
 
 function level1MouseClicked() {
@@ -237,7 +233,6 @@ function level1MouseClicked() {
   if (points >= 5) {
     state = 'You Win';
   }
-
 }
 
 function youWinMouseClicked() {
