@@ -172,11 +172,11 @@ function gameOver() {
 
   // check no. lives
   if (lives >= 0) {
-    text(`Lives left: ${lives}`, w / 2, h / 2);
+    text(`Lives left: ${lives}`, w / 2.7, h / 3.4);
 
 
     textSize(20); //Should be setup size on top of text.
-    text('Click to try again', w / 2, h / 1.8);
+    text('Click to try again', w / 2.48, h / 2.9);
   } else {
     //game over
     text('GAME OVER', w / 2, h / 2);
