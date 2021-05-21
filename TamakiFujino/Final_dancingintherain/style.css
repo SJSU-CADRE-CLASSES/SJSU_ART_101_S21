@@ -54,11 +54,10 @@ ul {
 }
 
 .about-content {
-  position: absolute;
-  top: 43%;
-  left: 50%;
-  transform: translateY(-50%) translateX(-50%);
-  -webkit- transform: translateY(-50%) translateX(-50%);
-border: 10px solid black;
-border-radius: 30px;
+ position: absolute;
+ left:0;
+ right:0;
+ margin:auto;
+ top:100px;
+ margin-bottom:100px;
 }
