@@ -1,0 +1,14 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Fredericka the Great', cursive;
+  overflow: hidden; /* Hide scrollbars */
+
+}
+
+canvas {
+  display: block;
+  margin: 100px auto;
+  border: 10px solid #E5C3AC;
+
+}

@@ -1,124 +1,270 @@
-// pandas gang (arrays)
-let pandas = [{
-  name: "You",
-  color: "awesome car!"
-}, {
-  name: "David",
-  color: "deported model car!"
-}, {
-  name: "Justin",
-  color: "limited edition car!"
-}, {
-  name: "Abdal",
-  color: "used car!"
-}, {
-  name: "Collin",
-  color: "brand new car!"
-}, {
-  name: "Jae",
-  color: "salvage title car!"
-}];
+// var api = "https://api.giphy.com/v1/gifs/search?";
+// //url to the api
+// var apiKey = "&api_key=MEy9ed99JF4OzucLfqzwSRP7SFYyzu7d";
+// //api key
+// var query = "&q=demonslayer";
 
-let randomIndex;
-let animating = false;
-let cars = [];
-let imageCounter = 0;
-let button;
+var song;
+var slider;
+var slash;
+var killed;
+'use strict';
+let state = 'title';
+let cnv;
+let points = 0;
+let w = window.innerWidth;
+let h = window.innerHeight;
+let player;
+let coin = [];
+let enemies = [];
+let playerImg;
+let coinImg;
+let backgroundImg;
+let winImg;
+let instructImg;
+let loseImg;
+let startImg;
+let enemyImg;
 
 function preload() {
-
-  for (let i = 0; i <= 15; i++) {
-    cars[i] = loadImage(`assets/car_${i}.jpg`)
-  }
-
+  song = loadSound('songs/opening.mp3');
+  slash = loadSound('songs/thunderclap.mp3');
+  killed = loadSound('songs/death.mp3')
+  playerImg = loadImage('assets/player.png');
+  coinImg = loadImage('assets/coin.png');
+  backgroundImg = loadImage('assets/background.png');
+  winImg = loadImage('assets/win.png');
+  instructImg = loadImage('assets/instruction.png');
+  loseImg = loadImage('assets/lose.png');
+  startImg = loadImage('assets/start.png');
+  enemyImg = loadImage('assets/enemy.png');
 }
 
 function setup() {
-  createCanvas(1600, 900);
-  background(149,200,216);
-  textSize(40);
-  textFont('Courier new');
-  textAlign(CENTER);
+  song.play();
+  song.setVolume(0.01);
+  slider = createSlider(0, 1, 0.01, 0.01);
+  cnv = createCanvas(w, h);
+  // var url = api + apiKey + query;
+  // loadJSON(url, gotData);
+
+
+  textFont('monospace');
   textStyle(BOLD);
-  stroke(50);
-  strokeWeight(5);
-  fill(0,171,240)
-  imageMode(CENTER);
-  frameRate(5);
 
-  text("Click the button to win a car!", 800, 450);
+  player = new Player();
 
-  button = createButton("Click To Randomize");
-  button.mousePressed(buttonPressed);
-
-
-  // *notes for myself*
-  // console.log(pandas[2].color);
-  // console.log("initial array is ");
-  // console.log(pandas);
-
-  // pandas.shift();
-  // console.log("array after shift ");
-  // console.log(pandas);
-
-  // pandas.splice (4, 1), x = the one you want to remove in arrays, y = how many you want in the parameter to remove
-
-  // pandas.unshift("ha");
-  // console.log("array after unshift ");
-  // console.log(pandas);
-
+  // coin [0] = new Coin();
+  coin.push(new Coin());
+  enemies.push(new Enemy());
 }
 
 function draw() {
+  song.setVolume(slider.value());
 
-  if (animating == true) {
-    clear();
-    image(cars[imageCounter], width / 2, height / 2);
+  switch (state) {
+    case 'title':
+      title();
+      cnv.mouseClicked(titleMouseClicked);
+      break;
+    case 'instruct':
+      instruct();
+      cnv.mouseClicked(instructMouseClicked);
+      break;
+    case 'level 1':
+      level1();
+      cnv.mouseClicked(level1MouseClicked);
+      break;
+    case 'you win':
+      youWin();
+      cnv.mouseClicked(youWinMouseClicked);
+      break;
+    case 'game over':
+      gameOver();
+      cnv.mouseClicked(gameOverMouseClicked);
+      break;
+    default:
+      break;
+  }
 
-    if (imageCounter < cars.length - 1) {
-      imageCounter++;
-    } else {
-      imageCounter = 0;
+}
+
+// function gotData(giphy) {
+//   createImg(giphy.data[0].images.original.url);
+
+
+
+function keyPressed() {
+  if (keyCode == LEFT_ARROW) {
+    player.direction = 'left'
+  } else if (keyCode == RIGHT_ARROW) {
+    player.direction = 'right'
+  } else if (keyCode == UP_ARROW) {
+    player.direction = 'up'
+  } else if (keyCode == DOWN_ARROW) {
+    player.direction = 'down'
+  } else if (key = ' ') {
+    player.direction = 'still';
+  }
+}
+
+function keyReleased() {
+
+  let numberKeysPressed = 0;
+
+  if (keyIsDown(LEFT_ARROW)) {
+    numberKeysPressed++;
+  }
+
+  if (keyIsDown(RIGHT_ARROW)) {
+    numberKeysPressed++;
+  }
+
+  if (keyIsDown(DOWN_ARROW)) {
+    numberKeysPressed++;
+  }
+
+  if (keyIsDown(UP_ARROW)) {
+    numberKeysPressed++;
+  }
+
+  if (numberKeysPressed == 0) {
+    player.direction = 'still';
+  }
+}
+
+function title() {
+
+  background(startImg);
+  textSize(80);
+  stroke(255);
+  text('Demonslayer Realm', w / 2, h / 5);
+  fill(255,69,0);
+  textAlign(CENTER);
+
+
+  textSize(30);
+  text('Click anywhere to start', w / 2, h / 2);
+}
+
+function titleMouseClicked() {
+  console.log('canvas is clicked on title page');
+  state = 'instruct'
+}
+
+function instruct(){
+  background(instructImg);
+}
+
+function instructMouseClicked(){
+  state = 'level 1'
+}
+
+function level1() {
+  background(backgroundImg);
+
+  if (random(1) <= 0.04) {
+    coin.push(new Coin());
+  }
+
+  if (random(1) <= 0.04) {
+    enemies.push(new Enemy());
+  }
+
+  player.display();
+  player.move();
+
+  // iterating through coins array to display and move them
+
+  // using for loop
+  for (let i = 0; i < coin.length; i++) {
+    coin[i].display();
+    coin[i].move();
+  }
+
+  for (let i = 0; i < enemies.length; i++) {
+    enemies[i].display();
+    enemies[i].move();
+  }
+
+  // using foreach
+
+  // coin.forEach(function(coin){
+  //   coin.display();
+  //   coin.move();
+  // })
+
+
+  //check for collision, if there is a collision increase points by 1 and SPLICE that coin out of array
+  // need to iterate backwards through array
+  for (let i = coin.length - 1; i >= 0; i--) {
+    if (dist(player.x, player.y, coin[i].x, coin[i].y) <= (player.r + coin[i].r) / 2) {
+      points++;
+      slash.play();
+      slash.setVolume(0.01);
+      coin.splice(i, 1);
+    } else if (coin[i].y > h) {
+      coin.splice(i, 1);
     }
   }
 
-}
-
-function randomizer() {
-  animating = false;
-
-  if (pandas[0]) {
-    // background(random(200, 255));
-    // random index = pulling a random integer to the length of the array
-    clear();
-    randomIndex = int(random(pandas.length));
-    // using text to sub integer for the name of panda
-    image(random(cars), width / 2, height / 2);
-    text(`${pandas[randomIndex].name} won this ${pandas[randomIndex].color}`, 550, 700);
-    // text(pandas[randomIndex].name + "'s favorite color is " + pandas[randomIndex].color, 50, 50);
-    // not letting it to repeat
-    pandas.splice(randomIndex, 1);
-  } else {
-    background(random(200, 255));
-    text("No more cars left to giveaway!", 800, 450);
+  for (let i = enemies.length - 1; i >= 0; i--) {
+    if (dist(player.x, player.y, enemies[i].x, enemies[i].y) <= (player.r + enemies[i].r) / 2) {
+      points--;
+      killed.play();
+      killed.setVolume(0.01);
+      enemies.splice(i, 1);
+    } else if (enemies[i].y > h) {
+      enemies.splice(i, 1);
+    }
   }
+
+  text('Demons killed: ' + points, w / 4, h - 30);
+
+// game points and death limit
+  if (points >= 15) {
+    state = 'you win';
+  } else if (points <= -1){
+    state = 'game over';
+  }
+
 }
 
-function buttonPressed() {
-  animating = true;
-  setTimeout(randomizer, 2000);
+function level1MouseClicked() {
+  // points++;
+  // console.log('points = ' + points);
+  //
+  // if (points >= 10) {
+  //   state = 'you win';
+  // }
+}
 
+function youWin() {
+  background(winImg);
+  textSize(80);
+  stroke(255);
+  text('YOU WIN', w / 2, h / 2);
 
-  //  if (pandas[0]){
-  //    background(random(200, 255));
-  // random index = pulling a random integer to the length of the array
-  //    randomIndex = int(random(pandas.length));
-  // using text to sub integer for the name of panda
-  //    text(pandas[randomIndex].name, 50, 50);
-  // not letting it to repeat
-  //    pandas.splice(randomIndex, 1);
-  //} else {
-  //  background(random(200, 255));
-  //  text("nothing left!", 50, 50);
-  //}
+  textSize(30);
+  text('Click anywhere to restart', w / 2, h * 3 / 4);
+}
+
+function youWinMouseClicked() {
+  state = 'title';
+  points = 0;
+}
+
+function gameOver() {
+  background(loseImg);
+  textSize(80);
+  stroke(255);
+  text('You died', w / 2, h / 2);
+
+  textSize(30);
+  text('Click anywhere to restart', w / 2, h * 3 / 4);
+}
+
+function gameOverMouseClicked() {
+  state = 'title';
+  points = 0;
 }
